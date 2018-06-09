@@ -11,8 +11,18 @@
 
 <p>The purpose of this GitHub repository is to support development of proposals and change tracking for the OpenC2 HTTPS implementation specification as new working draft level revisions are created and the associated CSDs mature.</p>
 
-<p>This repository is designed to support TC members' work on a formal specification that describes the use of HTTPS as a transfer mechanism for OpenC2 messages.  The specification explains the transfer of OpenC2 command and response messages using HTTP and the use of TLS to provide security.  The authoritative format for the specification is Markdown.</p>
+<p>This repository is designed to support TC members' work on a formal specification that describes the use of HTTPS as a transfer mechanism for OpenC2 messages. Provisional Work Product <a href="https://lists.oasis-open.org/archives/openc2/201806/msg00005.html">title</a>: "Specification for Transfer of OpenC2 Messages via HTTPS", edited by David Lemire (G2). The specification explains the transfer of OpenC2 command and response messages using HTTP and the use of TLS to provide security.  The authoritative format for the specification is Markdown, as per the OpenC2 TC <a href="https://issues.oasis-open.org/browse/TCADMIN-3011">request form</a>.</p>
 </div>
+
+<!--
+Template / starter document request for Specification for Transfer of OpenC2 Messages via HTTPS
+https://issues.oasis-open.org/browse/TCADMIN-3011
+
+Provisional Work Product title: "Specification for Transfer of OpenC2 Messages via HTTPS", edited by David Lemire (G2).
+
+Form submission from: Request a template / starter document
+https://lists.oasis-open.org/archives/openc2/201806/msg00005.html
+-->
 
 <div>
 <h3>Contributions</h3>
