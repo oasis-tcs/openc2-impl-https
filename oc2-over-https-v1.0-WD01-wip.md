@@ -300,7 +300,7 @@ The TLS session MUST use non-NULL ciphersuites for authentication, integrity, an
 OpenC2 endpoints MUST support TLS version 1.1 and SHOULD support TLS version 1.2 [RFC5246]; OpenC2 endpoints MUST NOT request, offer, or use any version of SSL, or any version of TLS prior to 1.1, due to known security vulnerabilities in prior versions of the protocol; see Appendix E of [RFC5246] for more information.
 
 #### 3.2.3.1 TLS Authentication
-When deployed in an operational environment, OpenC2 endpoints MUST use mutual authentication; that is, both OpenC2 endpoints acting as HTTPS clients and OpenC2 endpoints acting as HTTPS servers MUST be identified by an X.509 certificate [RFC5280].  Mutual authentication requires full path validation on each certificate, as defined in [RFC5280].
+When deployed in an operational environment, OpenC2 endpoints SHOULD use mutual authentication; that is, both OpenC2 endpoints acting as HTTPS clients and OpenC2 endpoints acting as HTTPS servers MUST be identified by an X.509 certificate [RFC5280].  Mutual authentication requires full path validation on each certificate, as defined in [RFC5280].
 
 #### 3.2.3.2 TLS Confidentiality
 TBD
