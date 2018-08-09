@@ -4,7 +4,7 @@
 
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
 ## Working Draft 01
-## 15 June 2018
+## 09 August 2018
 #### Specification URIs
 ##### This Version:
 [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.md](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.md) (Authoritative)
@@ -39,7 +39,9 @@ This prose specification is one component of a Work Product that also includes:
 * XML schemas: [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/schemas/](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/schemas/)
 * Other parts
 
-> **Note to Editor**: List the full title and VISIBLE hyperlink, including the terminating slash ("/"). The hyperlink should link to an HTML version, if possible.> > Remove entire section if there are no entries. Don't use "N/A".
+> **Note to Editor**: List the full title and VISIBLE hyperlink, including the terminating slash ("/"). The hyperlink should link to an HTML version, if possible.
+> 
+> Remove entire section if there are no entries. Don't use "N/A".
 
 ##### Related work:
 This specification replaces or supersedes:  
@@ -50,12 +52,16 @@ This specification is related to:
 
 * Related specifications
 
-> **Note to Editor**: List the VISIBLE hyperlink to an HTML version, if possible.> > Remove entire "Related work" section or the "replaces" or "related" subsections if there are no entries.
+> **Note to Editor**: List the VISIBLE hyperlink to an HTML version, if possible.
+> 
+> Remove entire "Related work" section or the "replaces" or "related" subsections if there are no entries.
 
 ##### Declared XML namespaces:
 * list namespaces which are declared, not just referenced
 
-> **Note to Editor**: List the VISIBLE hyperlink, if HTTP-based URI.> > Remove entire section if there are no entries. Don't use "N/A".
+> **Note to Editor**: List the VISIBLE hyperlink, if HTTP-based URI.
+> 
+> Remove entire section if there are no entries. Don't use "N/A".
 
 ## Abstract:
 This specification describes the use of HTTP over TLS as a transfer mechanism for OpenC2 messages.
@@ -194,7 +200,14 @@ OpenC2 Glossary. Edited by Duncan Sparrell and TODO. Date-TODO. OASIS TODO. link
 
 [Full reference citation]
 
-> **Note to Editor**:> _Reference sources_:> For references to **IETF RFCs**, use the approved citation formats at:> [http://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html](http://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html).> For references to **W3C Recommendations**, use the approved citation formats at:> [http://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html](http://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html).> > Remove this note before submitting for publication.
+> **Note to Editor**:
+> _Reference sources_:
+> For references to **IETF RFCs**, use the approved citation formats at:
+> [http://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html](http://docs.oasis-open.org/templates/ietf-rfc-list/ietf-rfc-list.html).
+> For references to **W3C Recommendations**, use the approved citation formats at:
+> [http://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html](http://docs.oasis-open.org/templates/w3c-recommendations-list/w3c-recommendations-list.html).
+> 
+> Remove this note before submitting for publication.
 
 ## 1.5 Overview
 This document specifies the use of Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS) as a transport mechanism for OpenC2 messages; this HTTP/TLS layering is typically referred to as HTTPS [RFC2818]. As described in [RFC3205], HTTP has become a common "substrate" for information transfer for other application-level protocols. The broad availability of HTTP makes it a useful option for OpenC2 message transport in support of prototyping, interoperability testing, and for operational use in environments where appropriate security protections can be provided. Similarly, TLS is a mature and widely-used protocol for securing information transfers in TCP/IP network environments. This specification provide guidance to the OpenC2 implementation community when utilizing HTTPS for OpenC2 message transport. It includes guidance for selection of TLS versions and options suitable for use with OpenC2 (see Section 3.2.3).
@@ -399,7 +412,11 @@ When both the Producer and the Consumer act as HTTP servers, the Producer contac
 Example messages for Producers sending OpenC2 commands can be found in Annex B, section B.1. Example messages for Consumers asynchronously posting response messages can be found in Annex B, section B.2.
 
 # 4 Conformance
-> **Note to Editor**: The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsConfClause) requires that a specification approved by the TC at the Committee Specification Public Review Draft, Committee Specification or OASIS Standard level must include a separate section, listing a set of numbered conformance clauses, to which any implementation of the specification must adhere in order to claim conformance to the specification (or any optional portion thereof). This is done by listing the conformance clauses here. For the definition of "conformance clause," see [OASIS Defined Terms](https://www.oasis-open.org/policies-guidelines/oasis-defined-terms-2017-05-26#dConformanceClause).> > See "Guidelines to Writing Conformance Clauses":  [http://docs.oasis-open.org/templates/TCHandbook/ConformanceGuidelines.html](http://docs.oasis-open.org/templates/TCHandbook/ConformanceGuidelines.html).> > Remove this note before submitting for publication.
+> **Note to Editor**: The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsConfClause) requires that a specification approved by the TC at the Committee Specification Public Review Draft, Committee Specification or OASIS Standard level must include a separate section, listing a set of numbered conformance clauses, to which any implementation of the specification must adhere in order to claim conformance to the specification (or any optional portion thereof). This is done by listing the conformance clauses here. For the definition of "conformance clause," see [OASIS Defined Terms](https://www.oasis-open.org/policies-guidelines/oasis-defined-terms-2017-05-26#dConformanceClause).
+> 
+> See "Guidelines to Writing Conformance Clauses":  [http://docs.oasis-open.org/templates/TCHandbook/ConformanceGuidelines.html](http://docs.oasis-open.org/templates/TCHandbook/ConformanceGuidelines.html).
+> 
+> Remove this note before submitting for publication.
 
 # 5 # Annex A. Acronyms
 | Term | Expansion |
