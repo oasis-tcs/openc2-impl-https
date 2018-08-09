@@ -115,7 +115,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 _This section in its entirety is non-normative._
 
-The OpenC2 Language Specification [OpenC2-Lang-v1.0] defines a language used to compose messages for command and control of cyber defense systems and components.  A message consists of a header (defined in this specification) and a payload (_defined _as a message body in the OpenC2 Language Specification Version 1.0 and _specified _in one or more actuator profiles).
+The OpenC2 Language Specification [OpenC2-Lang-v1.0] defines a language used to compose messages for command and control of cyber defense systems and components.  A message consists of a header (defined in this specification) and a payload (_defined_ as a message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more actuator profiles). 
 
 In general, there are two types of participants involved in the exchange of OpenC2 messages:
 
