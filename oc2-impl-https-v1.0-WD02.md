@@ -56,7 +56,9 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-HTTPS-v1.0]**
 
-_Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. 09 August 2018. OASIS Committee Specification Draft 01. [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.html). Latest version: [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html).
+_Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. 09 August 2018. OASIS Committee Specification Draft 02. [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd02.html). 
+
+Latest version: [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html).
 
 ---
 
@@ -418,11 +420,10 @@ A conformant implementation of this transfer specification MUST:
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
 8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
 9. Instantiate the message elements defined in Table 3.2 of [OpenC2-Lang-v1.0] as follows:
-
 | Name | HTTPS Implementation |
 |:---|:---|
 | content | JSON verbose serialization of OpenC2 commands and responses carried in the HTTP message body |
-| content_type<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>* Command:  application/openc2-cmd+json;version=1.0<br>* Response:  application/openc2-rsp+json;version=1.0  |
+| content_type<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
 | correlation_id | Carried in HTTP X-Correlation-ID header |
 | created | Carried in the HTTP Date header |
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
@@ -430,7 +431,7 @@ A conformant implementation of this transfer specification MUST:
 
 **Table 4.1 - Message Element Implementation**
 
-# Annex A. Acronyms
+# 5 # Annex A. Acronyms
 | Term | Expansion |
 |:---|:---|
 | 0-RTT | Zero Round Trip Time |
@@ -446,7 +447,7 @@ A conformant implementation of this transfer specification MUST:
 | TCP | Transmission Control Protocol |
 | TLS | Transport Layer Security |
 
-# Annex B. Examples
+# 6 # Annex B. Examples
 OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4.2.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
@@ -563,7 +564,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 }
 ```
 
-# Annex C. Acknowledgments
+# 7 # Annex C. Acknowledgments
 The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
 
 The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
@@ -607,7 +608,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Sounil Yu, Bank of America
 * David Webber, Huawei
 
-# Annex D. Revision History
+# 8 # Annex D. Revision History
 | Revision | Date | Editor | Changes Made |
 |:---|:---|:---|:---|
 | v1.0-wd01-wip | 6/15/2018 | Lemire | Initial working draft |
@@ -615,11 +616,11 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd01-wip | 7/20/2018 | Lemire | Additional responses to member comments; formatting clean-up for easier conversion to Markdown. |
 | v1.0-wd01-wip | 8/9/2018 | Lemire | Implementing feedback from the July 2018 face-to-face meeting and resolving other comments to reach WD01 version to submit for CSD ballot. |
 | v1.0-wd02-wip | 8/24/2018 | Lemire | Various edits to clarify interactions when the producer is HTTP listener; other edits and cleanup in response to document comments and Slack forum discussions. |
-| v1.0-wd02-wip | 8/29/2018 | Lemire | <NOT_PARA><br><NOT_PARA><br><NOT_PARA> |
+| v1.0-wd02-wip | 8/29/2018 | Lemire | Adjustments to content type definitions to distinguish commands and responses; <br>Made corresponding adjustments to message flow descriptions and sample messages.<br>Added acknowledgements. |
 | v1.0-wd02-wip | 8/30/2018 | Lemire | Inserted proposed replacements for sequence diagrams (Figures 2 and 3). |
-| v1.0-wd02-wip | 8/31/2018 | Lemire | <NOT_PARA><br><NOT_PARA><br><NOT_PARA><br><NOT_PARA> |
-| v1.0-wd02-wip | 9/11/2018 | Lemire | <NOT_PARA><br><NOT_PARA><br><NOT_PARA> |
-| v1.0-wd02-wip | 9/17/2018 | Lemire | <NOT_PARA><br><NOT_PARA><br><NOT_PARA><br><NOT_PARA> |
-| v1.0-wd02-wip | 9/17/2018 | Lemire | <NOT_PARA><br><NOT_PARA> |
-| v1.0-wd02-wip | 9/19/2018 | Lemire | <NOT_PARA><br><NOT_PARA> |
+| v1.0-wd02-wip | 8/31/2018 | Lemire | Inserted initial draft conformance language (section 4).<br>Revised Section 1 content for greater consistency with related OpenC2 specifications.<br>Revised section 2.1 to merge proposed endpoint role descriptions<br>General edit for formatting, readability, consistency, etc. |
+| v1.0-wd02-wip | 9/11/2018 | Lemire | Reviewed and accepted / rejected comments.<br>Added placeholders for addressing use of "From" field.<br>Added statements about using Cache-control |
+| v1.0-wd02-wip | 9/17/2018 | Lemire | Added table to conformance section specifying mapping of Language Spec message elements.<br>Clarified certificate mutual authentication requirement.<br>Removed language about unsolicited responses from Consumers<br>Numbered the conformance items |
+| v1.0-wd02-wip | 9/17/2018 | Lemire | Removed used of the HTTP "From:" field, and mapped the OpenC2 "from" message element to the authenticated identity of the peer entity<br>Updated examples to remove HTTP From: |
+| v1.0-wd02-wip | 9/19/2018 | Lemire | Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>Renamed document WD02  |
 
