@@ -405,6 +405,7 @@ A conformant implementation of this transfer specification MUST:
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
 8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
 9. Instantiate the message elements defined in Table 3.2 of [OpenC2-Lang-v1.0] as follows:
+
 | Name | HTTPS Implementation |
 |:---|:---|
 | content | JSON verbose serialization of OpenC2 commands and responses carried in the HTTP message body |
@@ -418,9 +419,9 @@ A conformant implementation of this transfer specification MUST:
 **Table 4.1 - Message Element Implementation**
 
 ## 4.2 Fully-Authentication Conformance
-1. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section 3.2.3.
+10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section 3.2.3.
 
-# 5 # Annex A. Acronyms
+# Annex A. Acronyms
 | Term | Expansion |
 |:---|:---|
 | 0-RTT | Zero Round Trip Time |
@@ -436,7 +437,7 @@ A conformant implementation of this transfer specification MUST:
 | TCP | Transmission Control Protocol |
 | TLS | Transport Layer Security |
 
-# 6 # Annex B. Examples
+# Annex B. Examples
 OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4.2.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
@@ -553,7 +554,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 }
 ```
 
-# 7 # Annex C. Acknowledgments
+# Annex C. Acknowledgments
 The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
 
 The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
@@ -597,7 +598,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Sounil Yu, Bank of America
 * David Webber, Huawei
 
-# 8 # Annex D. Revision History
+# Annex D. Revision History
 | Revision | Date | Editor | Changes Made |
 |:---|:---|:---|:---|
 | v1.0-wd01-wip | 6/15/2018 | Lemire | Initial working draft |
