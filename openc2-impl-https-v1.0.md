@@ -300,7 +300,7 @@ OpenC2 response messages sent over HTTPS MUST use the content type "application/
 ### 3.2.2 HTTP Usage
 OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in Section 2.2.  OpenC2 Producers SHOULD be HTTP listeners, to support the operating models described in Sections 2.3 and 2.4. OpenC2 Producers and Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
 
-OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], _et. al._). As described in the following table, the only HTTP request methods utilized are GET and POST. 
+OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], _et. al._). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST. 
 
 | HTTP Method | Utilized |
 |:---|:---|
@@ -312,6 +312,8 @@ OpenC2 endpoints MUST implement all HTTP functionality required by this specific
 | CONNECT | No |
 | OPTIONS | No |
 | TRACE | No |
+
+**Table 3-1: HTTP Method Use**
 
 Each HTTP message body MUST contain only a single OpenC2 command or response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 command and response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
 
@@ -386,9 +388,9 @@ The following HTTP response headers MUST be populated by a Consumer when transmi
 Example messages can be found in Annex B, section B.2.
 
 ## 3.5 OpenC2 Producer and OpenC2 Consumer as HTTP/TLS Servers
-When both the Producer and the Consumer act as HTTP servers, the Producer contacts the Consumer to send commands and status queries as described in Section 3.3. If the Consumer needs to send an OpenC2 response to the Producer asynchronously, it uses the process described in Section 3.4, initiating the connection and using the HTTP POST method to send the OpenC2 response message.
+When both the Producer and the Consumer act as HTTP servers, the Producer contacts the Consumer to send commands and status queries as described in Section 3.3. If the Consumer needs to send an OpenC2 response to the Producer asynchronously, it uses the process described in Section 3.4, initiating the connection and using the HTTP POST method to send the OpenC2 response message.
 
-Example messages for Producers sending OpenC2 commands can be found in Annex B, section B.1. Example messages for Consumers asynchronously posting response messages can be found in Annex B, section B.2.
+Example messages for Producers sending OpenC2 commands can be found in Annex B, section B.1. Example messages for Consumers asynchronously posting response messages can be found in Annex B, section B.2.
 
 # 4 Conformance
 This specification defines a set of basic conformance requirements that all implementations must meet to claim conformance. An additional set of conformance requirements are defined for fully-authenticated implementations. Users of this specification deploying OpenC2 in an operational environment are strongly recommended to use fully-authenticated implementations in order to provide adequate security.
@@ -404,7 +406,7 @@ A conformant implementation of this transfer specification MUST:
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections 3.2.3 and 3.2.3.1
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
 8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
-9. Instantiate the message elements defined in Table 3.2 of [OpenC2-Lang-v1.0] as follows:
+9. Instantiate the message elements defined in Table 3-1 of [OpenC2-Lang-v1.0] as follows:
 
 | Name | HTTPS Implementation |
 |:---|:---|
@@ -416,7 +418,7 @@ A conformant implementation of this transfer specification MUST:
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
 | to | Carried in the HTTP Host header |
 
-**Table 4.1 - Message Element Implementation**
+**Table 4-1 - Message Element Implementation**
 
 ## 4.2 Fully-Authentication Conformance
 10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section 3.2.3.
@@ -438,7 +440,7 @@ A conformant implementation of this transfer specification MUST:
 | TLS | Transport Layer Security |
 
 # Annex B. Examples
-OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4.2.
+OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4-1.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
 
@@ -615,4 +617,3 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
 | v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.2.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.3 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
-
