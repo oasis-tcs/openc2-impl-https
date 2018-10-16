@@ -300,7 +300,7 @@ OpenC2 response messages sent over HTTPS MUST use the content type "application/
 ### 3.2.2 HTTP Usage
 OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in Section 2.2.  OpenC2 Producers SHOULD be HTTP listeners, to support the operating models described in Sections 2.3 and 2.4. OpenC2 Producers and Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
 
-OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], _et. al._). As described in the following table, the only HTTP request methods utilized are GET and POST. 
+OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], _et. al._). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST. 
 
 | HTTP Method | Utilized |
 |:---|:---|
@@ -312,6 +312,8 @@ OpenC2 endpoints MUST implement all HTTP functionality required by this specific
 | CONNECT | No |
 | OPTIONS | No |
 | TRACE | No |
+
+**Table 3-1: HTTP Method Use**
 
 Each HTTP message body MUST contain only a single OpenC2 command or response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 command and response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
 
@@ -404,7 +406,7 @@ A conformant implementation of this transfer specification MUST:
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections 3.2.3 and 3.2.3.1
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
 8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
-9. Instantiate the message elements defined in Table 3.2 of [OpenC2-Lang-v1.0] as follows:
+9. Instantiate the message elements defined in Table 3-1 of [OpenC2-Lang-v1.0] as follows:
 
 | Name | HTTPS Implementation |
 |:---|:---|
@@ -416,7 +418,7 @@ A conformant implementation of this transfer specification MUST:
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
 | to | Carried in the HTTP Host header |
 
-**Table 4.1 - Message Element Implementation**
+**Table 4-1 - Message Element Implementation**
 
 ## 4.2 Fully-Authentication Conformance
 10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section 3.2.3.
@@ -438,7 +440,7 @@ A conformant implementation of this transfer specification MUST:
 | TLS | Transport Layer Security |
 
 # Annex B. Examples
-OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4.2.
+OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]**.** When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4-1.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
 

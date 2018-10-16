@@ -257,7 +257,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 <p>OpenC2 response messages sent over HTTPS MUST use the content type &quot;application/openc2-rsp+json;version=1.0&quot;.</p>
 <h3 id="3.2.2-http-usage">3.2.2 HTTP Usage</h3>
 <p>OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in Section 2.2. OpenC2 Producers SHOULD be HTTP listeners, to support the operating models described in Sections 2.3 and 2.4. OpenC2 Producers and Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.</p>
-<p>OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], <em>et. al.</em>). As described in the following table, the only HTTP request methods utilized are GET and POST.</p>
+<p>OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([RFC7230], <em>et. al.</em>). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST.</p>
 <table>
 <thead>
 <tr class="header">
@@ -300,6 +300,8 @@ X-Correlation-ID: bf5t2ttrsc8r
 </tr>
 </tbody>
 </table>
+p><strong>Table 3-1: HTTP Method Use</strong></p>
+
 <p>Each HTTP message body MUST contain only a single OpenC2 command or response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 command and response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).</p>
 <p>All HTTP request and response messages containing OpenC2 payloads SHOULD include the &quot;Cache-control:&quot; header with a value of &quot;no-cache&quot;.</p>
 <h3 id="3.2.3-tls-usage">3.2.3 TLS Usage</h3>
@@ -370,7 +372,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 <li>Implement TLS in accordance with the requirements and restrictions specified in Sections 3.2.3 and 3.2.3.1</li>
 <li>Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4</li>
 <li>Employ only the HTTP response codes as specified in Sections 3.3 and 3.4</li>
-<li>Instantiate the message elements defined in Table 3.2 of [OpenC2-Lang-v1.0] as follows:</li>
+<li>Instantiate the message elements defined in Table 3-1 of [OpenC2-Lang-v1.0] as follows:</li>
 </ol>
 <table>
 <thead>
@@ -410,7 +412,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 </tr>
 </tbody>
 </table>
-<p><strong>Table 4.1 - Message Element Implementation</strong></p>
+<p><strong>Table 4-1 - Message Element Implementation</strong></p>
 <h2 id="4.2-fully-authentication-conformance">4.2 Fully-Authentication Conformance</h2>
 <ol start="10">
 <li>Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section 3.2.3.</li>
@@ -475,7 +477,7 @@ X-Correlation-ID: bf5t2ttrsc8r
 </tbody>
 </table>
 <h1 id="annex-b.-examples">Annex B. Examples</h1>
-<p>OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]<strong>.</strong> When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4.2.</p>
+<p>OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [OpenC2-Lang-v1.0]<strong>.</strong> When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4-1.</p>
 <p>A Request-URI ending in /openc2 is used in all example HTTP requests.</p>
 <h2 id="b.1-http-request-/-response-examples:-consumer-as-http-server">B.1 HTTP Request / Response Examples: Consumer as HTTP Server</h2>
 <p>This section presents the HTTP message structures used when the OpenC2 Consumer acts as the HTTP listener.</p>
