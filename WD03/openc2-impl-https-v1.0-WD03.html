@@ -300,7 +300,8 @@ X-Correlation-ID: bf5t2ttrsc8r
 </tr>
 </tbody>
 </table>
-p><strong>Table 3-1: HTTP Method Use</strong></p>
+
+<p><strong>Table 3-1: HTTP Method Use</strong></p>
 
 <p>Each HTTP message body MUST contain only a single OpenC2 command or response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 command and response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).</p>
 <p>All HTTP request and response messages containing OpenC2 payloads SHOULD include the &quot;Cache-control:&quot; header with a value of &quot;no-cache&quot;.</p>
