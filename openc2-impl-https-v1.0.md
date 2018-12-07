@@ -1,4 +1,4 @@
-![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+﻿![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
@@ -443,7 +443,7 @@ X-Correlation-ID: shq5x2dmgayf
 	"status": 200
 	"status_text": ...
 	"results": { ...
-	}
+        }
 }
 ```
 
