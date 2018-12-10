@@ -306,15 +306,17 @@ The contents of the X-Correlation-ID HTTP header MUST match the command-id in th
 The following HTTP request headers MUST be populated when transferring OpenC2 commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0
-* Date:  date-time in HTTP-date format as defined by RFC 7231
+* Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id
 
 The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
 
-* Date: date-time in HTTP-date format as defined by RFC 7231
-* Content-type: application/openc2-rsp+json;version=1.0
+* Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id
+
+The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
+* Date: date-time in HTTP-date format as defined by RFC 7231
+
 
 Example messages can be found in Annex B, section B.1.
 
@@ -335,17 +337,19 @@ The intent is that the Producer is able to transmit all commands and status quer
 The following HTTP request headers MUST be populated when a Producer responds to a Consumer's polling request with an OpenC2 command:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0
-* Date:  date-time in HTTP-date format as defined by RFC 7231
+* Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id
 
 When the Producer sends a command in response to a Consumer poll, the Producer MUST  populate the HTTP X-Correlation-ID field with the command-id value the Producer has assigned to the command. When the Producer sends a status query in response to a Consumer poll, the command-id in the X-Correlation-ID field MUST contain the command-id the Producer assigned when the command was originally sent.
 
 The following HTTP response headers MUST be populated by a Consumer when transmitting OpenC2 responses:
 
-* Date: date-time in HTTP-date format as defined by RFC 7231
-* Content-type: application/openc2-rsp+json;version=1.0
+* Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id of the command to which this response applies
+
+The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the producer is the HTTP/TLS server:
+* Date: date-time in HTTP-date format as defined by RFC 7231
+
 
 Example messages can be found in Annex B, section B.2.
 
