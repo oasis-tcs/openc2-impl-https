@@ -373,7 +373,7 @@ A conformant implementation of this transfer specification MUST:
 
 | Name | HTTPS Implementation |
 |:---|:---|
-| content | JSON verbose serialization of OpenC2 commands and responses carried in the HTTP message body |
+| content | JSON serialization of OpenC2 commands and responses carried in the HTTP message body |
 | content_type /<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP Response start line status code.  |
 | request_id | Valued supplied by OpenC2 Producers is carried in HTTP X-Correlation-ID header and delivered to recipient along with OpenC2 command. |
