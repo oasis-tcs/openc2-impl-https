@@ -140,7 +140,7 @@ Example:
 
 ```
 HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
 X-Correlation-ID: bf5t2ttrsc8r
 
