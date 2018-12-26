@@ -282,15 +282,13 @@ Each HTTP message body MUST contain only a single OpenC2 command or response mes
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
 ### 3.2.3 TLS Usage
-HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
+HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.3 [[RFC8446](#rfc8446)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 messages over HTTPS.
 
-OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
+OpenC2 endpoints MUST NOT support any version of TLS prior to v1.3 and MUST NOT support any version of Secure Sockets Layer (SSL). 
 
 The implementation and use of TLS SHOULD align with the best currently available security guidance, such as that provided in [[RFC7525](#rfc7525)]/BCP 195.
 
 The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality.  Sessions MAY be renegotiated within these constraints.
-
-OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
@@ -384,7 +382,7 @@ A conformant implementation of this transfer specification MUST:
 **Table 4-1 - Message Element Implementation**
 
 ## 4.2 Fully-Authentication Conformance
-10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section [3.2.3](#323-tls-usage).
+10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation and SHALL use TLS 1.3 or higher, as specified in Section [3.2.3](#323-tls-usage).
 
 ---
 # Annex A. Acronyms
