@@ -521,6 +521,74 @@ X-Correlation-ID: bf5t2ttrsc8r
 }
 ```
 
+## B.3 Cancel Command Example (Consumer as HTTP Server)
+This section presents the sequence of messages involved in issuing and subsequently cancelling an OpenC2 command using HTTPS transfer. 
+
+Original command message:
+
+```
+POST /openc2 HTTP/1.1
+Host: oc2consumer.company.net
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 14:16:16
+X-Correlation-ID: MjQ2ODEzNTc=
+
+{	
+	"action": ...,
+	"target": ...,
+	"args": ...
+}
+```
+
+Consumer response message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 14:16:18
+Content-type: application/openc2-rsp+json;version=1.0
+X-Correlation-ID: MjQ2ODEzNTc=
+
+{	
+	"status": 200,
+	"status_text": ...,
+	"results": { ...
+	}
+}
+```
+
+Command cancellation message:
+
+```
+POST /openc2 HTTP/1.1
+Host: oc2consumer.company.net
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 15:16:17
+X-Correlation-ID: OTc1Mzg2NDI=
+
+{         
+	"action": "cancel",
+	"target": {
+		"command": "MjQ2ODEzNTc="
+		},
+	"args": ...
+}
+```
+
+Cancellation response message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 15:17:19
+Content-type: application/openc2-rsp+json;version=1.0
+X-Correlation-ID: OTc1Mzg2NDI=
+
+{         
+	"status": 200,
+	"status_text": "Command MjQ2ODEzNTc= cancelled."
+}
+
+```
+
 ---
 # Annex C. Acknowledgments
 The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
