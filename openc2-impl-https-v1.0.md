@@ -235,8 +235,8 @@ When using HTTPS for OpenC2 message transfer, the layering model is:
 |:---|:---|
 | OpenC2 Content | The OpenC2 Language Specification defines the overall OpenC2 language, and the Actuator Profile(s) implemented by any particular endpoint scopes the OpenC2 actions, targets, arguments, and specifiers that apply when commanding that type of Actuator.  |
 | Serialization | Serialization converts internal representations of OpenC2 content into a form that can be transmitted and received. The OpenC2 default serialization is JSON. |
-| Message | The message layer provides a content- and transport-independent mechanism for conveying requests, responses and notifications.   A message consists of content plus a set of meta items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.  Note that notification messages are defined here for completeness even though OpenC2 does not currently define any notification content. |
-| HTTP | The HTTP layer is responsible for conveying request, response, and notification  messages, as described in this specification. |
+| Message | The message layer provides a content- and transport-independent mechanism for conveying requests and responses.  A message consists of content plus a set of meta items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.|
+| HTTP | The HTTP layer is responsible for conveying request and response messages, as described in this specification. |
 | TLS | The TLS layer is responsible for authentication of connection endpoints and confidentiality and integrity of transferred messages.  |
 | Lower Layer Transport | The lower protocol layers are responsible for end-to-end delivery of messages. TCP/IP is the most common suite of lower layer protocols used with HTTPS. |
 
@@ -520,6 +520,78 @@ X-Correlation-ID: bf5t2ttrsc8r
 	}
 }
 ```
+
+
+
+## B.3 Cancel Command Example (Consumer as HTTP Server)
+This section presents the sequence of messages involved in issuing and subsequently cancelling an OpenC2 command using HTTPS transfer. 
+
+Original command message:
+
+```
+POST /openc2 HTTP/1.1
+Host: oc2consumer.company.net
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 14:16:16
+X-Correlation-ID: 24681357
+
+{	
+	"action": ...
+	"target": …
+	"args": ...
+}
+```
+
+Consumer response message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 14:16:18
+Content-type: application/openc2-rsp+json;version=1.0
+X-Correlation-ID: 24681357
+
+{	
+	"status": 200
+	"status_text": ...
+	"results": { ...
+	}
+}
+```
+
+Command cancellation message:
+
+```
+POST /openc2 HTTP/1.1
+Host: oc2consumer.company.net
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 15:16:17
+X-Correlation-ID: 97538642
+
+{         
+	"action": "cancel",
+	"target": {
+		"command": "2468xYz7"
+		},
+	"args": ...
+}
+```
+
+Cancellation response message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 15:17:19
+Content-type: application/openc2-rsp+json;version=1.0
+X-Correlation-ID: 97538642
+
+{         
+	"status": 200,
+	"status_text": "Command 2468xYz7 cancelled."
+}
+
+```
+
+
 
 ---
 # Annex C. Acknowledgments
