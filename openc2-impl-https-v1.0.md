@@ -103,8 +103,6 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
 ###### [RFC5246] 
 Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
-###### [RFC5280] 
-Cooper, D., Santesson, S., Farrell, S., Boeyen, S., Housley, R., and W. Polk, "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008, <https://www.rfc-editor.org/info/rfc5280>.
 ###### [RFC7230] 
 Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing", RFC 7230, DOI 10.17487/RFC7230, June 2014, <https://www.rfc-editor.org/info/rfc7230>.
 ###### [RFC7231] 
@@ -294,7 +292,7 @@ OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphers
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
-When deployed in an operational environment, OpenC2 endpoints MUST support basic authentication and SHOULD support mutual authentication.  When mutual authentication is used, endpoints SHOULD support full path validation on each certificate, as defined in [[RFC5280](#rfc5280)].
+When deployed in an operational environment, OpenC2 endpoints MUST support basic authentication and SHOULD support mutual authentication.
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
@@ -384,7 +382,7 @@ A conformant implementation of this transfer specification MUST:
 **Table 4-1 - Message Element Implementation**
 
 ## 4.2 Fully-Authentication Conformance
-10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section [3.2.3](#323-tls-usage).
+10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication as specified in Section [3.2.3](#323-tls-usage).
 
 ---
 # Annex A. Acronyms
