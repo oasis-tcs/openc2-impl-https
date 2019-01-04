@@ -294,7 +294,7 @@ OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphers
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
-When deployed in an operational environment, OpenC2 endpoints MUST support basic authentication and SHOULD support mutual authentication.  When mutual authentication is used, endpoints SHOULD support full path validation on each certificate, as defined in [[RFC5280](#rfc5280)].
+OpenC2 endpoints MUST support basic authentication and MUST support mutual authentication.  When mutual authentication is used, endpoints SHOULD support full path validation on each certificate, as defined in [[RFC5280](#rfc5280)].
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
