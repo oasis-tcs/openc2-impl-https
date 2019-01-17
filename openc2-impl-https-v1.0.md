@@ -443,7 +443,7 @@ X-Correlation-ID: shq5x2dmgayf
 	"status": 200
 	"status_text": ...
 	"results": { ...
-        } /* junk comment */
+        }
 }
 ```
 
