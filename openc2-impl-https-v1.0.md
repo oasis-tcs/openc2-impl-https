@@ -140,7 +140,7 @@ Example:
 
 ```
 HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
 X-Correlation-ID: bf5t2ttrsc8r
 
@@ -419,7 +419,7 @@ Example message:
 POST /openc2 HTTP/1.1
 Host: oc2consumer.company.net
 Content-type: application/openc2-cmd+json;version=1.0
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Wed, 19 Dec 2018 22:15:00 GMT
 X-Correlation-ID: shq5x2dmgayf
 
 {	
@@ -434,7 +434,7 @@ Example message:
 
 ```
 HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2-rsp+json;version=1.0
 X-Correlation-ID: shq5x2dmgayf
 
@@ -458,7 +458,7 @@ GET /openc2 HTTP/1.1
 Host: oc2producer.company.net
 Accept: application/openc2-cmd+json;version=1.0
 Cache-control: no-cache
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Thu, 20 Dec 2018 20:17:00 GMT
 
 ```
 
@@ -467,7 +467,7 @@ If the Producer has commands for the Consumer, the Producer returns HTTP 200, Su
 
 ```
 HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Thu, 20 Dec 2018 20:17:05 GMT
 Content-type: application/openc2-cmd+json;version=1.0
 X-Correlation-ID: bf5t2ttrsc8r
 
@@ -484,7 +484,7 @@ If the Producer has status queries for the Consumer, the Producer returns HTTP 2
 
 ```
 HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Thu, 20 Dec 2018 20:17:05 GMT
 Content-type: application/openc2-cmd+json;version=1.0
 X-Correlation-ID: bf5t2ttrsc8r
 
@@ -499,7 +499,7 @@ If the Producer has no commands or status queries for the Consumer, the Producer
 
 ```
 HTTP/1.1 204 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Thu, 20 Dec 2018 20:17:05 GMT
 
 ```
 
@@ -510,7 +510,7 @@ Consumers use the HTTP POST method to send OpenC2 response messages to the Produ
 POST /openc2 HTTP/1.1
 Host: oc2producer.company.net
 Content-type: application/openc2-rsp+json;version=1.0
-Date: Day, DD Mon YYYY HH:MM:SS GMT
+Date: Fri, 21 Dec 2018 19:19:19 GMT
 X-Correlation-ID: bf5t2ttrsc8r
 
 {	
