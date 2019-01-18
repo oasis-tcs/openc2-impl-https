@@ -85,6 +85,9 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 ---
 
 # 1 Introduction
+
+_This section is non-normative._
+
 OpenC2 is a suite of specifications to achieve command and control of cyber defense functions.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. This transfer specification defines the procedures and conventions used when employing Hypertext Transfer Protocol (HTTP) and Transport Layer Security (TLS) for the transfer of OpenC2 command and response messages between OpenC2 Producers and Consumers. This specification is one of an expected portfolio of transfer specifications; implementers of OpenC2 should select one or more transfer specifications, consistent with the characteristics and requirements of their cyber ecosystem.
 
 ## 1.1 IPR Policy
@@ -187,7 +190,10 @@ This OpenC2 over HTTPS transfer specification is suitable for operational enviro
 An additional application for this transfer specification is interoperability test environments.
 
 ---
-# 2 Operating models
+# 2 Operating Models
+
+_This section is non-normative._
+
 This section describes the operating models associated with the available assignments of endpoint roles with regard to OpenC2 and HTTP. 
 
 ## 2.1 	Endpoint Definitions
@@ -388,6 +394,9 @@ A conformant implementation of this transfer specification MUST:
 
 ---
 # Annex A. Acronyms
+
+_This section is non-normative._
+
 | Term | Expansion |
 |:---|:---|
 | 0-RTT | Zero Round Trip Time |
@@ -405,6 +414,10 @@ A conformant implementation of this transfer specification MUST:
 
 ---
 # Annex B. Examples
+
+_This section is non-normative._
+
+
 OpenC2 commands and responses need to be transmitted with certain relevant head information (i.e., metadata), as described in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. When sending OpenC2 commands and responses over HTTP/TLS, the OpenC2 message elements are handled as described in Table 4-1.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
