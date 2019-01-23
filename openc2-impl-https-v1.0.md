@@ -250,7 +250,7 @@ When using HTTPS for OpenC2 message transfer, the layering model is:
 This section defines serialization, HTTP, and TLS requirements that apply regardless of operating model.
 
 ### 3.2.1 Serialization and Content Types
-While the OpenC2 language is agnostic of serialization, when transferring OpenC2 messages over HTTP/TLS as described in this specification, the default JSON verbose serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be used.
+While the OpenC2 language is agnostic of serialization, when transferring OpenC2 messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
 
 As described in [OpenC2-Lang-v1.0], transfer protocols must convey message elements. Two content types are defined here to support that requirement:
 
@@ -261,9 +261,9 @@ As described in [OpenC2-Lang-v1.0], transfer protocols must convey message eleme
     * Msg_type: "response"
     * Content type: application/openc2-rsp+json;version=1.0 
 
-OpenC2 command messages sent over HTTPS MUST use the content type "application/openc2-cmd+json;version=1.0". 
+When OpenC2 command messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-cmd+json;version=1.0". 
 
-OpenC2 response messages sent over HTTPS MUST use the content type "application/openc2-rsp+json;version=1.0". 
+When OpenC2 response messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-rsp+json;version=1.0". 
 
 ### 3.2.2 HTTP Usage
 OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2.2](#22-openc2-consumer-as-the-http-server).  OpenC2 Producers SHOULD be HTTP listeners, to support the operating models described in Sections [2.3](#23-openc2-producer-as-http-server) and [2.4](#24-producer-and-consumer-as-httptls-servers). OpenC2 Producers and Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
@@ -379,7 +379,7 @@ A conformant implementation of this transfer specification MUST:
 
 | Name | HTTPS Implementation |
 |:---|:---|
-| content | JSON verbose serialization of OpenC2 commands and responses carried in the HTTP message body |
+| content | JSON serialization of OpenC2 commands and responses carried in the HTTP message body |
 | content_type /<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP Response start line status code.  |
 | request_id | Valued supplied by OpenC2 Producers is carried in HTTP X-Correlation-ID header and delivered to recipient along with OpenC2 command. |
