@@ -381,9 +381,7 @@ Example messages for Producers sending OpenC2 commands can be found in Annex B, 
 
 ---
 # 4 Conformance
-This specification defines a set of basic conformance requirements that all implementations must meet to claim conformance. An additional set of conformance requirements are defined for fully-authenticated implementations. Users of this specification deploying OpenC2 in an operational environment are strongly recommended to use fully-authenticated implementations in order to provide adequate security.
 
-## 4.1 Basic Conformance
 A conformant implementation of this transfer specification MUST:
 
 1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types).
