@@ -292,7 +292,9 @@ OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphers
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
-When deployed in an operational environment, OpenC2 endpoints MUST support basic authentication and SHOULD support mutual authentication.
+### 3.2.4 Authentication
+
+Each participant in an OpenC2 communication MUST authenticate the other participant.
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
@@ -367,7 +369,8 @@ A conformant implementation of this transfer specification MUST:
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage) and 3.2.3.1
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
 8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
-9. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
+9. Support authentication of remote parties as specified in Section [3.2.4](#324-authentication)
+10. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
 
 | Name | HTTPS Implementation |
 |:---|:---|
@@ -380,9 +383,6 @@ A conformant implementation of this transfer specification MUST:
 | to | Carried in the HTTP Host header |
 
 **Table 4-1 - Message Element Implementation**
-
-## 4.2 Fully-Authentication Conformance
-10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication as specified in Section [3.2.3](#323-tls-usage).
 
 ---
 # Annex A. Acronyms
