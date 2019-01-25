@@ -123,8 +123,6 @@ _Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited b
 ## 1.4 Non-Normative References
 ###### [RFC3205]
 Moore, K., "On the use of HTTP as a Substrate", BCP 56, RFC 3205, DOI 10.17487/RFC3205, February 2002, <https://www.rfc-editor.org/info/rfc3205>.
-###### [RFC6546] 
-Trammell, B., "Transport of Real-time Inter-network Defense (RID) Messages over HTTP/TLS", RFC 6546, DOI 10.17487/RFC6546, April 2012, <https://www.rfc-editor.org/info/rfc6546>.
 ###### [RFC7525]
 Sheffer, Y., Holz, R., and P. Saint-Andre, "Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)", BCP 195, RFC 7525, DOI 10.17487/RFC7525, May 2015, <https://www.rfc-editor.org/info/rfc7525>.
 ###### [SLPF]
@@ -187,45 +185,25 @@ This OpenC2 over HTTPS transfer specification is suitable for operational enviro
 An additional application for this transfer specification is interoperability test environments.
 
 ---
-# 2 Operating models
-This section describes the operating models associated with the available assignments of endpoint roles with regard to OpenC2 and HTTP. 
+# 2 Operating Model
+This section describes the operating model used when transferring OpenC2 command and responses using HTTPS. 
 
-## 2.1 	Endpoint Definitions
-Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. Ideally OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited commands from OpenC2 Producers. With this approach OpenC2 Producers act as 'HTTP clients' and transmit commands to Consumers.
+Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. 
+OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited commands from OpenC2 Producers. 
+OpenC2 Producers act as 'HTTP clients' and transmit commands to Consumers.
 
-In some environments, networking considerations may limit or preclude this configuration. For example, if the OpenC2 Consumer is located behind a router that performs network port and/or address translation, it may not be practicable for the Producer to contact an HTTP server listening on behalf of the Consumer. In these cases, each OpenC2 endpoint must act as both an HTTP client and a server.
-
-One example of using HTTP as a substrate, [[RFC6546](#rfc6546)], _Transport of Real-time Inter-network Defense (RID) Messages over HTTP/TLS_, addresses this situation by specifying an arrangement where each RID server is both an HTTP/TLS server and an HTTP/TLS client. Given the anticipated range of implementation environments for OpenC2, a more flexible approach appears justified, so this specification allows for three implementation configurations:	
-
-* The OpenC2 Consumer is the HTTP server
-* The OpenC2 Producer is the HTTP server
-* Both OpenC2 Producer and Consumer are HTTP servers	
-
-Where possible, the configuration where the OpenC2 Consumer is the HTTP server is preferred, as it aligns OpenC2 command / response messaging with HTTP’s request / response structure. 
-
-The following sections briefly summarize each of these operating models. Specifications for how the models are implemented are provided in Section 3 and example interactions are described in Annex B.
-
-## 2.2 OpenC2 Consumer as the HTTP server
-Figure 2 illustrates the configuration where the OpenC2 Consumer operates an HTTP server. In this configuration, a Producer that needs to send OpenC2 commands initiates a TCP connection to the Consumer. Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints and provide connection confidentiality. The Producer can then issue OpenC2 commands by sending HTTP requests using the POST method, with Consumer OpenC2 responses returned in the HTTP response. 
+Figure 2 illustrates the Producer / Consumer interactions. 
+A Producer that needs to send OpenC2 commands initiates a TCP connection to the Consumer. 
+Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints 
+and provide connection confidentiality. The Producer can then issue OpenC2 commands by 
+sending HTTP requests using the POST method, with Consumer OpenC2 responses returned in the HTTP response. 
 
 ![no alt title](./images/image_2.png)
 
-**Figure 2 -- OpenC2 Consumer as HTTP Server**
-
-## 2.3 OpenC2 Producer as HTTP server
-Figure 3 illustrates the configuration where the OpenC2 Producer operates an HTTP server. In this configuration, a Consumer that has been configured to request and accept OpenC2 commands from a particular Producer initiates a TCP connection to the Producer. Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints and provide connection confidentiality. In this configuration, the exchange of OpenC2 commands and responses is driven by the Consumer using simple HTTP polling with the Producer.
-
-![no alt title](./images/image_3.png)
-
-**Figure 3 -- OpenC2 Producer as HTTP Server**
-
-## 2.4 Producer and Consumer as HTTP/TLS Servers
-The configuration where both Producer and Consumer operate an HTTP server is operationally similar to the configuration where only the Consumer operates an HTTP server.  In this configuration, a Producer that needs to send OpenC2 commands initiates a TCP connection to the Consumer. Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints and provide connection confidentiality. The Producer can then issue OpenC2 commands by sending HTTP requests using the POST method, with Consumer OpenC2 responses returned in the HTTP response.
-
-When the Consumer needs to send the Producer an OpenC2 response with updated status, it initiates a TCP connection to the Producer. Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints and provide connection confidentiality. The Consumer can then transmit OpenC2 response messages using the HTTP POST method.
+**Figure 2 -- OpenC2 Producer / Consumer Interactions**
 
 ---
-# 3 Protocol mappings
+# 3 Protocol Mappings
 The section defines the requirements for using HTTP and TLS with OpenC2, including general requirements and protocol mappings for the three operating configurations described in Section 2.
 
 ## 3.1 	Layering Overview
@@ -260,7 +238,8 @@ OpenC2 command messages sent over HTTPS MUST use the content type "application/o
 OpenC2 response messages sent over HTTPS MUST use the content type "application/openc2-rsp+json;version=1.0". 
 
 ### 3.2.2 HTTP Usage
-OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2.2](#22-openc2-consumer-as-the-http-server).  OpenC2 Producers SHOULD be HTTP listeners, to support the operating models described in Sections [2.3](#23-openc2-producer-as-http-server) and [2.4](#24-producer-and-consumer-as-httptls-servers). OpenC2 Producers and Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
+OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2](#2-operating-model). 
+OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
 
 OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST. 
 
@@ -299,9 +278,12 @@ When deployed in an operational environment, OpenC2 endpoints MUST support basic
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
 
-When the OpenC2 Consumer is the HTTP server, the Producer is able to initiate a connection to a specific Consumer and directly transmit OpenC2 messages containing commands; the HTTP POST method is used, with the OpenC2 command body contained in the POST body.
+As the OpenC2 Consumer is the HTTP server, the Producer initiates a 
+connection to a specific Consumer and directly transmits OpenC2 messages containing commands; 
+the HTTP POST method is used, with the OpenC2 command body contained in the POST body.
 
-The contents of the X-Correlation-ID HTTP header MUST match the command-id in the OpenC2 message that is in the payload body, if one is present in the payload.
+The contents of the X-Correlation-ID HTTP header MAY match the command-id in the 
+OpenC2 message that is in the payload body, if one is present in the payload.
 
 The following HTTP request headers MUST be populated when transferring OpenC2 commands:
 
@@ -318,41 +300,6 @@ The following HTTP response headers MUST be populated when transferring OpenC2 r
 
 Example messages can be found in Annex B, section B.1.
 
-## 3.4 OpenC2 Producer as HTTP/TLS Server
-This section defines HTTP requirements that apply when the OpenC2 Producer is the HTTP server.
-
-When the OpenC2 Producer is the HTTP server, the Consumer must poll for commands.  The Consumer checks for commands by polling the Producer with the HTTP GET method. The polling interval is a matter of Consumer configuration. The interval SHOULD be short enough to meet latency requirements, but long enough to avoid excessive load on the server.
-
-Since OpenC2 responses may not always be available immediately, the Producer may be in any of four states with respect to a particular Consumer when that Consumer polls:
-
-* Producer has both commands and status queries
-* Producer has commands but no status queries
-* Producer has status queries but no commands
-* Producer has neither commands nor status queries
-
-The intent is that the Producer is able to transmit all commands and status queries to the Consumer and receive corresponding responses in a contiguous sequence of exchanges. To accomplish this, the Consumer MUST poll the Producer using the HTTP GET method to inquire whether the Producer has traffic for the Consumer. Polling messages sent by a Consumer MUST NOT contain an OpenC2 command-id and MUST NOT populate the HTTP X-Correlation-ID header field.  Polling messages sent by a Consumer SHOULD populate the Accept: header with 'application/openc2-cmd+json;version=1.0'. The Producer will respond to each GET request with an HTTP response with code 200, OK, and a single command or status query in the response body, until the Producer's set of commands and queries is exhausted. The order in which the Producer sends multiple commands and/or status queries is undefined. After each exchange, the Consumer polls again without delay, until it receives an HTTP response with code 204, No Content. 
-
-The following HTTP request headers MUST be populated when a Producer responds to a Consumer's polling request with an OpenC2 command:
-
-* Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0
-* Date:  date-time in HTTP-date format as defined by RFC 7231
-* X-Correlation-ID: contains the OpenC2 command-id
-
-When the Producer sends a command in response to a Consumer poll, the Producer MUST  populate the HTTP X-Correlation-ID field with the command-id value the Producer has assigned to the command. When the Producer sends a status query in response to a Consumer poll, the command-id in the X-Correlation-ID field MUST contain the command-id the Producer assigned when the command was originally sent.
-
-The following HTTP response headers MUST be populated by a Consumer when transmitting OpenC2 responses:
-
-* Date: date-time in HTTP-date format as defined by RFC 7231
-* Content-type: application/openc2-rsp+json;version=1.0
-* X-Correlation-ID: contains the OpenC2 command-id of the command to which this response applies
-
-Example messages can be found in Annex B, section B.2.
-
-## 3.5 OpenC2 Producer and OpenC2 Consumer as HTTP/TLS Servers
-When both the Producer and the Consumer act as HTTP servers, the Producer contacts the Consumer to send commands and status queries as described in Section 3.3. If the Consumer needs to send an OpenC2 response to the Producer asynchronously, it uses the process described in Section 3.4, initiating the connection and using the HTTP POST method to send the OpenC2 response message.
-
-Example messages for Producers sending OpenC2 commands can be found in Annex B, section B.1. Example messages for Consumers asynchronously posting response messages can be found in Annex B, section B.2.
 
 ---
 # 4 Conformance
@@ -364,11 +311,11 @@ A conformant implementation of this transfer specification MUST:
 1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types)
 2. Transfer OpenC2 messages using the content types defined in Section 3.2.1 appropriately, as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server) and [3.4](#34-openc2-producer-as-httptls-server)
 3. Listen for HTTPS connections as specified in Section [3.2.2](#322-http-usage).
-4. Use HTTP GET and POST methods as specified in Sections 3.2.2, 3.3, and 3.4, and no other HTTP methods
+4. Use HTTP GET and POST methods as specified in Sections 3.2.2 and 3.3, and no other HTTP methods
 5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in Section 3.2.2
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage) and 3.2.3.1
-7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3 and 3.4
-8. Employ only the HTTP response codes as specified in Sections 3.3 and 3.4
+7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections 3.3
+8. Employ only the HTTP response codes as specified in Sections 3.3
 9. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
 
 | Name | HTTPS Implementation |
@@ -443,81 +390,6 @@ X-Correlation-ID: shq5x2dmgayf
 	"status": 200
 	"status_text": ...
 	"results": { ...
-}
-```
-
-## B.2 HTTP Request / Response Examples: Producer as HTTP Server
-This section presents the HTTP message structures used when the OpenC2 Producer acts as the HTTP listener.
-
-### B.2.1 Consumer Polls Producer with HTTP GET
-Consumers use the HTTP GET method to poll a Producer for available commands and status queries. No message body is required.
-
-```
-GET /openc2 HTTP/1.1
-Host: oc2producer.company.net
-Accept: application/openc2-cmd+json;version=1.0
-Cache-control: no-cache
-Date: Day, DD Mon YYYY HH:MM:SS GMT
-
-```
-
-### B.2.2 Producer HTTP Response with OpenC2 Command
-If the Producer has commands for the Consumer, the Producer returns HTTP 200, Success and places an OpenC2 message with a command body in the body of the HTTP response. This signals the Consumer to process the command, send an HTTP POST with its OpenC2 response message, and then poll again for additional messages from the Producer.
-
-```
-HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
-Content-type: application/openc2-cmd+json;version=1.0
-X-Correlation-ID: bf5t2ttrsc8r
-
-{	
-"action": ...
-	"target": ...
-	"actuator": ...
-	"args": ...
-}
-```
-
-### B.2.3 Producer HTTP Response with OpenC2 Status Query
-If the Producer has status queries for the Consumer, the Producer returns HTTP 200, Success and places an OpenC2 message with a command to query status in the body of the HTTP response. The id in the OpenC2 message header identifies the command for which updated status is requested. This signals the Consumer to process the status query, send an HTTP POST with its OpenC2 response message, and then poll again for additional messages from the Producer.
-
-```
-HTTP/1.1 200 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
-Content-type: application/openc2-cmd+json;version=1.0
-X-Correlation-ID: bf5t2ttrsc8r
-
-{	
-	"action": "query"
-	"target": "command"
-}
-```
-
-### B.2.4 Producer HTTP Response with No Content
-If the Producer has no commands or status queries for the Consumer, the Producer returns HTTP 204, No Content. This signals the Consumer to return to its default polling interval.
-
-```
-HTTP/1.1 204 OK
-Date: Day, DD Mon YYYY HH:MM:SS GMT
-
-```
-
-### B.2.5 Consumer HTTP POST with OpenC2 Response
-Consumers use the HTTP POST method to send OpenC2 response messages to the Producer.
-
-```
-POST /openc2 HTTP/1.1
-Host: oc2producer.company.net
-Content-type: application/openc2-rsp+json;version=1.0
-Date: Day, DD Mon YYYY HH:MM:SS GMT
-X-Correlation-ID: bf5t2ttrsc8r
-
-{	
-	"id_ref": ...
-	"status": 200
-	"status_text": ...
-	"results": { …
-	}
 }
 ```
 
