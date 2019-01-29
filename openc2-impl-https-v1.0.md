@@ -315,7 +315,8 @@ The following HTTP response headers MUST be populated when transferring OpenC2 r
 * X-Correlation-ID: contains the OpenC2 command-id
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
-* Date: date-time in HTTP-date format as defined by RFC 7231
+* Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
+the conditions for populating the Date: header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
 
 Example messages can be found in Annex B, section B.1.
