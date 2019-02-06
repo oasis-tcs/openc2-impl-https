@@ -106,8 +106,6 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
 ###### [RFC5246] 
 Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
-###### [RFC5280] 
-Cooper, D., Santesson, S., Farrell, S., Boeyen, S., Housley, R., and W. Polk, "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008, <https://www.rfc-editor.org/info/rfc5280>.
 ###### [RFC7230] 
 Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing", RFC 7230, DOI 10.17487/RFC7230, June 2014, <https://www.rfc-editor.org/info/rfc7230>.
 ###### [RFC7231] 
@@ -319,7 +317,9 @@ OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphers
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
-When deployed in an operational environment, OpenC2 endpoints MUST support basic authentication and SHOULD support mutual authentication.  When mutual authentication is used, endpoints SHOULD support full path validation on each certificate, as defined in [[RFC5280](#rfc5280)].
+### 3.2.4 Authentication
+
+Each participant in an OpenC2 communication MUST authenticate the other participant.
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
@@ -381,9 +381,7 @@ Example messages for Producers sending OpenC2 commands can be found in Annex B, 
 
 ---
 # 4 Conformance
-This specification defines a set of basic conformance requirements that all implementations must meet to claim conformance. An additional set of conformance requirements are defined for fully-authenticated implementations. Users of this specification deploying OpenC2 in an operational environment are strongly recommended to use fully-authenticated implementations in order to provide adequate security.
 
-## 4.1 Basic Conformance
 A conformant implementation of this transfer specification MUST:
 
 1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types).
@@ -394,7 +392,9 @@ A conformant implementation of this transfer specification MUST:
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage).
 7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server), and [3.4](#34-openc2-producer-as-httptls-server).
 8. Employ only the HTTP response codes as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server), and [3.4](#34-openc2-producer-as-httptls-server).
-9. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
+9. Support authentication of remote parties as specified in Section [3.2.4](#324-authentication)
+10. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
+
 
 | Name | HTTPS Implementation |
 |:---|:---|
@@ -407,9 +407,6 @@ A conformant implementation of this transfer specification MUST:
 | to | Carried in the HTTP Host header |
 
 **Table 4-1 - Message Element Implementation**
-
-## 4.2 Fully-Authentication Conformance
-10. Fully-authenticated implementations of this transfer specification MUST support mutual authentication using public key certificates with full path validation, as specified in Section [3.2.3](#323-tls-usage).
 
 ---
 # Annex A. Acronyms
