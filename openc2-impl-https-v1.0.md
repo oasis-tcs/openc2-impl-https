@@ -312,15 +312,18 @@ OpenC2 message that is in the payload body, if one is present in the payload.
 The following HTTP request headers MUST be populated when transferring OpenC2 commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0
-* Date:  date-time in HTTP-date format as defined by RFC 7231
+* Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id
 
 The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
 
-* Date: date-time in HTTP-date format as defined by RFC 7231
-* Content-type: application/openc2-rsp+json;version=1.0
+* Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 * X-Correlation-ID: contains the OpenC2 command-id
+
+The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
+* Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
+the conditions for populating the Date: header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
+
 
 Example messages can be found in Annex B, section B.1.
 
