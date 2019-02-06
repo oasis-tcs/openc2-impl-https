@@ -415,11 +415,9 @@ Content-type: application/openc2-rsp+json;version=1.0
 X-Correlation-ID: shq5x2dmgayf
 
 {	
-	"id_ref": ...
 	"status": 200
 	"status_text": ...
 	"results": { ...
-        }
 }
 ```
 
