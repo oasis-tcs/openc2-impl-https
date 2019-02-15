@@ -140,22 +140,36 @@ Sheffer, Y., Holz, R., and P. Saint-Andre, "Recommendations for Secure Use of Tr
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html 
 
 ## 1.5 Document Conventions
+
+### 1.5.1 Naming Conventions
+* RFC2119/RFC8174 key words (see section 1.2) are in all uppercase.
+* All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
+* All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.
+* Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
+* The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
+* All type names, property names, object names, and vocabulary terms are between three and 40 characters long.
+
+### 1.5.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
-* All examples in this document are formatted in fixed font, with straight quotes, black text, a light grey background, and 4-space indentation. 
-* Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with an ellipse (...).
+* A fixed width font is used for all type names, property names, and literals.
+
+* Property names are in bold style – **'created_at'**.
+
+* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
+* Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
 Example:
 
-```
-HTTP/1.1 200 OK
-Date: Wed, 19 Dec 2018 22:15:00 GMT
-Content-type: application/openc2-cmd+json;version=1.0
-X-Correlation-ID: bf5t2ttrsc8r
-
-{	
-	"action": "query"
-	"target": "command"
+```javascript
+{   
+    "action": "contain",
+    "target": {
+        "user_account": {
+            "user_id": "fjbloggs",
+            "account_type": "windows-local"
+        }
+    }
 }
 ```
 
