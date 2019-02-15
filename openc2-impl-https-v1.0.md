@@ -259,9 +259,9 @@ An additional application for this transfer specification is interoperability te
 
 ---
 # 2 Operating Model
-This section describes the operating model used when transferring OpenC2 command and responses using HTTPS. 
-
 _This section is non-normative._
+
+This section describes the operating model used when transferring OpenC2 command and responses using HTTPS. 
 
 Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. 
 OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited commands from OpenC2 Producers. 
