@@ -333,13 +333,13 @@ Example messages can be found in Annex B, section B.1.
 A conformant implementation of this transfer specification MUST:
 
 1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types).
-2. Transfer OpenC2 messages using the content types defined in [Section 3.2.1](#321-serialization-and-content-types) appropriately, as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server) and [3.4](#34-openc2-producer-as-httptls-server).
+2. Transfer OpenC2 messages using the content types defined in [Section 3.2.1](#321-serialization-and-content-types) appropriately, as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
 3. Listen for HTTPS connections as specified in [Section 3.2.2](#322-http-usage).
-4. Use HTTP GET and POST methods as specified in Sections [3.2.2](#322-http-usage), [3.3](#33-openc2-consumer-as-httptls-server), and [3.4](#34-openc2-producer-as-httptls-server), and no other HTTP methods.
+4. Use HTTP GET and POST methods as specified in Sections [3.2.2](#322-http-usage), and [3.3](#33-openc2-consumer-as-httptls-server), and no other HTTP methods.
 5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.2.2](#322-http-usage).
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage).
-7. Employ HTTP methods to send and receive OpenC2 messages as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server), and [3.4](#34-openc2-producer-as-httptls-server).
-8. Employ only the HTTP response codes as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server), and [3.4](#34-openc2-producer-as-httptls-server).
+7. Employ HTTP methods to send and receive OpenC2 messages as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
+8. Employ only the HTTP response codes as specified in Sections [3.3](#33-openc2-consumer-as-httptls-server).
 9. Support authentication of remote parties as specified in Section [3.2.4](#324-authentication)
 10. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
 
