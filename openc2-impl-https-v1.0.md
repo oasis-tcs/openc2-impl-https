@@ -143,7 +143,7 @@ Example:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
-X-Correlation-ID: bf5t2ttrsc8r
+X-Request-ID: id_1234
 
 {	
 	"action": "query"
@@ -282,7 +282,7 @@ Each HTTP message body MUST contain only a single OpenC2 command or response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
-The HTTP X-Correlation-ID header SHALL be populated with the base64url encoding of the OpenC2 binary request_id.
+The HTTP X-Request-ID header SHALL be populated with the request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
@@ -308,19 +308,16 @@ As the OpenC2 Consumer is the HTTP server, the Producer initiates a
 connection to a specific Consumer and directly transmits OpenC2 messages containing commands; 
 the HTTP POST method is used, with the OpenC2 command body contained in the POST body.
 
-The contents of the X-Correlation-ID HTTP header MAY match the command-id in the 
-OpenC2 message that is in the payload body, if one is present in the payload.
-
 The following HTTP request headers MUST be populated when transferring OpenC2 commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
-* X-Correlation-ID: contains the OpenC2 command-id
+* X-Request-ID: contains the request_id supplied by the Producer
 
 The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
-* X-Correlation-ID: contains the OpenC2 command-id
+* X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 command
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
 * Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
@@ -352,10 +349,10 @@ A conformant implementation of this transfer specification MUST:
 | content | JSON serialization of OpenC2 commands and responses carried in the HTTP message body |
 | content_type /<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP Response start line status code.  |
-| request_id | Valued supplied by OpenC2 Producers is carried in HTTP X-Correlation-ID header and delivered to recipient along with OpenC2 command. |
-| created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231 |
+| request_id | String value originally supplied by the OpenC2 Producer is carried in HTTP X-Request-ID header. |
+| created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
-| to | Carried in the HTTP Host header |
+| to | Carried in the HTTP Host header. |
 
 **Table 4-1 - Message Element Implementation**
 
@@ -398,7 +395,7 @@ POST /openc2 HTTP/1.1
 Host: oc2consumer.company.net
 Content-type: application/openc2-cmd+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
-X-Correlation-ID: shq5x2dmgayf
+X-Request-ID: id_1234
 
 {	
 	"action": ...
@@ -414,7 +411,7 @@ Example message:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2-rsp+json;version=1.0
-X-Correlation-ID: shq5x2dmgayf
+X-Request-ID: id_1234
 
 {	
 	"status": 200
