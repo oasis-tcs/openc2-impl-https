@@ -317,7 +317,7 @@ The following HTTP request headers MUST be populated when transferring OpenC2 co
 The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
-* X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 command
+* X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 command, if any
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
 * Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
