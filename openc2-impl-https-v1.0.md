@@ -98,10 +98,10 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 ## 1.2 Terminology
 * **Action**: The task or activity to be performed (e.g., 'deny').
 * **Actuator**: The entity that performs the action (e.g., 'Stateless Packet Filtering').
-* **Command**: A message defined by an action-target pair that is sent from a producer and received by a consumer.
-* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both consumer and producer capabilities.
+* **Command**: A message defined by an action-target pair that is sent from a Producer and received by a Consumer.
+* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both Consumer and Producer capabilities.
 * **Producer**: A manager application that sends Commands.
-* **Response**: A message from a consumer to a producer acknowledging a command or returning the requested resources or status to a previously received request.
+* **Response**: A message from a Consumer to a Producer acknowledging a command or returning the requested resources or status to a previously received request.
 * **Target**: The object of the action, i.e., the action is performed on the target (e.g., IP Address).
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[BCP 14, RFC2119](#rfc2119)] [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
