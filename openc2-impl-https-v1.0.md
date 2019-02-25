@@ -362,24 +362,24 @@ OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resu
 Each participant in an OpenC2 communication MUST authenticate the other participant.
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
-This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
+This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
 
 As the OpenC2 Consumer is the HTTP server, the Producer initiates a 
 connection to a specific Consumer and directly transmits OpenC2 messages containing commands; 
 the HTTP POST method is used, with the OpenC2 command body contained in the POST body.
 
-The following HTTP request headers MUST be populated when transferring OpenC2 commands:
+The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * X-Request-ID: contains the request_id supplied by the Producer
 
-The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
+The following HTTP response headers MUST be populated when transferring OpenC2 Responses:	
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 * X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 command, if any
 
-The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
+The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
 * Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
 the conditions for populating the Date: header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
