@@ -286,7 +286,7 @@ sending HTTP requests using the POST method, with Consumer OpenC2 responses retu
 
 ---
 # 3 Protocol Mappings
-The section defines the requirements for using HTTP and TLS with OpenC2, including general requirements and protocol mappings for the three operating configurations described in Section 2.
+The section defines the requirements for using HTTP and TLS with OpenC2, including general requirements and protocol mappings for the operating configuration described in Section 2.
 
 ## 3.1 	Layering Overview
 When using HTTPS for OpenC2 message transfer, the layering model is:
