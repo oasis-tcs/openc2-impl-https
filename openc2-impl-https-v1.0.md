@@ -301,7 +301,7 @@ When using HTTPS for OpenC2 message transfer, the layering model is:
 | Lower Layer Transport | The lower protocol layers are responsible for end-to-end delivery of messages. TCP/IP is the most common suite of lower layer protocols used with HTTPS. |
 
 ## 3.2 General Requirements
-This section defines serialization, HTTP, and TLS requirements that apply regardless of operating model.
+This section defines serialization, HTTP, and TLS requirements.
 
 ### 3.2.1 Serialization and Content Types
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
