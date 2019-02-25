@@ -310,10 +310,10 @@ As described in [OpenC2-Lang-v1.0], transfer protocols must convey message eleme
 
 * OpenC2 Command:
     * msg_type: "request"
-    * Content type: application/openc2-cmd+json;version=1.0
+    * content_-_type: application/openc2-cmd+json;version=1.0
 * OpenC2 Response: 
-    * Msg_type: "response"
-    * Content type: application/openc2-rsp+json;version=1.0 
+    * msg_type: "response"
+    * content_type: application/openc2-rsp+json;version=1.0 
 
 When OpenC2 command messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-cmd+json;version=1.0". 
 
