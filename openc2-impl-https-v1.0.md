@@ -310,7 +310,7 @@ As described in [OpenC2-Lang-v1.0], transfer protocols must convey message eleme
 
 * OpenC2 Command:
     * msg_type: "request"
-    * content_-_type: application/openc2-cmd+json;version=1.0
+    * content_type: application/openc2-cmd+json;version=1.0
 * OpenC2 Response: 
     * msg_type: "response"
     * content_type: application/openc2-rsp+json;version=1.0 
