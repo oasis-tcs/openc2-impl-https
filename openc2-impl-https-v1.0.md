@@ -2,8 +2,8 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification Draft 03 /<br>Public Review Draft 01
-## 17 October 2018
+## Committee Specification Draft 04 /<br>Public Review Draft 02
+## 28 February 2018
 ### Specification URIs
 #### This Version:
 * http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.md (Authoritative)
@@ -88,7 +88,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 _This section is non-normative._
 
-OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a command is encoded by an OpenC2 producer (managing application) and transferred to an OpenC2 consumer (managed device or virtualized function) using a secure transport protocol, and the consumer can respond with status and any requested information.  
+OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a command is encoded by an OpenC2 Producer (managing application) and transferred to an OpenC2 Consumer (managed device or virtualized function) using a secure transport protocol, and the Consumer can respond with status and any requested information.  
 
 OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
@@ -98,10 +98,10 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 ## 1.2 Terminology
 * **Action**: The task or activity to be performed (e.g., 'deny').
 * **Actuator**: The entity that performs the action (e.g., 'Stateless Packet Filtering').
-* **Command**: A message defined by an action-target pair that is sent from a producer and received by a consumer.
-* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both consumer and producer capabilities.
+* **Command**: A message defined by an action-target pair that is sent from a Producer and received by a Consumer.
+* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both Consumer and Producer capabilities.
 * **Producer**: A manager application that sends Commands.
-* **Response**: A message from a consumer to a producer acknowledging a command or returning the requested resources or status to a previously received request.
+* **Response**: A message from a Consumer to a Producer acknowledging a command or returning the requested resources or status to a previously received request.
 * **Target**: The object of the action, i.e., the action is performed on the target (e.g., IP Address).
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[BCP 14, RFC2119](#rfc2119)] [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
@@ -256,11 +256,11 @@ It includes guidance for selection of TLS versions and options suitable for use 
 
 This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
 
-* Connectivity between OpenC2 producers and OpenC2 consumers is: 
+* Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
     * Highly available, with infrequent network outages
     * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
-* In-band negotiation of a connection initiated by either producer or consumer is possible without requiring an out-of-band signalling network.
-* The overhead of HTTPS is acceptable (e.g., multiple OpenC2 command / response exchanges can be passed through a single HTTPS connection).
+* In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signalling network.
+* The overhead of HTTPS is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTPS connection).
 
 An additional application for this transfer specification is interoperability test environments.
 
@@ -268,7 +268,7 @@ An additional application for this transfer specification is interoperability te
 # 2 Operating Model
 _This section is non-normative._
 
-This section describes the operating model used when transferring OpenC2 command and responses using HTTPS. 
+This section describes the operating model used when transferring OpenC2 Commands and Responses using HTTPS. 
 
 Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. 
 OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited commands from OpenC2 Producers. 
@@ -286,7 +286,7 @@ sending HTTP requests using the POST method, with Consumer OpenC2 responses retu
 
 ---
 # 3 Protocol Mappings
-The section defines the requirements for using HTTP and TLS with OpenC2, including general requirements and protocol mappings for the three operating configurations described in Section 2.
+The section defines the requirements for using HTTP and TLS with OpenC2, including general requirements and protocol mappings for the operating configuration described in Section 2.
 
 ## 3.1 	Layering Overview
 When using HTTPS for OpenC2 message transfer, the layering model is:
@@ -301,7 +301,7 @@ When using HTTPS for OpenC2 message transfer, the layering model is:
 | Lower Layer Transport | The lower protocol layers are responsible for end-to-end delivery of messages. TCP/IP is the most common suite of lower layer protocols used with HTTPS. |
 
 ## 3.2 General Requirements
-This section defines serialization, HTTP, and TLS requirements that apply regardless of operating model.
+This section defines serialization, HTTP, and TLS requirements.
 
 ### 3.2.1 Serialization and Content Types
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
@@ -310,10 +310,10 @@ As described in [OpenC2-Lang-v1.0], transfer protocols must convey message eleme
 
 * OpenC2 Command:
     * msg_type: "request"
-    * Content type: application/openc2-cmd+json;version=1.0
+    * content_type: application/openc2-cmd+json;version=1.0
 * OpenC2 Response: 
-    * Msg_type: "response"
-    * Content type: application/openc2-rsp+json;version=1.0 
+    * msg_type: "response"
+    * content_type: application/openc2-rsp+json;version=1.0 
 
 When OpenC2 command messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-cmd+json;version=1.0". 
 
@@ -338,7 +338,7 @@ OpenC2 endpoints MUST implement all HTTP functionality required by this specific
 
 **Table 3-1: HTTP Method Use**
 
-Each HTTP message body MUST contain only a single OpenC2 command or response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 command and response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
+Each HTTP message body MUST contain only a single OpenC2 Command or Response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 Command and Response messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
@@ -362,24 +362,24 @@ OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resu
 Each participant in an OpenC2 communication MUST authenticate the other participant.
 
 ## 3.3 OpenC2 Consumer as HTTP/TLS Server
-This section defines HTTP requirements that apply when the OpenC2 consumer is the HTTP server.
+This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
 
 As the OpenC2 Consumer is the HTTP server, the Producer initiates a 
 connection to a specific Consumer and directly transmits OpenC2 messages containing commands; 
 the HTTP POST method is used, with the OpenC2 command body contained in the POST body.
 
-The following HTTP request headers MUST be populated when transferring OpenC2 commands:
+The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * X-Request-ID: contains the request_id supplied by the Producer
 
-The following HTTP response headers MUST be populated when transferring OpenC2 responses:	
+The following HTTP response headers MUST be populated when transferring OpenC2 Responses:	
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 * X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 command, if any
 
-The following HTTP request and response headers SHOULD be populated when transferring OpenC2 commands and responses when the Consumer is the HTTP/TLS server:
+The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
 * Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
 the conditions for populating the Date: header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
@@ -440,7 +440,7 @@ _This section is non-normative._
 # Annex B. Examples
 _This section is non-normative._
 
-OpenC2 messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., commands and responses) is carried in the HTTP message body while the remaining elments are handled in HTTP headers. The example messages below illustrate how this is handled in practice.
+OpenC2 messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elments are handled in HTTP headers. The example messages below illustrate how this is handled in practice.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
 
@@ -543,3 +543,4 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
 | v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.2.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.3 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
+| v1.0-wd03-wip | 2/28/2019 | Lemire | Resolution of issues from public review 1. |
