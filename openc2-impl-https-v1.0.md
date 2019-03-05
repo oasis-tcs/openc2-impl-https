@@ -80,7 +80,39 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 ---
 
 ## Table of Contents
-[[TOC]]
+-   [1 Introduction](#1-introduction)
+    -   [1.1 IPR Policy](#11-ipr-policy)
+    -   [1.2 Terminology](#12-terminology)
+    -   [1.3 Normative References](#13-normative-references)
+    -   [1.4 Non-Normative References](#14-non-normative-references)
+    -   [1.5 Document Conventions](#15-document-conventions)
+        -   [1.5.1 Naming Conventions](#151-naming-conventions)
+        -   [1.5.2 Font Colors and Style](#152-font-colors-and-style)
+    -   [1.6 Overview](#16-overview)
+    -   [1.7 Goal](#17-goal)
+    -   [1.8 Suitability](#18-suitability)
+-   [2 Operating Model](#2-operating-model)
+-   [3 Protocol Mappings](#3-protocol-mappings)
+    -   [3.1 Layering Overview](#31-layering-overview)
+    -   [3.2 General Requirements](#32-general-requirements)
+        -   [3.2.1 Serialization and Content
+            Types](#321-serialization-and-content-types)
+        -   [3.2.2 HTTP Usage](#322-http-usage)
+        -   [3.2.3 TLS Usage](#323-tls-usage)
+        -   [3.2.4 Authentication](#324-authentication)
+    -   [3.3 OpenC2 Consumer as HTTP/TLS
+        Server](#33-openc2-consumer-as-httptls-server)
+-   [4 Conformance](#4-conformance)
+-   [Annex A. Acronyms](#annex-a-acronyms)
+-   [Annex B. Examples](#annex-b-examples)
+    -   [B.1 HTTP Request / Response Examples: Consumer as HTTP
+        Server](#b1-http-request--response-examples-consumer-as-http-server)
+        -   [B.1.1 Producer HTTP POST with OpenC2
+            Command](#b11-producer-http-post-with-openc2-command)
+        -   [B.1.2 Consumer HTTP Response with OpenC2
+            Response](#b12-consumer-http-response-with-openc2-response)
+-   [Annex C. Acknowledgments](#annex-c-acknowledgments)
+-   [Annex D. Revision History](#annex-d-revision-history)
 
 ---
 
@@ -136,6 +168,8 @@ _Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited b
 Moore, K., "On the use of HTTP as a Substrate", BCP 56, RFC 3205, DOI 10.17487/RFC3205, February 2002, <https://www.rfc-editor.org/info/rfc3205>.
 ###### [RFC7525]
 Sheffer, Y., Holz, R., and P. Saint-Andre, "Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)", BCP 195, RFC 7525, DOI 10.17487/RFC7525, May 2015, <https://www.rfc-editor.org/info/rfc7525>.
+###### [RFC8259]
+Bray, T., ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, http://www.rfc-editor.org/info/rfc8259
 ###### [SLPF]
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html 
 ###### [IACD]
