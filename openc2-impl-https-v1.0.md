@@ -218,10 +218,10 @@ X-Request-ID: id_1234
 OpenC2 is a suite of specifications to command actuators that execute cyber defense functions.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. The OpenC2 Language Specification and Actuator Profile specifications focus on the language content and meaning at the producer and consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.  
 In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:
 
-1. **OpenC2 Producers**: An OpenC2 Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. An OpenC2 Producer may receive and process responses in conjunction with a Command.
+1. **OpenC2 Producers**: An OpenC2 Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. An OpenC2 Producer may receive and process Responses in conjunction with a Command.
 2. **OpenC2 Consumers**: An OpenC2 Consumer is an entity that receives and may act upon an OpenC2 Command.  An OpenC2 Consumer may create Responses that provide any information captured or necessary to send back to the OpenC2 Producer. 
 
-* The OpenC2 Language Specification [[OpenC2-Lang-v1.0](#openc2-lang-v10)] provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Rommand or Response.
+* The OpenC2 Language Specification [[OpenC2-Lang-v1.0](#openc2-lang-v10)] provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Command or Response.
 * OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple actuator profiles.  Actuator profiles extend the language by defining specifiers that identify the actuator to the required level of precision. Actuator Profiles may define command arguments and targets that are relevant and/or unique to those actuator functions.
 * OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 Messages.
 
@@ -261,7 +261,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command arguments, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. Though optional, the inclusion of an actuator and/or command arguments provides additional precision to a command, when needed.
 
-The components of an OpenC2 Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type or response being transferred. 
+The components of an OpenC2 Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of response being transferred. 
 
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
@@ -277,7 +277,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 
 * **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and implementation agnostic manner
 * **Concise:**  An OpenC2 Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
-* **Abstract:**  OpenC2 Commands and responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
+* **Abstract:**  OpenC2 Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
 * **Extensible:**  While OpenC2 defines a core set of actions and targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
 ## 1.8 Suitability
@@ -313,7 +313,7 @@ Figure 2 illustrates the Producer / Consumer interactions.
 A Producer that needs to send OpenC2 Commands initiates a TCP connection to the Consumer. 
 Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints 
 and provide connection confidentiality. The Producer can then issue OpenC2 Commands by 
-sending HTTP requests using the POST method, with Consumer OpenC2 responses returned in the HTTP response. 
+sending HTTP requests using the POST method, with Consumer OpenC2 Responses returned in the HTTP response. 
 
 ![no alt title](./images/image_2.png)
 
@@ -441,9 +441,9 @@ A conformant implementation of this transfer specification MUST:
 
 | Name | HTTPS Implementation |
 |:---|:---|
-| content | JSON serialization of OpenC2 Commands and responses carried in the HTTP message body |
+| content | JSON serialization of OpenC2 Commands and Responses carried in the HTTP message body |
 | content_type /<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
-| status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP Response start line status code.  |
+| status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP response start line status code.  |
 | request_id | String value originally supplied by the OpenC2 Producer is carried in HTTP X-Request-ID header. |
 | created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
