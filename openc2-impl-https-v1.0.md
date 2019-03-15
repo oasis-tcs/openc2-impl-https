@@ -2,7 +2,7 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-Working Draft 04
+## Working Draft 04
 ## xx March 2019
 ### Specification URIs
 #### This Version:
