@@ -2,7 +2,7 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification Draft 04 /<br>Public Review Draft 02
+## Working Draft 04
 ## xx March 2019
 ### Specification URIs
 #### This Version:
@@ -578,4 +578,4 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
 | v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.2.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.3 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
-| v1.0-wd03-wip | 2/28/2019 | Lemire | Resolution of issues from public review 1. |
+| v1.0-wd03-wip | 3/20/2019 | Lemire | Resolution of issues from public review 1. |
