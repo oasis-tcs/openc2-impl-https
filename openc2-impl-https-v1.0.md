@@ -118,7 +118,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 # 1 Introduction
 
-_This section is non-normative._
+_The content in this section is non-normative, except where it is marked normative._
 
 OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a Command is encoded by an OpenC2 Producer (managing application) and transferred to an OpenC2 Consumer (managed device or virtualized function) using a secure transport protocol, and the Consumer can respond with status and any requested information.  
 
@@ -129,7 +129,7 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 
 ## 1.2 Terminology
 * **Action**: The task or activity to be performed (e.g., 'deny').
-* **Actuator**: The entity that performs the action (e.g., 'Stateless Packet Filtering').
+* **Actuator**: The function performed by the Consumer that executes the Command (e.g., 'Stateless Packet Filtering').
 * **Command**: A Message defined by an action-target pair that is sent from a Producer and received by a Consumer.
 * **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both Consumer and Producer capabilities.
 * **Message**: A content- and transport-independent set of elements conveyed between Consumers and Producers
