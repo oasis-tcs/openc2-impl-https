@@ -3,7 +3,7 @@
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
 ## Working Draft 04
-## xx March 2019
+## 27 March 2019
 ### Specification URIs
 #### This Version:
 * http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.md (Authoritative)
@@ -184,7 +184,7 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 ### 1.5.1 Naming Conventions
 * RFC2119/RFC8174 key words (see section 1.2) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
-* All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.
+* All words in structure component names are capitalized and are separated with a hyphen, e.g., Action, Target, Target-Specifier.
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
 * All type names, property names, object names, and vocabulary terms are between three and 40 characters long.
@@ -581,4 +581,4 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
 | v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.2.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.3 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
-| v1.0-wd03-wip | 3/20/2019 | Lemire | Resolution of issues from public review 1. |
+| v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
