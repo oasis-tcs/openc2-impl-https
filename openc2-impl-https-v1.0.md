@@ -184,7 +184,6 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 ### 1.5.1 Naming Conventions
 * RFC2119/RFC8174 key words (see section 1.2) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
-* All words in structure component names are capitalized and are separated with a hyphen, e.g., Action, Target, Target-Specifier.
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
 * All type names, property names, object names, and vocabulary terms are between three and 40 characters long.
