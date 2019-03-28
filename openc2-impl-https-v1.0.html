@@ -23,8 +23,8 @@
 <p><img src="http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></p>
 <hr />
 <h1 id="specification-for-transfer-of-openc2-messages-via-https-version-10">Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</h1>
-<h2 id="working-draft-04">Working Draft 04</h2>
-<h2 id="xx-march-2019">xx March 2019</h2>
+<h2 id="working-draft-05">Working Draft 05</h2>
+<h2 id="28-march-2019">28 March 2019</h2>
 <h3 id="specification-uris">Specification URIs</h3>
 <h4 id="this-version">This Version:</h4>
 <ul>
@@ -129,15 +129,16 @@
 </ul>
 <hr />
 <h1 id="1-introduction">1 Introduction</h1>
-<p><em>This section is non-normative.</em></p>
+<p><em>The content in this section is non-normative, except where it is marked normative.</em></p>
 <p>OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a Command is encoded by an OpenC2 Producer (managing application) and transferred to an OpenC2 Consumer (managed device or virtualized function) using a secure transport protocol, and the Consumer can respond with status and any requested information.</p>
 <p>OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices. These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device. The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.</p>
 <h2 id="11-ipr-policy">1.1 IPR Policy</h2>
 <p>This specification is provided under the <a href="https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode">Non-Assertion</a> Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (<a href="https://www.oasis-open.org/committees/openc2/ipr.php">https://www.oasis-open.org/committees/openc2/ipr.php</a>).</p>
 <h2 id="12-terminology">1.2 Terminology</h2>
+<p><em>This section is normative.</em></p>
 <ul>
 <li><strong>Action</strong>: The task or activity to be performed (e.g., 'deny').</li>
-<li><strong>Actuator</strong>: The entity that performs the action (e.g., 'Stateless Packet Filtering').</li>
+<li><strong>Actuator</strong>: The function performed by the Consumer that executes the Command (e.g., 'Stateless Packet Filtering').</li>
 <li><strong>Command</strong>: A Message defined by an action-target pair that is sent from a Producer and received by a Consumer.</li>
 <li><strong>Consumer</strong>: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.</li>
 <li><strong>Message</strong>: A content- and transport-independent set of elements conveyed between Consumers and Producers</li>
@@ -184,7 +185,6 @@
 <ul>
 <li>RFC2119/RFC8174 key words (see section 1.2) are in all uppercase.</li>
 <li>All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).</li>
-<li>All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.</li>
 <li>Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).</li>
 <li>The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.</li>
 <li>All type names, property names, object names, and vocabulary terms are between three and 40 characters long.</li>
@@ -734,9 +734,15 @@ X-Request-ID: id_1234
 </tr>
 <tr class="odd">
 <td style="text-align: left;">v1.0-wd03-wip</td>
-<td style="text-align: left;">3/20/2019</td>
+<td style="text-align: left;">3/27/2019</td>
 <td style="text-align: left;">Lemire</td>
 <td style="text-align: left;">Resolution of issues from public review 1.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">v1.0-wd03-wip</td>
+<td style="text-align: left;">3/28/2019</td>
+<td style="text-align: left;">Lemire</td>
+<td style="text-align: left;">Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity.</td>
 </tr>
 </tbody>
 </table>
