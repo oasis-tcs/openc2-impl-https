@@ -553,7 +553,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Duncan Sparrell, sFractal Consulting LLC
 * Michael Stair, AT&T
 * Andrew Storms, New Context Services, Inc.
-* Gerald Stueve, Forenetix
+* Gerald Stueve, Fornetix
 * Allan Thomson, LookingGlass Cyber Solutions
 * Bill Trost, AT&T
 * Ryan Trost, ThreatQuotient
