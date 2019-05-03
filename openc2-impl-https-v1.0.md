@@ -409,6 +409,7 @@ The following HTTP request headers MUST be populated when transferring OpenC2 Co
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
+* Accept: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 
 The following HTTP request header SHOULD be populated when transferring OpenC2 Commands:
 * X-Request-ID: if a request_id is supplied by the Producer, the supplied value SHOULD be placed in the X-Request-ID header
