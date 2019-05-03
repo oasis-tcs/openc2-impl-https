@@ -379,7 +379,7 @@ Each HTTP message body MUST contain only a single OpenC2 Command or Response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
-The HTTP X-Request-ID header SHALL be populated with the request_id string supplied by the Producer.
+The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
@@ -409,16 +409,21 @@ The following HTTP request headers MUST be populated when transferring OpenC2 Co
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
-* X-Request-ID: contains the request_id supplied by the Producer
+
+The following HTTP request header SHOULD be populated when transferring OpenC2 Commands:
+* X-Request-ID: if a request_id is supplied by the Producer, the supplied value SHOULD be placed in the X-Request-ID header
 
 The following HTTP response headers MUST be populated when transferring OpenC2 Responses:	
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
-* X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 Command, if any
+* X-Request-ID: if the X-Request-ID header was populated in the HTTP POST containing the OpenC2 Command, the X-Request-ID header in the Response MUST be populated with the value that was received in the POST
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
-* Date: date-time in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231; 
-the conditions for populating the Date: header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
+
+* Date: date-time in the preferred IMF-fixdate format as 
+defined by Section 7.1.1.1 of RFC 7231; 
+the conditions for populating the Date: 
+header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
 
 Example messages can be found in Annex B, section B.1.
