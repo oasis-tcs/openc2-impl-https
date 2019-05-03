@@ -437,7 +437,7 @@ A conformant implementation of this transfer specification MUST:
 1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types).
 2. Transfer OpenC2 Messages using the content types defined in [Section 3.2.1](#321-serialization-and-content-types) appropriately, as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
 3. Listen for HTTPS connections as specified in [Section 3.2.2](#322-http-usage).
-4. Use HTTP GET and POST methods as specified in Sections [3.2.2](#322-http-usage), and [3.3](#33-openc2-consumer-as-httptls-server), and no other HTTP methods.
+4. Use HTTP POST method as specified in Sections [3.2.2](#322-http-usage), and [3.3](#33-openc2-consumer-as-httptls-server), and no other HTTP methods.
 5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.2.2](#322-http-usage).
 6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage).
 7. Employ HTTP methods to send and receive OpenC2 Messages as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
