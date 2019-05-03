@@ -360,18 +360,13 @@ When OpenC2 Response Messages sent over HTTPS use the default JSON serialization
 OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2](#2-operating-model). 
 OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
 
-OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST. 
+OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request method utilized is  POST. 
 
-| HTTP Method | Utilized |
-|:---|:---|
-| GET | Yes |
-| HEAD | No |
-| POST | Yes |
-| PUT | No |
-| DELETE | No |
-| CONNECT | No |
-| OPTIONS | No |
-| TRACE | No |
+
+| Utilized?  | HTTP Methods |
+|:---:|:---|
+| Yes | POST |
+| No | GET, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE | 
 
 **Table 3-1: HTTP Method Use**
 
