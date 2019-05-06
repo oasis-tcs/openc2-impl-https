@@ -450,7 +450,7 @@ A conformant implementation of this transfer specification MUST:
 | request_id | String value originally supplied by the OpenC2 Producer is carried in HTTP X-Request-ID header. |
 | created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
 | from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
-| to | Carried in the HTTP Host header. |
+| to | Carried in the HTTP Host header; this specification assumes that the Provider will supply a single destination. |
 
 **Table 4-1 - Message Element Implementation**
 
