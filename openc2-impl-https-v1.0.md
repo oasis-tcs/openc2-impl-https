@@ -205,14 +205,15 @@ HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
 X-Request-ID: id_1234
-{   
-    "action": "contain",
-    "target": {
-        "user_account": {
-            "user_id": "fjbloggs",
-            "account_type": "windows-local"
-        }
+{
+  "action": "deny",
+  "target": {
+    "file": {
+      "hashes": {
+        "sha256": "22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973"
+      }
     }
+  }
 }
 ```
 
