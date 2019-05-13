@@ -204,7 +204,7 @@ Example:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
-X-Request-ID: id_1234
+X-Request-ID: 0e3d8fa8-0bae-4055-a341-9c97b4f328f7
 {
   "action": "deny",
   "target": {
