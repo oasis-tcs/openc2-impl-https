@@ -2,8 +2,8 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Working Draft 05
-## 28 March 2019
+## Working Draft 06
+## 14 May 2019
 ### Specification URIs
 #### This Version:
 * http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.md (Authoritative)
@@ -202,7 +202,7 @@ Example:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
-X-Request-ID: id_1234
+X-Request-ID: 0e3d8fa8-0bae-4055-a341-9c97b4f328f7
 {
   "action": "deny",
   "target": {
