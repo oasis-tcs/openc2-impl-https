@@ -580,3 +580,4 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
 | v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
+| v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
