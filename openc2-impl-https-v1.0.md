@@ -25,7 +25,7 @@
 
 #### Chairs:
 * Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/)
-* Sounil Yu (sounil.yu@bankofamerica.com), [Bank of America](http://www.bankofamerica.com/)
+* Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editor:
 * David Lemire (dave.lemire@g2-inc.com), [G2, Inc.](http://www.g2-inc.com/)
