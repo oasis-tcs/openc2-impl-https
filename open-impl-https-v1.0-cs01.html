@@ -1,66 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
+<meta name="description" content="This specification describes the use of HTTP over TLS as a transfer mechanism for OpenC2 messages.">
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</title>
-  <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <link rel="stylesheet" href="styles/markdown-styles-v1.7.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="styles/markdown-styles-v1.7.3.css" />
 </head>
 <body>
-<header id="title-block-header">
-<h1 class="title">Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</h1>
-</header>
-<p><img src="http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></p>
-<hr />
-<h1 id="specification-for-transfer-of-openc2-messages-via-https-version-10">Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</h1>
-<h2 id="working-draft-05">Working Draft 05</h2>
-<h2 id="28-march-2019">28 March 2019</h2>
-<h3 id="specification-uris">Specification URIs</h3>
-<h4 id="this-version">This Version:</h4>
-<ul>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.md">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.md</a> (Authoritative)</li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.html">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.html</a></li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.pdf">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.pdf</a></li>
-</ul>
-<h4 id="previous-version">Previous Version:</h4>
-<ul>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.md">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.md</a> (Authoritative)</li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.html">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.html</a></li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.pdf">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd02/open-impl-https-v1.0-csd02.pdf</a></li>
-</ul>
-<h4 id="latest-version">Latest Version:</h4>
-<ul>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.md">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.md</a> (Authoritative)</li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html</a></li>
-<li><a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf</a></li>
-</ul>
+<p><img src="https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></p>
+<hr style="page-break-before: avoid" />
+<h1big id="specification-for-transfer-of-openc2-messages-via-https-version-10">Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</h1big>
+<h2 id="committee-specification-01">Committee Specification 01</h2>
+<h2 id="11-july-2019">11 July 2019</h2>
+<br />
+<h4 id="this-version">This version:</h4>
+<p><a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md</a> (Authoritative) <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html</a> <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.pdf">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.pdf</a></p>
+<h4 id="previous-version">Previous version:</h4>
+<p><a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.md">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.md</a> (Authoritative) <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.html">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.html</a> <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.pdf">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd02/open-impl-https-v1.0-csprd02.pdf</a></p>
+<h4 id="latest-version">Latest version:</h4>
+<p><a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.md">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.md</a> (Authoritative) <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html</a> <br />
+<a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf</a></p>
 <h4 id="technical-committee">Technical Committee:</h4>
 <p><a href="https://www.oasis-open.org/committees/openc2/">OASIS Open Command and Control (OpenC2) TC</a></p>
 <h4 id="chairs">Chairs:</h4>
-<ul>
-<li>Joe Brule (<a href="mailto:jmbrule@nsa.gov">jmbrule@nsa.gov</a>), <a href="https://www.nsa.gov/">National Security Agency</a></li>
-<li>Sounil Yu (<a href="mailto:sounil.yu@bankofamerica.com">sounil.yu@bankofamerica.com</a>), <a href="http://www.bankofamerica.com/">Bank of America</a></li>
-</ul>
+<p>Joe Brule (<a href="mailto:jmbrule@nsa.gov">jmbrule@nsa.gov</a>), <a href="https://www.nsa.gov/">National Security Agency</a> <br />
+Duncan Sparrell (<a href="mailto:duncan@sfractal.com">duncan@sfractal.com</a>), <a href="http://www.sfractal.com/">sFractal Consulting LLC</a></p>
 <h4 id="editor">Editor:</h4>
-<ul>
-<li>David Lemire (<a href="mailto:dave.lemire@g2-inc.com">dave.lemire@g2-inc.com</a>), <a href="http://www.g2-inc.com/">G2, Inc.</a></li>
-</ul>
+<p>David Lemire (<a href="mailto:dave.lemire@g2-inc.com">dave.lemire@g2-inc.com</a>), <a href="http://www.g2-inc.com/">G2, Inc.</a></p>
 <h4 id="related-work">Related work:</h4>
 <p>This specification is related to:</p>
-<ul>
-<li><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html">http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html</a>.</li>
-<li><em>Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0</em>. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html">http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>.</li>
-</ul>
+<p><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. Latest version: <a href="https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html">https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>. <br />
+<em>Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0</em>. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: <a href="https://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html">https://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html</a>.</p>
 <h4 id="abstract">Abstract:</h4>
 <p>Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. HTTP over TLS is a widely deployed transfer protocol that provides an authenticated, ordered, lossless delivery of uniquely-identified messages. This document specifies the use of HTTP over TLS as a transfer mechanism for OpenC2 Messages.</p>
 <h4 id="status">Status:</h4>
@@ -71,10 +48,10 @@
 <h4 id="citation-format">Citation format:</h4>
 <p>When referencing this specification the following citation format should be used:</p>
 <p><strong>[OpenC2-HTTPS-v1.0]</strong></p>
-<p><em>Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</em>. Edited by David Lemire. 17 October 2018. OASIS Committee Specification Draft 03 / Public Review Draft 01. <a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.html">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csprd01/open-impl-https-v1.0-csprd01.html</a>. Latest version: <a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html</a>.</p>
+<p><em>Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</em>. Edited by David Lemire. 11 July 2019. OASIS Committee Specification 01. <a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html</a>. Latest version: <a href="https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html">https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html</a>.</p>
 <hr />
 <h2 id="notices">Notices</h2>
-<p>Copyright © OASIS Open 2018. All Rights Reserved.</p>
+<p>Copyright © OASIS Open 2019. All Rights Reserved.</p>
 <p>All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full <a href="https://www.oasis-open.org/policies-guidelines/ipr">Policy</a> may be found at the OASIS website.</p>
 <p>This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.</p>
 <p>The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.</p>
@@ -85,15 +62,15 @@
 <p>The name "OASIS" is a trademark of <a href="https://www.oasis-open.org/">OASIS</a>, the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see <a href="https://www.oasis-open.org/policies-guidelines/trademark">https://www.oasis-open.org/policies-guidelines/trademark</a> for above guidance.</p>
 <hr />
 <h2 id="table-of-contents">Table of Contents</h2>
-<ul>
+<ul type="none">
 <li><a href="#1-introduction">1 Introduction</a>
-<ul>
+<ul type="none">
 <li><a href="#11-ipr-policy">1.1 IPR Policy</a></li>
 <li><a href="#12-terminology">1.2 Terminology</a></li>
 <li><a href="#13-normative-references">1.3 Normative References</a></li>
 <li><a href="#14-non-normative-references">1.4 Non-Normative References</a></li>
 <li><a href="#15-document-conventions">1.5 Document Conventions</a>
-<ul>
+<ul type="none">
 <li><a href="#151-naming-conventions">1.5.1 Naming Conventions</a></li>
 <li><a href="#152-font-colors-and-style">1.5.2 Font Colors and Style</a></li>
 </ul></li>
@@ -103,10 +80,10 @@
 </ul></li>
 <li><a href="#2-operating-model">2 Operating Model</a></li>
 <li><a href="#3-protocol-mappings">3 Protocol Mappings</a>
-<ul>
+<ul type="none">
 <li><a href="#31-layering-overview">3.1 Layering Overview</a></li>
 <li><a href="#32-general-requirements">3.2 General Requirements</a>
-<ul>
+<ul type="none">
 <li><a href="#321-serialization-and-content-types">3.2.1 Serialization and Content Types</a></li>
 <li><a href="#322-http-usage">3.2.2 HTTP Usage</a></li>
 <li><a href="#323-tls-usage">3.2.3 TLS Usage</a></li>
@@ -117,9 +94,9 @@
 <li><a href="#4-conformance">4 Conformance</a></li>
 <li><a href="#annex-a-acronyms">Annex A. Acronyms</a></li>
 <li><a href="#annex-b-examples">Annex B. Examples</a>
-<ul>
+<ul type="none">
 <li><a href="#b1-http-request--response-examples-consumer-as-http-server">B.1 HTTP Request / Response Examples: Consumer as HTTP Server</a>
-<ul>
+<ul type="none">
 <li><a href="#b11-producer-http-post-with-openc2-command">B.1.1 Producer HTTP POST with OpenC2 Command</a></li>
 <li><a href="#b12-consumer-http-response-with-openc2-response">B.1.2 Consumer HTTP Response with OpenC2 Response</a></li>
 </ul></li>
@@ -130,23 +107,25 @@
 <hr />
 <h1 id="1-introduction">1 Introduction</h1>
 <p><em>The content in this section is non-normative, except where it is marked normative.</em></p>
-<p>OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a Command is encoded by an OpenC2 Producer (managing application) and transferred to an OpenC2 Consumer (managed device or virtualized function) using a secure transport protocol, and the Consumer can respond with status and any requested information.</p>
+<p>OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a <em>Command</em> is encoded by a <em>Producer</em> (managing application) and transferred to a <em>Consumer</em> (managed device or virtualized function) using a secure transfer protocol, and the Consumer can respond with status and any requested information.</p>
 <p>OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices. These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device. The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.</p>
 <h2 id="11-ipr-policy">1.1 IPR Policy</h2>
-<p>This specification is provided under the <a href="https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode">Non-Assertion</a> Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (<a href="https://www.oasis-open.org/committees/openc2/ipr.php">https://www.oasis-open.org/committees/openc2/ipr.php</a>).</p>
+<p>This specification is provided under the <a href="https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode">Non-Assertion</a> Mode of the <a href="https://www.oasis-open.org/policies-guidelines/ipr">OASIS IPR Policy</a>, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (<a href="https://www.oasis-open.org/committees/openc2/ipr.php">https://www.oasis-open.org/committees/openc2/ipr.php</a>).</p>
 <h2 id="12-terminology">1.2 Terminology</h2>
 <p><em>This section is normative.</em></p>
 <ul>
 <li><strong>Action</strong>: The task or activity to be performed (e.g., 'deny').</li>
 <li><strong>Actuator</strong>: The function performed by the Consumer that executes the Command (e.g., 'Stateless Packet Filtering').</li>
-<li><strong>Command</strong>: A Message defined by an action-target pair that is sent from a Producer and received by a Consumer.</li>
+<li><strong>Argument</strong>: A property of a Command that provides additional information on how to perform the Command, such as date/time, periodicity, duration, etc.</li>
+<li><strong>Command</strong>: A Message defined by an Action-Target pair that is sent from a Producer and received by a Consumer.</li>
 <li><strong>Consumer</strong>: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.</li>
-<li><strong>Message</strong>: A content- and transport-independent set of elements conveyed between Consumers and Producers</li>
+<li><strong>Message</strong>: A content- and transport-independent set of elements conveyed between Consumers and Producers.</li>
 <li><strong>Producer</strong>: A manager application that sends Commands.</li>
-<li><strong>Response</strong>: A Message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received request.</li>
-<li><strong>Target</strong>: The object of the action, i.e., the action is performed on the target (e.g., IP Address).</li>
+<li><strong>Response</strong>: A Message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received Command.</li>
+<li><strong>Specifier</strong>: A property or field that identifies a Target or Actuator to some level of precision.</li>
+<li><strong>Target</strong>: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).</li>
 </ul>
-<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [<a href="#rfc2119">BCP 14, RFC2119</a>] [<a href="#rfc8174">RFC8174</a>] when, and only when, they appear in all capitals, as shown here.</p>
+<p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [<a href="#rfc2119">RFC2119</a>] and [<a href="#rfc8174">RFC8174</a>] when, and only when, they appear in all capitals, as shown here.</p>
 <p>A list of acronyms is provided in <a href="#annex-a-acronyms">Annex A</a>.</p>
 <h2 id="13-normative-references">1.3 Normative References</h2>
 <h6 id="rfc2119">[RFC2119]</h6>
@@ -179,61 +158,61 @@
 <h6 id="slpf">[SLPF]</h6>
 <p><em>Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0</em>. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html">http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html</a></p>
 <h6 id="iacd">[IACD]</h6>
-<p>M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.</p>
+<p>M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<a href="https://www.semanticscholar.org/paper/Active-Cyber-Defense-%3A-A-Vision-for-Real-Time-Cyber-Herring-Willett/7c128468ae42584f282578b86439dbe9e8c904a8">https://www.semanticscholar.org/paper/Active-Cyber-Defense-%3A-A-Vision-for-Real-Time-Cyber-Herring-Willett/7c128468ae42584f282578b86439dbe9e8c904a8</a>.<br><br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 <a href="https://www.semanticscholar.org/paper/Integrated-Adaptive-Cyberspace-Defense-%3A-Secure-by-Willett/a22881b8a046e7eab11acf647d530c2a3b03b762">https://www.semanticscholar.org/paper/Integrated-Adaptive-Cyberspace-Defense-%3A-Secure-by-Willett/a22881b8a046e7eab11acf647d530c2a3b03b762</a>.</p>
 <h2 id="15-document-conventions">1.5 Document Conventions</h2>
 <h3 id="151-naming-conventions">1.5.1 Naming Conventions</h3>
 <ul>
-<li>RFC2119/RFC8174 key words (see section 1.2) are in all uppercase.</li>
+<li><a href="#rfc2119">[RFC2119]</a>/<a href="#rfc8174">[RFC8174]</a> key words (see <a href="#12-terminology">Section 1.2</a>) are in all uppercase.</li>
 <li>All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).</li>
 <li>Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).</li>
 <li>The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.</li>
-<li>All type names, property names, object names, and vocabulary terms are between three and 40 characters long.</li>
 </ul>
 <h3 id="152-font-colors-and-style">1.5.2 Font Colors and Style</h3>
 <p>The following color, font and font style conventions are used in this document:</p>
 <ul>
-<li><p>A fixed width font is used for all type names, property names, and literals.</p></li>
-<li><p>Property names are in bold style – <strong>'created_at'</strong>.</p></li>
-<li><p>All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [<a href="#rfc8259">RFC8259</a>].</p></li>
-<li><p>Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).</p></li>
+<li>A fixed width font is used for all type names, property names, and literals.</li>
+<li>Property names are in bold style – <strong>'created_at'</strong>.</li>
+<li>All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant <a href="#rfc8259">[RFC8259]</a>.</li>
+<li>Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).</li>
 </ul>
 <p>Example:</p>
 <pre><code>HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
-X-Request-ID: id_1234
-{   
-    &quot;action&quot;: &quot;contain&quot;,
-    &quot;target&quot;: {
-        &quot;user_account&quot;: {
-            &quot;user_id&quot;: &quot;fjbloggs&quot;,
-            &quot;account_type&quot;: &quot;windows-local&quot;
-        }
+X-Request-ID: 0e3d8fa8-0bae-4055-a341-9c97b4f328f7
+{
+  &quot;action&quot;: &quot;deny&quot;,
+  &quot;target&quot;: {
+    &quot;file&quot;: {
+      &quot;hashes&quot;: {
+        &quot;sha256&quot;: &quot;22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973&quot;
+      }
     }
+  }
 }
 </code></pre>
 <h2 id="16-overview">1.6 Overview</h2>
-<p>OpenC2 is a suite of specifications to command actuators that execute cyber defense functions. These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. The OpenC2 Language Specification and Actuator Profile specifications focus on the language content and meaning at the producer and consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.<br />
-In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:</p>
+<p>In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:</p>
 <ol>
-<li><strong>OpenC2 Producers</strong>: An OpenC2 Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. An OpenC2 Producer may receive and process Responses in conjunction with a Command.</li>
-<li><strong>OpenC2 Consumers</strong>: An OpenC2 Consumer is an entity that receives and may act upon an OpenC2 Command. An OpenC2 Consumer may create Responses that provide any information captured or necessary to send back to the OpenC2 Producer.</li>
+<li><strong>Producers</strong>: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.</li>
+<li><strong>Consumers</strong>: A Consumer is an entity that receives and may act upon a Command. A Consumer may create Responses that provide any information captured or necessary to send back to the Producer.</li>
 </ol>
+<p><img src="./images/MessageFlow.png" alt="OpenC2 Message Exchange" width="650" /></p>
+<p><strong>Figure 1-1. OpenC2 Message Exchange</strong></p>
+<p>OpenC2 is a suite of specifications for Producers and Consumers to command and execute cyber defense functions. These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. The OpenC2 Language Specification and Actuator Profile specifications focus on the language content and meaning at the Producer and Consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.</p>
 <ul>
 <li>The OpenC2 Language Specification [<a href="#openc2-lang-v10">OpenC2-Lang-v1.0</a>] provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Command or Response.</li>
-<li>OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple actuator profiles. Actuator profiles extend the language by defining specifiers that identify the actuator to the required level of precision. Actuator Profiles may define command arguments and targets that are relevant and/or unique to those actuator functions.</li>
-<li>OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 Messages.</li>
+<li><strong>OpenC2 Actuator Profiles</strong> specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely to) implement multiple Actuator profiles. Actuator profiles extend the language by defining Specifiers that identify the Actuator to the required level of precision. Actuator Profiles may define Command Arguments and Targets that are relevant and/or unique to those Actuator functions.</li>
+<li><strong>OpenC2 Transfer Specifications</strong> utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 Messages.</li>
 </ul>
-<p>The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (<em>defined</em> as a Message body in the OpenC2 Language Specification Version 1.0 and <em>specified</em> in one or more actuator profiles).</p>
+<p>The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (<em>defined</em> as a Message body in the OpenC2 Language Specification Version 1.0 and <em>specified</em> in one or more Actuator profiles).</p>
 <p>The language defines two payload structures:</p>
 <ol>
-<li><strong>Command</strong>: An instruction from one system known as the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the Command.</li>
-<li><strong>Response</strong>: Any information sent back to the OpenC2 Producer as a result of the Command.</li>
+<li><strong>Command</strong>: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.</li>
+<li><strong>Response</strong>: Any information sent back to the Producer as a result of the Command.</li>
 </ol>
-<p><img src="./images/MessageFlow.png" alt="no alt title" /></p>
-<p><strong>Figure 1-1. OpenC2 Message Exchange</strong></p>
 <p>OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1-2 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude any particular approach to implementing the needed functionality (for example, the use of an application-layer message signature function to provide message source authentication and integrity).</p>
-<p><img src="./images/OC2LayeringModel.png" alt="no alt title" /></p>
+<p><img src="./images/OC2LayeringModel.png" alt="OpenC2 Documentation and Layering Model" width="650" /></p>
 <p><strong>Figure 1-2. OpenC2 Documentation and Layering Model</strong></p>
 <p>OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.</p>
 <p><strong>Table 1-1. OpenC2 Protocol Layers</strong></p>
@@ -247,15 +226,15 @@ In general, there are two types of participants involved in the exchange of Open
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Function-Specific Content</td>
-<td style="text-align: left;">Actuator Profiles<br>(standard and extensions)</td>
+<td style="text-align: left;">Actuator Profiles<br>(<a href="#openc2-slpf-v10">[OpenC2-SLPF-v1.0]</a>, ...)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Common Content</td>
-<td style="text-align: left;"><a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html">OpenC2 Language Specification</a></td>
+<td style="text-align: left;">OpenC2 Language Specification<br>(<a href="#openc2-lang-v10">[OpenC2-Lang-v1.0]</a>)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Message</td>
-<td style="text-align: left;">Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …)</td>
+<td style="text-align: left;">Transfer Specifications<br>(<a href="#openc2-https-v10">[OpenC2-HTTPS-v1.0]</a>, OpenC2-over-CoAP, ...)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Secure Transport</td>
@@ -264,28 +243,28 @@ In general, there are two types of participants involved in the exchange of Open
 </tbody>
 </table>
 <ul>
-<li>The <strong>Secure Transport</strong> layer provides a communication path between the producer and the consumer. OpenC2 can be layered over any standard transport protocol.</li>
-<li>The <strong>Message</strong> layer provides a transport- and content-independent mechanism for conveying requests, responses, and notifications. A transfer specification maps transport-specific protocol elements to a transport-independent set of Message elements consisting of content and associated metadata.</li>
-<li>The <strong>Common Content</strong> layer defines the structure of OpenC2 Commands and Responses and a set of common language elements used to construct them.</li>
-<li>The <strong>Function-specific Content</strong> layer defines the language elements used to support a particular cyber defense function. An actuator profile defines the implementation conformance requirements for that function. OpenC2 Producers and Consumers will support one or more profiles.</li>
+<li>The <strong>Secure Transport</strong> layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.</li>
+<li>The <strong>Message</strong> layer provides a transfer- and content-independent mechanism for conveying Messages. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.</li>
+<li>The <strong>Common Content</strong> layer defines the structure of Commands and Responses and a set of common language elements used to construct them.</li>
+<li>The <strong>Function-specific Content</strong> layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.</li>
 </ul>
-<p>The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command arguments, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. Though optional, the inclusion of an actuator and/or command arguments provides additional precision to a command, when needed.</p>
-<p>The components of an OpenC2 Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of response being transferred.</p>
+<p>The components of a Command are an Action (what is to be done), a Target (what is being acted upon), an optional Actuator (what is performing the command), and Command Arguments, which influence how the Command is to be performed. An Action coupled with a Target is sufficient to describe a complete Command. Though optional, the inclusion of an Actuator and/or Command Arguments provides additional precision to a Command.</p>
+<p>The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.</p>
 <h2 id="17-goal">1.7 Goal</h2>
 <p>The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.</p>
-<p>The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [IACD]:</p>
+<p>The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop <a href="#iacd">[IACD]</a>:</p>
 <ul>
 <li>Sensing: gathering of data regarding system activities</li>
 <li>Sense Making: evaluating data using analytics to understand what's happening</li>
 <li>Decision Making: determining a course-of-action to respond to system events</li>
 <li>Acting: Executing the course-of-action</li>
 </ul>
-<p>The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions. OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/analytics have been provisioned and the decision to act has been made. This goal and these assumptions guides the design of OpenC2:</p>
+<p>The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions. OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/analytics have been provisioned and the decision to act has been made. This goal and these assumptions guide the design of OpenC2:</p>
 <ul>
 <li><strong>Technology Agnostic:</strong> The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and implementation agnostic manner</li>
-<li><strong>Concise:</strong> An OpenC2 Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments</li>
-<li><strong>Abstract:</strong> OpenC2 Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments</li>
-<li><strong>Extensible:</strong> While OpenC2 defines a core set of actions and targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.</li>
+<li><strong>Concise:</strong> A Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments</li>
+<li><strong>Abstract:</strong> Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments</li>
+<li><strong>Extensible:</strong> While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.</li>
 </ul>
 <h2 id="18-suitability">1.8 Suitability</h2>
 <p>This document specifies the use of Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS) as a transfer mechanism for OpenC2 Messages; this HTTP/TLS layering is typically referred to as HTTPS [<a href="#rfc2818">RFC2818</a>]. As described in [<a href="#rfc3205">RFC3205</a>], HTTP has become a common "substrate" for information transfer for other application-level protocols. The broad availability of HTTP makes it a useful option for OpenC2 Message transport in support of prototyping, interoperability testing, and for operational use in environments where appropriate security protections can be provided. Similarly, TLS is a mature and widely-used protocol for securing information transfers in TCP/IP network environments. This specification provides guidance to the OpenC2 implementation community when utilizing HTTPS for OpenC2 Message transport. It includes guidance for selection of TLS versions and options suitable for use with OpenC2.</p>
@@ -306,7 +285,7 @@ In general, there are two types of participants involved in the exchange of Open
 <p>This section describes the operating model used when transferring OpenC2 Commands and Responses using HTTPS.</p>
 <p>Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited Commands from OpenC2 Producers. OpenC2 Producers act as 'HTTP clients' and transmit Commands to Consumers.</p>
 <p>Figure 2 illustrates the Producer / Consumer interactions. A Producer that needs to send OpenC2 Commands initiates a TCP connection to the Consumer. Once the TCP connection is created, a TLS session is initiated to authenticate the endpoints and provide connection confidentiality. The Producer can then issue OpenC2 Commands by sending HTTP requests using the POST method, with Consumer OpenC2 Responses returned in the HTTP response.</p>
-<p><img src="./images/image_2.png" alt="no alt title" /></p>
+<p><img src="./images/image_2.png" alt="no alt title" width="650" /></p>
 <p><strong>Figure 2 -- OpenC2 Producer / Consumer Interactions</strong></p>
 <hr />
 <h1 id="3-protocol-mappings">3 Protocol Mappings</h1>
@@ -368,53 +347,29 @@ In general, there are two types of participants involved in the exchange of Open
 <p>When OpenC2 Response Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-rsp+json;version=1.0".</p>
 <h3 id="322-http-usage">3.2.2 HTTP Usage</h3>
 <p>OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in <a href="#2-operating-model">Section 2</a>. OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.</p>
-<p>OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([<a href="#rfc7230">RFC7230</a>], <em>et. al.</em>). As described in the Table 3-1, the only HTTP request methods utilized are GET and POST.</p>
+<p>OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([<a href="#rfc7230">RFC7230</a>], <em>et. al.</em>). As described in the Table 3-1, the only HTTP request method utilized is POST.</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">HTTP Method</th>
-<th style="text-align: left;">Utilized</th>
+<th style="text-align: center;">Utilized?</th>
+<th style="text-align: left;">HTTP Methods</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">GET</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">HEAD</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
+<td style="text-align: center;">Yes</td>
 <td style="text-align: left;">POST</td>
-<td style="text-align: left;">Yes</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">PUT</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DELETE</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CONNECT</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">OPTIONS</td>
-<td style="text-align: left;">No</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TRACE</td>
-<td style="text-align: left;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">GET, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Table 3-1: HTTP Method Use</strong></p>
 <p>Each HTTP message body MUST contain only a single OpenC2 Command or Response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 Command and Response Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).</p>
 <p>All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".</p>
-<p>The HTTP X-Request-ID header SHALL be populated with the request_id string supplied by the Producer.</p>
+<p>The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.</p>
 <h3 id="323-tls-usage">3.2.3 TLS Usage</h3>
 <p>HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [<a href="#rfc2818">RFC2818</a>]. OpenC2 endpoints MUST accept TLS version 1.2 [<a href="#rfc5246">RFC5246</a>] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [<a href="#rfc8446">RFC8446</a>] or higher connections.</p>
 <p>OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL).</p>
@@ -431,12 +386,16 @@ In general, there are two types of participants involved in the exchange of Open
 <ul>
 <li>Host: host name of HTTP server:listening port number (if other than port 443)</li>
 <li>Content-type: application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)</li>
-<li>X-Request-ID: contains the request_id supplied by the Producer</li>
+<li>Accept: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)</li>
+</ul>
+<p>The following HTTP request header SHOULD be populated when transferring OpenC2 Commands:</p>
+<ul>
+<li>X-Request-ID: if a request_id is supplied by the Producer, the supplied value SHOULD be placed in the X-Request-ID header</li>
 </ul>
 <p>The following HTTP response headers MUST be populated when transferring OpenC2 Responses:</p>
 <ul>
 <li>Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)</li>
-<li>X-Request-ID: contains the request_id received in the HTTP POST containing the OpenC2 Command, if any</li>
+<li>X-Request-ID: if the X-Request-ID header was populated in the HTTP POST containing the OpenC2 Command, the X-Request-ID header in the Response MUST be populated with the value that was received in the POST</li>
 </ul>
 <p>The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:</p>
 <ul>
@@ -450,11 +409,11 @@ In general, there are two types of participants involved in the exchange of Open
 <li>Support JSON serialization as specified in <a href="#321-serialization-and-content-types">Section 3.2.1</a>.</li>
 <li>Transfer OpenC2 Messages using the content types defined in <a href="#321-serialization-and-content-types">Section 3.2.1</a> appropriately, as specified in Section <a href="#33-openc2-consumer-as-httptls-server">3.3</a>.</li>
 <li>Listen for HTTPS connections as specified in <a href="#322-http-usage">Section 3.2.2</a>.</li>
-<li>Use HTTP GET and POST methods as specified in Sections <a href="#322-http-usage">3.2.2</a>, and <a href="#33-openc2-consumer-as-httptls-server">3.3</a>, and no other HTTP methods.</li>
+<li>Use HTTP POST method as specified in Sections <a href="#322-http-usage">3.2.2</a>, and <a href="#33-openc2-consumer-as-httptls-server">3.3</a>, and no other HTTP methods.</li>
 <li>Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in <a href="#322-http-usage">Section 3.2.2</a>.</li>
 <li>Implement TLS in accordance with the requirements and restrictions specified in Sections <a href="#323-tls-usage">3.2.3</a>.</li>
 <li>Employ HTTP methods to send and receive OpenC2 Messages as specified in Section <a href="#33-openc2-consumer-as-httptls-server">3.3</a>.</li>
-<li>Employ only the HTTP response codes as specified in Sections <a href="#33-openc2-consumer-as-httptls-server">3.3</a>.</li>
+<li>Employ only the HTTP response codes specified in [<a href="#openc2-lang-v10">OpenC2-Lang-v1.0</a>], Section 3.3.2.1.</li>
 <li>Support authentication of remote parties as specified in Section <a href="#324-authentication">3.2.4</a></li>
 <li>Instantiate the message elements defined in Table 3-1 of [<a href="#openc2-lang-v10">OpenC2-Lang-v1.0</a>] as follows:</li>
 </ol>
@@ -492,7 +451,7 @@ In general, there are two types of participants involved in the exchange of Open
 </tr>
 <tr class="odd">
 <td style="text-align: left;">to</td>
-<td style="text-align: left;">Carried in the HTTP Host header.</td>
+<td style="text-align: left;">Carried in the HTTP Host header; this specification assumes that the Provider will supply a single destination.</td>
 </tr>
 </tbody>
 </table>
@@ -571,7 +530,7 @@ In general, there are two types of participants involved in the exchange of Open
 Host: oc2consumer.company.net
 Content-type: application/openc2-cmd+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
-X-Request-ID: id_1234
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {   
     &quot;action&quot;: ...
@@ -584,7 +543,7 @@ X-Request-ID: id_1234
 <pre><code>HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2-rsp+json;version=1.0
-X-Request-ID: id_1234
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {   
     &quot;status&quot;: 200
@@ -627,7 +586,7 @@ X-Request-ID: id_1234
 <li>Duncan Sparrell, sFractal Consulting LLC</li>
 <li>Michael Stair, AT&amp;T</li>
 <li>Andrew Storms, New Context Services, Inc.</li>
-<li>Gerald Stueve, Forenetix</li>
+<li>Gerald Stueve, Fornetix</li>
 <li>Allan Thomson, LookingGlass Cyber Solutions</li>
 <li>Bill Trost, AT&amp;T</li>
 <li>Ryan Trost, ThreatQuotient</li>
@@ -743,6 +702,12 @@ X-Request-ID: id_1234
 <td style="text-align: left;">3/28/2019</td>
 <td style="text-align: left;">Lemire</td>
 <td style="text-align: left;">Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">v1.0-wd06-wip</td>
+<td style="text-align: left;">5/14/2019</td>
+<td style="text-align: left;">Lemire</td>
+<td style="text-align: left;">Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications.</td>
 </tr>
 </tbody>
 </table>
