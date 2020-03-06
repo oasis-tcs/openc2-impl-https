@@ -369,12 +369,12 @@ OpenC2 endpoints MUST implement all HTTP functionality required by this specific
 
 Each HTTP message body MUST contain only a single OpenC2 Command or Response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 Command and Response Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
 
-All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
+All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-store". The "no-store" request directive indicates that a cache MUST NOT store any part of either this request or any response to it. OpenC2 Messages are intended to be exchanged in cyber relevant time and not reused, therefore caching is inappropriate".
 
 The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
-HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
+HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS Version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
 
 OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
 
@@ -384,7 +384,8 @@ The TLS session MUST use non-NULL ciphersuites for authentication, integrity, an
 
 OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
-OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT). Requests sent as part of 0-RTT resumption are vulnerable to a replay attack.
+OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT). 
+Requests sent as part of 0-RTT resumption are vulnerable to a replay attack.
 
 ### 3.2.4 Authentication
 
