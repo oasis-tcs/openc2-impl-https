@@ -374,7 +374,7 @@ All HTTP request and response messages containing OpenC2 payloads SHOULD include
 The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
-HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
+HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS Version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
 
 OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
 
@@ -384,7 +384,7 @@ The TLS session MUST use non-NULL ciphersuites for authentication, integrity, an
 
 OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
-OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
+OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
 ### 3.2.4 Authentication
 
