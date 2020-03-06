@@ -380,11 +380,12 @@ OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT 
 
 The implementation and use of TLS SHOULD align with the best currently available security guidance, such as that provided in [[RFC7525](#rfc7525)]/BCP 195.
 
-The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality.  Sessions MAY be renegotiated within these constraints.
+The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality (NULL ciphersuites do not provide confidentiality). Sessions MAY be renegotiated within these constraints.
 
 OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
-OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT).
+OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT). 
+Requests sent as part of 0-RTT resumption are vulnerable to a replay attack.
 
 ### 3.2.4 Authentication
 
