@@ -1,9 +1,9 @@
 ![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
 ---
-# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification 01
-## 11 July 2019
+# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1
+## Working Draft xx
+## xx XXX 2020
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
