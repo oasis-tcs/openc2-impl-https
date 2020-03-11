@@ -544,6 +544,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Anthony Librera, AT&T
 * Danny Martinez, G2, Inc.
 * Lisa Mathews, National Security Agency
+* Vasileios Mavroeidis, University of Oslo
 * Jim Meck, Fireeye
 * Efrain Ortiz, Symantec Corp.
 * Daniel Riedel, New Context Services, Inc.
