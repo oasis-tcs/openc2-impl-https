@@ -372,7 +372,7 @@ Each HTTP message body MUST contain only a single OpenC2 Command or Response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-store". The "no-store" request directive indicates that a cache MUST NOT store any part of either this request or any response to it. OpenC2 Messages are intended to be exchanged in cyber relevant time and not reused, therefore caching is inappropriate".
 
-Because the HTTP protocol requires the server send a response, the OpenC2 command argument `response_requested` SHOULD NOT be populated with the `none` option.
+Because the HTTP protocol requires the server send a response, the OpenC2 command argument `response_requested` MUST NOT be populated with the `none` option. An OpenC2 Consumer operating an HTTP server MUST return a status code of 400 with no body.
 
 The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
 
