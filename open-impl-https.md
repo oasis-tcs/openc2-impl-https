@@ -372,9 +372,16 @@ Each HTTP message body MUST contain only a single OpenC2 Command or Response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-store". The "no-store" request directive indicates that a cache MUST NOT store any part of either this request or any response to it. OpenC2 Messages are intended to be exchanged in cyber relevant time and not reused, therefore caching is inappropriate".
 
-Because the HTTP protocol requires the server send a response, the OpenC2 command argument `response_requested` MUST NOT be populated with the `none` option. An OpenC2 Consumer operating an HTTP server MUST return a status code of 400 with no body.
+Because the HTTP protocol requires the server send a response, 
+the OpenC2 command argument `"response_requested"` MUST NOT be 
+populated with the `"none"` option. An OpenC2 Consumer receiving 
+a command containing `"response_requested":"none"` SHOULD ignore 
+the argument and return a response (i.e., operate as though 
+the argument specified `"complete"`), but MAY return a status 
+code of 400 with no body.
 
-The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
+The HTTP X-Request-ID header SHOULD be populated with the 
+request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS Version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
