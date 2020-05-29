@@ -1,9 +1,9 @@
 ![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
 ---
-# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification 01
-## 11 July 2019
+# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1
+## Working Draft xx
+## xx XXX 2020
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
@@ -291,10 +291,11 @@ It includes guidance for selection of TLS versions and options suitable for use 
 This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
 
 * Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
-    * Highly available, with infrequent network outages
-    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
+    * Highly available, with infrequent network outages;
+    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced.
 * In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signaling network.
-* The overhead of HTTPS is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTPS connection).
+* The overhead of HTTP is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTP connection).
+* The overhead of establishing TLS sessions is acceptable.
 
 An additional application for this transfer specification is interoperability test environments.
 
@@ -371,7 +372,22 @@ Each HTTP message body MUST contain only a single OpenC2 Command or Response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-store". The "no-store" request directive indicates that a cache MUST NOT store any part of either this request or any response to it. OpenC2 Messages are intended to be exchanged in cyber relevant time and not reused, therefore caching is inappropriate".
 
-The HTTP X-Request-ID header SHOULD be populated with the request_id string supplied by the Producer.
+Because the HTTP protocol requires the server to send a
+response, the OpenC2 command argument `"response_requested"`
+SHOULD NOT be populated with the `"none"` option when using
+HTTPS for message transfer. An OpenC2 Consumer receiving a
+command containing `"response_requested":"none"` over HTTPS
+MUST honor the argument and not return an OpenC2 response.
+The HTTP listener serving the OpenC2 Consumer should return
+an HTTP response with a success code of 200. The Producer
+that sent the command with `"response_requested":"none"`
+should interpret the 200 Success response to indicate that
+the command was passed to the Consumer with no implication
+as to the success or failure of the Consumer's execution of
+the command.
+
+The HTTP X-Request-ID header SHOULD be populated with the 
+request_id string supplied by the Producer.
 
 ### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS Version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
@@ -380,9 +396,9 @@ OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT 
 
 The implementation and use of TLS SHOULD align with the best currently available security guidance, such as that provided in [[RFC7525](#rfc7525)]/BCP 195.
 
-The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality (NULL ciphersuites do not provide confidentiality). Sessions MAY be renegotiated within these constraints.
+The TLS session MUST use non-NULL cipher suites for authentication, integrity, and confidentiality (NULL cipher suites do not provide confidentiality). Sessions MAY be renegotiated within these constraints.
 
-OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
+OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted cipher suites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
 OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT). 
 Requests sent as part of 0-RTT resumption are vulnerable to a replay attack.
@@ -476,7 +492,7 @@ _This section is non-normative._
 # Annex B. Examples
 _This section is non-normative._
 
-OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elments are handled in HTTP headers. The example Messages below illustrate how this is handled in practice.
+OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elements are handled in HTTP headers. The example Messages below illustrate how this is handled in practice.
 
 A Request-URI ending in /openc2 is used in all example HTTP requests.
 
@@ -541,6 +557,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Anthony Librera, AT&T
 * Danny Martinez, G2, Inc.
 * Lisa Mathews, National Security Agency
+* Vasileios Mavroeidis, University of Oslo
 * Jim Meck, Fireeye
 * Efrain Ortiz, Symantec Corp.
 * Daniel Riedel, New Context Services, Inc.
@@ -582,3 +599,4 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
+| v1.1-wdxx-wip | x/x/2020 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience |
