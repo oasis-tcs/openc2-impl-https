@@ -291,11 +291,11 @@ It includes guidance for selection of TLS versions and options suitable for use 
 This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
 
 * Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
-    * Highly available, with infrequent network outages
-    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
+    * Highly available, with infrequent network outages;
+    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced.
 * In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signaling network.
 * The overhead of HTTP is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTP connection).
-* The overhead of establishing TLS sessions is acceptable
+* The overhead of establishing TLS sessions is acceptable.
 
 An additional application for this transfer specification is interoperability test environments.
 
