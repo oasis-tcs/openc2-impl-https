@@ -162,7 +162,7 @@ Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1):
 ###### [RFC7235] 
 Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Authentication", RFC 7235, DOI 10.17487/RFC7235, June 2014, <https://www.rfc-editor.org/info/rfc7235>.
 ###### [RFC7540]
-Belshe, M., Peon, R., and Thompson, M., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <[https://www.rfc-editor.org/info/rfc7540](https://www.rfc-editor.org/info/rfc7540)>.
+Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <https://www.rfc-editor.org/info/rfc7540>.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <[http://www.rfc-editor.org/info/rfc8174](http://www.rfc-editor.org/info/rfc8174)>.
 ###### [RFC8446]
@@ -575,6 +575,10 @@ Content-type: application/openc2-rsp+json;version=1.0
 # Annex C. Acknowledgments
 The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
 
+The editor also thank Jerome Czachor, of Huntington-Ingalls Industries, for assistance with incorporating the new `OpenC2-Message` structure into this specification.
+
+
+
 The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
 
 * Michelle Barry, AT&T
@@ -596,6 +600,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Anthony Librera, AT&T
 * Danny Martinez, G2, Inc.
 * Lisa Mathews, National Security Agency
+* Vasileios Mavroeidis, University of Oslo
 * Jim Meck, Fireeye
 * Efrain Ortiz, Symantec Corp.
 * Daniel Riedel, New Context Services, Inc.
