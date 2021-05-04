@@ -363,7 +363,7 @@ OpenC2 endpoints MUST implement all HTTP functionality required by this specific
 
 **Table 3-1: HTTP Method Use**
 
-Each HTTP message body MUST contain only a single OpenC2 Message (Command or Response). This does not preclude a Producer and Consumer exchanging multiple OpenC2 Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
+Each HTTP message body MUST contain only a single OpenC2 Command or Response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 Command and Response Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
