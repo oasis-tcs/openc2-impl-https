@@ -1,9 +1,9 @@
 ![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
 ---
-# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1
-## Working Draft xx
-## xx XXX 2020
+# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
+## Committee Specification 01
+## DD MMM 2021
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
@@ -95,13 +95,14 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 -   [3 Protocol Mappings](#3-protocol-mappings)
     -   [3.1 Layering Overview](#31-layering-overview)
     -   [3.2 General Requirements](#32-general-requirements)
-        -   [3.2.1 Serialization and Content
-            Types](#321-serialization-and-content-types)
-        -   [3.2.2 HTTP Usage](#322-http-usage)
-        -   [3.2.3 TLS Usage](#323-tls-usage)
-        -   [3.2.4 Authentication](#324-authentication)
-    -   [3.3 OpenC2 Consumer as HTTP/TLS
-        Server](#33-openc2-consumer-as-httptls-server)
+        -   [3.2.1 HTTP Usage](#321-http-usage)
+        -   [3.2.2 TLS Usage](#322-tls-usage)
+        -   [3.2.3 Authentication](#323-authentication)
+    -   [3.3 OpenC2 Message Format](#33-openc2-message-format)
+        - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
+        - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
+    -   [3.4 OpenC2 Consumer as HTTP/TLS
+        Server](#34-openc2-consumer-as-httptls-server)
 -   [4 Conformance](#4-conformance)
 -   [Annex A. Acronyms](#annex-a-acronyms)
 -   [Annex B. Examples](#annex-b-examples)
@@ -161,7 +162,7 @@ Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1):
 ###### [RFC7235] 
 Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Authentication", RFC 7235, DOI 10.17487/RFC7235, June 2014, <https://www.rfc-editor.org/info/rfc7235>.
 ###### [RFC7540]
-Belshe, M., Peon, R., and M. Thompson, Ed., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <[https://www.rfc-editor.org/info/rfc7540](https://www.rfc-editor.org/info/rfc7540)>.
+Belshe, M., Peon, R., and Thompson, M., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <[https://www.rfc-editor.org/info/rfc7540](https://www.rfc-editor.org/info/rfc7540)>.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <[http://www.rfc-editor.org/info/rfc8174](http://www.rfc-editor.org/info/rfc8174)>.
 ###### [RFC8446]
@@ -202,13 +203,24 @@ Example:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2-cmd+json;version=1.0
-X-Request-ID: 0e3d8fa8-0bae-4055-a341-9c97b4f328f7
 {
-  "action": "deny",
-  "target": {
-    "file": {
-      "hashes": {
-        "sha256": "22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973"
+  "headers": {
+    "request_id": "0e3d8fa8-0bae-4055-a341-9c97b4f328f7"
+    "created": 1545257700000,
+    "from": ...,
+    "to": [...]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": "deny",
+        "target": {
+          "file": {
+            "hashes": {
+              "sha256": "22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973"
+            }
+          }
+        }
       }
     }
   }
@@ -291,11 +303,10 @@ It includes guidance for selection of TLS versions and options suitable for use 
 This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
 
 * Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
-    * Highly available, with infrequent network outages;
-    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced.
+    * Highly available, with infrequent network outages
+    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
 * In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signaling network.
-* The overhead of HTTP is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTP connection).
-* The overhead of establishing TLS sessions is acceptable.
+* The overhead of HTTPS is acceptable (e.g., multiple OpenC2 Command / Response exchanges can be passed through a single HTTPS connection).
 
 An additional application for this transfer specification is interoperability test environments.
 
@@ -338,7 +349,47 @@ When using HTTPS for OpenC2 Message transfer, the layering model is:
 ## 3.2 General Requirements
 This section defines serialization, HTTP, and TLS requirements.
 
-### 3.2.1 Serialization and Content Types
+### 3.2.1 HTTP Usage
+OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2](#2-operating-model). 
+OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
+
+OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request method utilized is  POST. 
+
+
+| Utilized?  | HTTP Methods |
+|:---:|:---|
+| Yes | POST |
+| No | GET, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE | 
+
+**Table 3-1: HTTP Method Use**
+
+Each HTTP message body MUST contain only a single OpenC2 Message (Command or Response). This does not preclude a Producer and Consumer exchanging multiple OpenC2 Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
+
+All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
+
+### 3.2.2 TLS Usage
+HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
+
+OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
+
+The implementation and use of TLS SHOULD align with the best currently available security guidance, such as that provided in [[RFC7525](#rfc7525)]/BCP 195.
+
+The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality. Sessions MAY be renegotiated within these constraints.
+
+OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
+
+OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
+
+### 3.2.3 Authentication
+
+Each participant in an OpenC2 communication MUST authenticate the other participant.
+
+## 3.3 OpenC2 Message Format
+
+This section describes how OpenC2 messages are represented in MQTT `PUBLISH` control packets.
+
+### 3.3.1  Content Type and Serialization
+
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 Messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
 
 As described in [OpenC2-Lang-v1.0], transfer protocols must convey message elements. Two content types are defined here to support that requirement:
@@ -354,60 +405,31 @@ When OpenC2 Command Messages sent over HTTPS use the default JSON serialization 
 
 When OpenC2 Response Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-rsp+json;version=1.0". 
 
-### 3.2.2 HTTP Usage
-OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2](#2-operating-model). 
-OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
+### 3.3.2 OpenC2 Message Structure
 
-OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request method utilized is  POST. 
+OpenC2 messages transferred using HTTPS utilize the `OpenC2-Message` structure containing the message elements listed in Section 3.2 of [OpenC2-Lang-v1.0](#openc2-lang-v10).
 
+ ```
+ OpenC2-Message = Record {
+     1 content         Content,                  // Message body as specified by msg_type (the ID/Name of Content)
+     2 request_id      String optional,          // A unique identifier created by Producer and copied by Consumer into responses
+     3 created         Date-Time optional,       // Creation date/time of the content
+     4 from            String optional,          // Authenticated identifier of the creator of / authority for a request
+     5 to              ArrayOf(String) optional  // Authenticated identifier(s) of the authorized recipient(s) of a message
+ }
+ 
+ Content = Choice {
+     1 request         OpenC2-Command,           // The initiator of a two-way message exchange.
+     2 response        OpenC2-Response,          // A response linked to a request in a two-way message exchange.
+     3 notification    OpenC2-Notification       // A (one-way) message that is not a request or response.  (Placeholder)
+ }
+ ```
+ 
+A Producer sending an OpenC2 request _always_ includes its identifier in the message `from` field, allowing receiving Consumers to know the origin of the request.  A Consumer sending a response to an OpenC2 request _always_ includes its identifier in the message `from` field, allowing responses to the same request from different Consumers to be identified by the Producer receiving the responses.
+ 
+When publishing an OpenC2 request, the Producer can use the `to` field as a filter to provide finer-grained control over which Consumers should process any particular message than is provided by the MQTT Topic Structure and Client topic subscriptions. Consumers have no requirement to populate the `to` field.
 
-| Utilized?  | HTTP Methods |
-|:---:|:---|
-| Yes | POST |
-| No | GET, HEAD, PUT, DELETE, CONNECT, OPTIONS, TRACE | 
-
-**Table 3-1: HTTP Method Use**
-
-Each HTTP message body MUST contain only a single OpenC2 Command or Response message. This does not preclude a Producer and Consumer exchanging multiple OpenC2 Command and Response Messages over time during a single HTTPS session. Depending on the set-up, a server and client can have multiple connections, but a sequence of OpenC2 interactions can spread over multiple connections. In some cases the connection may drop, but the session remains open (in an idle state).
-
-All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-store". The "no-store" request directive indicates that a cache MUST NOT store any part of either this request or any response to it. OpenC2 Messages are intended to be exchanged in cyber relevant time and not reused, therefore caching is inappropriate".
-
-Because the HTTP protocol requires the server to send a
-response, the OpenC2 command argument `"response_requested"`
-SHOULD NOT be populated with the `"none"` option when using
-HTTPS for message transfer. An OpenC2 Consumer receiving a
-command containing `"response_requested":"none"` over HTTPS
-MUST honor the argument and not return an OpenC2 response.
-The HTTP listener serving the OpenC2 Consumer should return
-an HTTP response with a success code of 200. The Producer
-that sent the command with `"response_requested":"none"`
-should interpret the 200 Success response to indicate that
-the command was passed to the Consumer with no implication
-as to the success or failure of the Consumer's execution of
-the command.
-
-The HTTP X-Request-ID header SHOULD be populated with the 
-request_id string supplied by the Producer.
-
-### 3.2.3 TLS Usage
-HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS Version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
-
-OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
-
-The implementation and use of TLS SHOULD align with the best currently available security guidance, such as that provided in [[RFC7525](#rfc7525)]/BCP 195.
-
-The TLS session MUST use non-NULL cipher suites for authentication, integrity, and confidentiality (NULL cipher suites do not provide confidentiality). Sessions MAY be renegotiated within these constraints.
-
-OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted cipher suites identified in Appendix A of [[RFC7540](#rfc7540)]. 
-
-OpenC2 endpoints supporting TLS v1.3 MUST NOT implement zero round trip time resumption (0-RTT). 
-Requests sent as part of 0-RTT resumption are vulnerable to a replay attack.
-
-### 3.2.4 Authentication
-
-Each participant in an OpenC2 communication MUST authenticate the other participant.
-
-## 3.3 OpenC2 Consumer as HTTP/TLS Server
+## 3.4 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
 
 As the OpenC2 Consumer is the HTTP server, the Producer initiates a 
@@ -420,13 +442,11 @@ The following HTTP request headers MUST be populated when transferring OpenC2 Co
 * Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
 * Accept: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
 
-The following HTTP request header SHOULD be populated when transferring OpenC2 Commands:
-* X-Request-ID: if a request_id is supplied by the Producer, the supplied value SHOULD be placed in the X-Request-ID header
 
-The following HTTP response headers MUST be populated when transferring OpenC2 Responses:	
+The following HTTP response headers MUST be populated when transferring OpenC2 Responses:
 
 * Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
-* X-Request-ID: if the X-Request-ID header was populated in the HTTP POST containing the OpenC2 Command, the X-Request-ID header in the Response MUST be populated with the value that was received in the POST
+
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
 
@@ -444,27 +464,25 @@ Example messages can be found in Annex B, section B.1.
 
 A conformant implementation of this transfer specification MUST:
 
-1. Support JSON serialization as specified in [Section 3.2.1](#321-serialization-and-content-types).
-2. Transfer OpenC2 Messages using the content types defined in [Section 3.2.1](#321-serialization-and-content-types) appropriately, as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
-3. Listen for HTTPS connections as specified in [Section 3.2.2](#322-http-usage).
-4. Use HTTP POST method as specified in Sections [3.2.2](#322-http-usage), and [3.3](#33-openc2-consumer-as-httptls-server), and no other HTTP methods.
-5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.2.2](#322-http-usage).
-6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.3](#323-tls-usage).
-7. Employ HTTP methods to send and receive OpenC2 Messages as specified in Section [3.3](#33-openc2-consumer-as-httptls-server).
+1. Support JSON serialization as specified in [Section 3.3.1](#331-serialization-and-content-types).
+2. Transfer OpenC2 Messages using the content types defined in [Section 3.3.1](#331-serialization-and-content-types) appropriately, as specified in Section [3.4](#34-openc2-consumer-as-httptls-server).
+3. Listen for HTTPS connections as specified in [Section 3.2.1](#321-http-usage).
+4. Use HTTP POST method as specified in Sections [3.2.1](#321-http-usage), and [3.4](#34-openc2-consumer-as-httptls-server), and no other HTTP methods.
+5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.3.2](#332-openc2-message-structure).
+6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.2](#322-tls-usage).
+7. Employ HTTP methods to send and receive OpenC2 Messages as specified in Section [3.4](#34-openc2-consumer-as-httptls-server).
 8. Employ only the HTTP response codes specified in [[OpenC2-Lang-v1.0](#openc2-lang-v10)], Section 3.3.2.1.
-9. Support authentication of remote parties as specified in Section [3.2.4](#324-authentication)
+9. Support authentication of remote parties as specified in Section [3.2.3](#323-authentication)
 10. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
 
 
 | Name | HTTPS Implementation |
 |:---|:---|
 | content | JSON serialization of OpenC2 Commands and Responses carried in the HTTP message body |
-| content_type /<br>msg_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>    Response:  application/openc2-rsp+json;version=1.0 |
+| content\_type /<br>msg\_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>Response:  application/openc2-rsp+json;version=1.0 |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP response start line status code.  |
-| request_id | String value originally supplied by the OpenC2 Producer is carried in HTTP X-Request-ID header. |
 | created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
-| from | Populated with the authenticated identity of the peer entity, consistent with the configured authentication scheme. |
-| to | Carried in the HTTP Host header; this specification assumes that the Provider will supply a single destination. |
+
 
 **Table 4-1 - Message Element Implementation**
 
@@ -504,15 +522,25 @@ Example message:
 
 ```
 POST /openc2 HTTP/1.1
-Host: oc2consumer.company.net
 Content-type: application/openc2-cmd+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
-X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
-{	
-	"action": ...
-	"target": …
-	"args": ...
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257700000,
+    "from": "oc2producer.company.net",
+    "to": ["oc2consumer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": ...
+        "target": ...
+        "args": ...
+      }
+    }
+  }
 }
 ```
 
@@ -523,12 +551,23 @@ Example message:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2-rsp+json;version=1.0
-X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
-{	
-	"status": 200
-	"status_text": ...
-	"results": { ...
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257710000,
+    "from": "oc2consumer.company.net",
+    "to": ["oc2producer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "response": {
+        "status": 200,
+        "status_text": ...
+        "results": ...
+      }
+    }
+  }
 }
 ```
 
@@ -557,7 +596,6 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Anthony Librera, AT&T
 * Danny Martinez, G2, Inc.
 * Lisa Mathews, National Security Agency
-* Vasileios Mavroeidis, University of Oslo
 * Jim Meck, Fireeye
 * Efrain Ortiz, Symantec Corp.
 * Daniel Riedel, New Context Services, Inc.
@@ -594,7 +632,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd02-wip | 9/17/2018 | Lemire | 1) Added table to conformance section specifying mapping of Language Spec message elements.<br>2) Clarified certificate mutual authentication requirement.<br>3) Removed language about unsolicited responses from Consumers<br>4) Numbered the conformance items |
 | v1.0-wd02-wip | 9/17/2018 | Lemire | 1) Removed used of the HTTP "From:" field, and mapped the OpenC2 "from" message element to the authenticated identity of the peer entity<br>2) Updated examples to remove HTTP From: |
 | v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
-| v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.2.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.3 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
+| v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.3.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.2 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
 | v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
 | v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
