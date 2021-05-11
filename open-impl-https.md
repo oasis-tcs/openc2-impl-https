@@ -386,7 +386,7 @@ Each participant in an OpenC2 communication MUST authenticate the other particip
 
 ## 3.3 OpenC2 Message Format
 
-This section describes how OpenC2 messages are represented in MQTT `PUBLISH` control packets.
+This section describes how OpenC2 messages are represented in HTTP requests.
 
 ### 3.3.1  Content Type and Serialization
 
@@ -427,7 +427,7 @@ OpenC2 messages transferred using HTTPS utilize the `OpenC2-Message` structure c
  
 A Producer sending an OpenC2 request _always_ includes its identifier in the message `from` field, allowing receiving Consumers to know the origin of the request.  A Consumer sending a response to an OpenC2 request _always_ includes its identifier in the message `from` field, allowing responses to the same request from different Consumers to be identified by the Producer receiving the responses.
  
-When publishing an OpenC2 request, the Producer can use the `to` field as a filter to provide finer-grained control over which Consumers should process any particular message than is provided by the MQTT Topic Structure and Client topic subscriptions. Consumers have no requirement to populate the `to` field.
+When publishing an OpenC2 request, the Producer can use the `to` field as a filter to provide finer-grained control over which Consumers should process any particular message.
 
 ## 3.4 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
