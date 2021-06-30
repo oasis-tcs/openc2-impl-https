@@ -539,53 +539,7 @@ Content-type: application/openc2-rsp+json;version=1.0
 
 ---
 # Annex C. Acknowledgments
-The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
 
-The editor also thank Jerome Czachor, of Huntington-Ingalls Industries, for assistance with incorporating the new `OpenC2-Message` structure into this specification.
-
-
-
-The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
-
-* Michelle Barry, AT&T
-* Brian Berliner, Symantec
-* Joe Brule, National Security Agency
-* Trey Darley, New Context Services, Inc.
-* David Darnell, Systrends
-* Travis Farral, Anomali
-* Andy Gray, ForeScout
-* John-Mark Gurney, New Context Services, Inc.
-* Pavel Gutin, G2, Inc.
-* David Hamilton, AT&T
-* April Jackson, Praxis Engineering
-* Sridhar Jayanthi, Polylogyx LLC
-* Bret Jordan, Symantec
-* Takahiro Kakumaru, NEC Corporation
-* David Kemp, National Security Agency
-* Lauri Korts-Pärn, NECAM
-* Anthony Librera, AT&T
-* Danny Martinez, G2, Inc.
-* Lisa Mathews, National Security Agency
-* Vasileios Mavroeidis, University of Oslo
-* Jim Meck, Fireeye
-* Efrain Ortiz, Symantec Corp.
-* Daniel Riedel, New Context Services, Inc.
-* Nirmal Rajarathnam, ForeScout
-* Chris Ricard, FS-ISAC
-* Jason Romano, National Security Agency
-* Philip Royer, Splunk Inc.
-* Duane Skeen, Northrop Grumman
-* Duncan Sparrell, sFractal Consulting LLC
-* Michael Stair, AT&T
-* Andrew Storms, New Context Services, Inc.
-* Gerald Stueve, Fornetix
-* Allan Thomson, LookingGlass Cyber Solutions
-* Bill Trost, AT&T
-* Ryan Trost, ThreatQuotient
-* Drew Varner, NineFX
-* Jason Webb, LookingGlass Cyber Solutions
-* Sounil Yu, Bank of America
-* David Webber, Huawei
 
 ---
 # Annex D. Revision History
@@ -652,13 +606,61 @@ _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Versio
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<https://www.semanticscholar.org/paper/Active-Cyber-Defense-%3A-A-Vision-for-Real-Time-Cyber-Herring-Willett/7c128468ae42584f282578b86439dbe9e8c904a8>.<br><br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 <https://www.semanticscholar.org/paper/Integrated-Adaptive-Cyberspace-Defense-%3A-Secure-by-Willett/a22881b8a046e7eab11acf647d530c2a3b03b762>.
 
 
-# Appendix B. Safety, SEcurity and Privacy Considerations
+# Appendix B. Safety, Security and Privacy Considerations
 
 # Appendix C. Acknowledgements
 
+The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
+
 ## C.1 Special Thanks
 
+
+The editor also thank Jerome Czachor, of Huntington-Ingalls Industries, for assistance with incorporating the new `OpenC2-Message` structure into this specification.
+
 ## C.2 Participants
+
+The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
+
+* Michelle Barry, AT&T
+* Brian Berliner, Symantec
+* Joe Brule, National Security Agency
+* Trey Darley, New Context Services, Inc.
+* David Darnell, Systrends
+* Travis Farral, Anomali
+* Andy Gray, ForeScout
+* John-Mark Gurney, New Context Services, Inc.
+* Pavel Gutin, G2, Inc.
+* David Hamilton, AT&T
+* April Jackson, Praxis Engineering
+* Sridhar Jayanthi, Polylogyx LLC
+* Bret Jordan, Symantec
+* Takahiro Kakumaru, NEC Corporation
+* David Kemp, National Security Agency
+* Lauri Korts-Pärn, NECAM
+* Anthony Librera, AT&T
+* Danny Martinez, G2, Inc.
+* Lisa Mathews, National Security Agency
+* Vasileios Mavroeidis, University of Oslo
+* Jim Meck, Fireeye
+* Efrain Ortiz, Symantec Corp.
+* Daniel Riedel, New Context Services, Inc.
+* Nirmal Rajarathnam, ForeScout
+* Chris Ricard, FS-ISAC
+* Jason Romano, National Security Agency
+* Philip Royer, Splunk Inc.
+* Duane Skeen, Northrop Grumman
+* Duncan Sparrell, sFractal Consulting LLC
+* Michael Stair, AT&T
+* Andrew Storms, New Context Services, Inc.
+* Gerald Stueve, Fornetix
+* Allan Thomson, LookingGlass Cyber Solutions
+* Bill Trost, AT&T
+* Ryan Trost, ThreatQuotient
+* Drew Varner, NineFX
+* Jason Webb, LookingGlass Cyber Solutions
+* Sounil Yu, Bank of America
+* David Webber, Huawei
+
 
 # Appendix D. Revision History
 
