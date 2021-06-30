@@ -643,3 +643,25 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
 | v1.1-wdxx-wip | x/x/2020 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience |
+
+
+
+# Appendix A. References
+
+## A.1 Normative References
+
+## A.2 Informative References
+
+# Appendix B. Safety, SEcurity and Privacy Considerations
+
+# Appendix C. Acknowledgements
+
+## C.1 Special Thanks
+
+## C.2 Participants
+
+# Appendix D. Revision History
+
+# Appendix E. Examples
+
+# Appendix F. Notices
