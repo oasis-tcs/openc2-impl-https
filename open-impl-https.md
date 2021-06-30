@@ -474,68 +474,6 @@ _This section is non-normative._
 
 ---
 # Annex B. Examples
-_This section is non-normative._
-
-OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elements are handled in HTTP headers. The example Messages below illustrate how this is handled in practice.
-
-A Request-URI ending in /openc2 is used in all example HTTP requests.
-
-## B.1 HTTP Request / Response Examples: Consumer as HTTP Server
-This section presents the HTTP message structures used when the OpenC2 Consumer acts as the HTTP listener.
-
-### B.1.1 Producer HTTP POST with OpenC2 Command
-Example message:
-
-```
-POST /openc2 HTTP/1.1
-Content-type: application/openc2-cmd+json;version=1.0
-Date: Wed, 19 Dec 2018 22:15:00 GMT
-
-{
-  "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
-    "created": 1545257700000,
-    "from": "oc2producer.company.net",
-    "to": ["oc2consumer.company.net"]
-  },
-  "body": {
-    "openc2": {
-      "request": {
-        "action": ...
-        "target": ...
-        "args": ...
-      }
-    }
-  }
-}
-```
-
-### B.1.2 Consumer HTTP Response with OpenC2 Response
-Example message:
-
-```
-HTTP/1.1 200 OK
-Date: Wed, 19 Dec 2018 22:15:10 GMT
-Content-type: application/openc2-rsp+json;version=1.0
-
-{
-  "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
-    "created": 1545257710000,
-    "from": "oc2consumer.company.net",
-    "to": ["oc2producer.company.net"]
-  },
-  "body": {
-    "openc2": {
-      "response": {
-        "status": 200,
-        "status_text": ...
-        "results": ...
-      }
-    }
-  }
-}
-```
 
 ---
 # Annex C. Acknowledgments
@@ -668,5 +606,68 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd08 | 6/xx/2021 | Lemire | Reorganizes specification to use the new OASIS template |
 
 # Appendix E. Examples
+_This section is non-normative._
+
+OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elements are handled in HTTP headers. The example messages below illustrate how this is handled in practice.
+
+A Request-URI ending in /openc2 is used in all example HTTP requests.
+
+## E.1 HTTP Request / Response Examples: Consumer as HTTP Server
+This section presents the HTTP message structures used when the OpenC2 Consumer acts as the HTTP listener.
+
+### E.1.1 Producer HTTP POST with OpenC2 Command
+Example message:
+
+```
+POST /openc2 HTTP/1.1
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 22:15:00 GMT
+
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257700000,
+    "from": "oc2producer.company.net",
+    "to": ["oc2consumer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": ...
+        "target": ...
+        "args": ...
+      }
+    }
+  }
+}
+```
+
+### E.1.2 Consumer HTTP Response with OpenC2 Response
+Example message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 22:15:10 GMT
+Content-type: application/openc2-rsp+json;version=1.0
+
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257710000,
+    "from": "oc2consumer.company.net",
+    "to": ["oc2producer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "response": {
+        "status": 200,
+        "status_text": ...
+        "results": ...
+      }
+    }
+  }
+}
+```
+
 
 # Appendix F. Notices
