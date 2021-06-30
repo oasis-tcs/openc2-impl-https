@@ -121,7 +121,9 @@ OpenC2 allows the application producing the commands to discover the set of capa
 ## 1.1 IPR Policy
 This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
-## 1.2 Terminology
+## 1.2 Glossary
+
+### 1.2.1 Definition of Terms
 
 _This section is normative._
 
@@ -136,19 +138,34 @@ _This section is normative._
 * **Specifier**: A property or field that identifies a Target or Actuator to some level of precision.
 * **Target**: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
+### 1.2.2 Acronyms and Abbreviations
 
-A list of acronyms is provided in [Annex A](#annex-a-acronyms).
+_This section is non-normative._
 
+| Term | Expansion |
+|:---|:---|
+| 0-RTT | Zero Round Trip Time |
+| API | Application Programming Interface |
+| HTTP | Hypertext Transfer Protocol |
+| HTTPS | HTTP over TLS |
+| IETF | Internet Engineering Task Force |
+| IPR | Intellectual Property Rights |
+| JSON | JavaScript Object Notation |
+| RFC | Request For Comment |
+| RID | Real-time Inter-network Defense |
+| TC | Technical Committee |
+| TCP | Transmission Control Protocol |
+| TLS | Transport Layer Security |
 
-## 1.5 Document Conventions
-### 1.5.1 Naming Conventions
+### 1.2.3 Document Conventions
+
+#### 1.2.3.1 Naming Conventions
 * [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
 
-### 1.5.2 Font Colors and Style
+#### 1.2.3.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
@@ -448,22 +465,6 @@ A conformant implementation of this transfer specification MUST:
 ---
 # Annex A. Acronyms
 
-_This section is non-normative._
-
-| Term | Expansion |
-|:---|:---|
-| 0-RTT | Zero Round Trip Time |
-| API | Application Programming Interface |
-| HTTP | Hypertext Transfer Protocol |
-| HTTPS | HTTP over TLS |
-| IETF | Internet Engineering Task Force |
-| IPR | Intellectual Property Rights |
-| JSON | JavaScript Object Notation |
-| RFC | Request For Comment |
-| RID | Real-time Inter-network Defense |
-| TC | Technical Committee |
-| TCP | Transmission Control Protocol |
-| TLS | Transport Layer Security |
 
 ---
 # Annex B. Examples
