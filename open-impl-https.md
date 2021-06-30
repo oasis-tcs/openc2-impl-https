@@ -462,21 +462,6 @@ A conformant implementation of this transfer specification MUST:
 
 **Table 4-1 - Message Element Implementation**
 
----
-# Annex A. Acronyms
-
-
----
-# Annex B. Examples
-
----
-# Annex C. Acknowledgments
-
-
----
-# Annex D. Revision History
-
-
 
 
 # Appendix A. References
