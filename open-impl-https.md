@@ -203,7 +203,7 @@ Content-type: application/openc2-cmd+json;version=1.0
 }
 ```
 
-## 1.6 Overview
+## 1.3 Overview
 In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:
 1. **Producers**: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.
 2. **Consumers**: A Consumer is an entity that receives and may act upon a Command. A Consumer may create Responses that provide any information captured or necessary to send back to the Producer.
@@ -250,7 +250,7 @@ The components of a Command are an Action (what is to be done), a Target (what i
 
 The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.
 
-## 1.7 Goal
+## 1.4 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
 
 The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD]](#iacd):
@@ -267,7 +267,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 * **Abstract:**  Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
 * **Extensible:**  While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
-## 1.8 Suitability
+## 1.5 Suitability
 This document specifies the use of Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS) as a transfer mechanism for OpenC2 Messages; 
 this HTTP/TLS layering is typically referred to as HTTPS [[RFC2818](#rfc2818)]. 
 As described in [[RFC3205](#rfc3205)], HTTP has become a common "substrate" for information transfer for other application-level protocols. 
