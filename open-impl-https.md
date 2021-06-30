@@ -2,7 +2,7 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification 01
+## Working Draft 08
 ## DD MMM 2021
 
 #### This version:
@@ -24,11 +24,10 @@ https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf
 [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chairs:
-Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/) \
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editor:
-David Lemire (dave.lemire@g2-inc.com), [G2, Inc.](http://www.g2-inc.com/)
+David Lemire (david.lemire@hii-tsd.com), [Huntington Ingalls Industries, Inc.](http://www.g2-inc.com/)
 
 #### Related work:
 
