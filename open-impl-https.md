@@ -33,7 +33,8 @@ David Lemire (david.lemire@hii-tsd.com), [Huntington Ingalls Industries, Inc.](h
 
 This specification is related to:
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html. \
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html. 
+
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: https://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html.
 
 #### Abstract:
@@ -434,7 +435,7 @@ the conditions for populating the Date:
 header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
 
-Example messages can be found in Annex B, section B.1.
+Example messages can be found in Appendix E, section E.1.
 
 
 ---
@@ -507,6 +508,8 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 
 
 # Appendix B. Safety, Security and Privacy Considerations
+
+Security considerations are addressed in Section 3.3.2, TLS Usage.
 
 # Appendix C. Acknowledgements
 
