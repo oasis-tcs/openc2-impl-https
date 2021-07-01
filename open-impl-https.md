@@ -73,41 +73,42 @@ For complete copyright information please see the Notices section in the Appendi
 
 ---
 
-## Table of Contents
--   [1 Introduction](#1-introduction)
-    -   [1.1 IPR Policy](#11-ipr-policy)
-    -   [1.2 Terminology](#12-terminology)
-    -   [1.3 Normative References](#13-normative-references)
-    -   [1.4 Non-Normative References](#14-non-normative-references)
-    -   [1.5 Document Conventions](#15-document-conventions)
-        -   [1.5.1 Naming Conventions](#151-naming-conventions)
-        -   [1.5.2 Font Colors and Style](#152-font-colors-and-style)
-    -   [1.6 Overview](#16-overview)
-    -   [1.7 Goal](#17-goal)
-    -   [1.8 Suitability](#18-suitability)
--   [2 Operating Model](#2-operating-model)
--   [3 Protocol Mappings](#3-protocol-mappings)
-    -   [3.1 Layering Overview](#31-layering-overview)
-    -   [3.2 General Requirements](#32-general-requirements)
-        -   [3.2.1 HTTP Usage](#321-http-usage)
-        -   [3.2.2 TLS Usage](#322-tls-usage)
-        -   [3.2.3 Authentication](#323-authentication)
-    -   [3.3 OpenC2 Message Format](#33-openc2-message-format)
-        - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
-        - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
-    -   [3.4 OpenC2 Consumer as HTTP/TLS
-        Server](#34-openc2-consumer-as-httptls-server)
--   [4 Conformance](#4-conformance)
--   [Annex A. Acronyms](#annex-a-acronyms)
--   [Annex B. Examples](#annex-b-examples)
-    -   [B.1 HTTP Request / Response Examples: Consumer as HTTP
-        Server](#b1-http-request--response-examples-consumer-as-http-server)
-        -   [B.1.1 Producer HTTP POST with OpenC2
-            Command](#b11-producer-http-post-with-openc2-command)
-        -   [B.1.2 Consumer HTTP Response with OpenC2
-            Response](#b12-consumer-http-response-with-openc2-response)
--   [Annex C. Acknowledgments](#annex-c-acknowledgments)
--   [Annex D. Revision History](#annex-d-revision-history)
+- [1 Introduction](#1-introduction)
+  - [1.1 Changes from Earlier Versions](#11-changes-from-earlier-versions)
+  - [1.2 Glossary](#12-glossary)
+    - [1.2.1 Definition of Terms](#121-definition-of-terms)
+    - [1.2.2 Acronyms and Abbreviations](#122-acronyms-and-abbreviations)
+    - [1.2.3 Document Conventions](#123-document-conventions)
+      - [1.2.3.1 Naming Conventions](#1231-naming-conventions)
+      - [1.2.3.2 Font Colors and Style](#1232-font-colors-and-style)
+  - [1.3 Overview](#13-overview)
+  - [1.4 Goal](#14-goal)
+  - [1.5 Suitability](#15-suitability)
+- [2 Operating Model](#2-operating-model)
+- [3 Protocol Mappings](#3-protocol-mappings)
+  - [3.1 	Layering Overview](#31-layering-overview)
+  - [3.2 General Requirements](#32-general-requirements)
+    - [3.2.1 HTTP Usage](#321-http-usage)
+    - [3.2.2 TLS Usage](#322-tls-usage)
+    - [3.2.3 Authentication](#323-authentication)
+  - [3.3 OpenC2 Message Format](#33-openc2-message-format)
+    - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
+    - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
+  - [3.4 OpenC2 Consumer as HTTP/TLS Server](#34-openc2-consumer-as-httptls-server)
+- [4 Conformance](#4-conformance)
+- [Appendix A. References](#appendix-a-references)
+  - [A.1 Normative References](#a1-normative-references)
+  - [A.2 Informative References](#a2-informative-references)
+- [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
+- [Appendix C. Acknowledgements](#appendix-c-acknowledgements)
+  - [C.1 Special Thanks](#c1-special-thanks)
+  - [C.2 Participants](#c2-participants)
+- [Appendix D. Revision History](#appendix-d-revision-history)
+- [Appendix E. Examples](#appendix-e-examples)
+  - [E.1 HTTP Request / Response Examples: Consumer as HTTP Server](#e1-http-request--response-examples-consumer-as-http-server)
+    - [E.1.1 Producer HTTP POST with OpenC2 Command](#e11-producer-http-post-with-openc2-command)
+    - [E.1.2 Consumer HTTP Response with OpenC2 Response](#e12-consumer-http-response-with-openc2-response)
+- [Appendix F. Notices](#appendix-f-notices)
 
 ---
 
@@ -509,7 +510,7 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 
 # Appendix B. Safety, Security and Privacy Considerations
 
-Security considerations are addressed in Section 3.3.2, TLS Usage.
+Security considerations are addressed in [Section 3.2.2 TLS Usage](#322-tls-usage).
 
 # Appendix C. Acknowledgements
 
