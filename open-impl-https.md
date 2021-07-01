@@ -122,7 +122,7 @@ OpenC2 allows the application producing the commands to discover the set of capa
 
 ## 1.1 Changes from Earlier Versions
 
-This version (WD08) has been updated to use the OASIS work product outline published in last 2020 ("2020style"). 
+This version (WD08) has been updated to use the OASIS work product outline published in last 2020 ("2020style"). It also includes minor corrections and changes from January 2020 Plug Fest experience, and other miscellaneous updates. 
 
 
 ## 1.2 Glossary
