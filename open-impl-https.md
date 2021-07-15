@@ -2,7 +2,7 @@
 
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Committee Specification 01
+## Working Draft 08
 ## DD MMM 2021
 
 #### This version:
@@ -24,17 +24,17 @@ https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf
 [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chairs:
-Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/) \
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editor:
-David Lemire (dave.lemire@g2-inc.com), [G2, Inc.](http://www.g2-inc.com/)
+David Lemire (david.lemire@hii-tsd.com), [Huntington Ingalls Industries, Inc.](http://www.g2-inc.com/)
 
 #### Related work:
 
 This specification is related to:
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html. \
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html. 
+
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: https://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html.
 
 #### Abstract:
@@ -49,6 +49,9 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 
 Note that any machine-readable content ([Computer Language Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s), the content in the separate plain text file prevails.
 
+#### Key words:
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
+
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
@@ -59,61 +62,53 @@ _Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by
 ---
 
 ## Notices
-Copyright © OASIS Open 2019. All Rights Reserved.
+Copyright © OASIS Open 2021. All Rights Reserved.
 
-All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
+Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr).
 
-This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs.
 
-The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
+For complete copyright information please see the Notices section in the Appendix.
 
-This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
-
-OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Committee Specification or OASIS Standard, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification.
-
-OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this specification by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification. OASIS may include such claims on its website, but disclaims any obligation to do so.
-
-OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Committee Specification or OASIS Standard, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.
-
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
 ---
 
-## Table of Contents
--   [1 Introduction](#1-introduction)
-    -   [1.1 IPR Policy](#11-ipr-policy)
-    -   [1.2 Terminology](#12-terminology)
-    -   [1.3 Normative References](#13-normative-references)
-    -   [1.4 Non-Normative References](#14-non-normative-references)
-    -   [1.5 Document Conventions](#15-document-conventions)
-        -   [1.5.1 Naming Conventions](#151-naming-conventions)
-        -   [1.5.2 Font Colors and Style](#152-font-colors-and-style)
-    -   [1.6 Overview](#16-overview)
-    -   [1.7 Goal](#17-goal)
-    -   [1.8 Suitability](#18-suitability)
--   [2 Operating Model](#2-operating-model)
--   [3 Protocol Mappings](#3-protocol-mappings)
-    -   [3.1 Layering Overview](#31-layering-overview)
-    -   [3.2 General Requirements](#32-general-requirements)
-        -   [3.2.1 HTTP Usage](#321-http-usage)
-        -   [3.2.2 TLS Usage](#322-tls-usage)
-        -   [3.2.3 Authentication](#323-authentication)
-    -   [3.3 OpenC2 Message Format](#33-openc2-message-format)
-        - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
-        - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
-    -   [3.4 OpenC2 Consumer as HTTP/TLS
-        Server](#34-openc2-consumer-as-httptls-server)
--   [4 Conformance](#4-conformance)
--   [Annex A. Acronyms](#annex-a-acronyms)
--   [Annex B. Examples](#annex-b-examples)
-    -   [B.1 HTTP Request / Response Examples: Consumer as HTTP
-        Server](#b1-http-request--response-examples-consumer-as-http-server)
-        -   [B.1.1 Producer HTTP POST with OpenC2
-            Command](#b11-producer-http-post-with-openc2-command)
-        -   [B.1.2 Consumer HTTP Response with OpenC2
-            Response](#b12-consumer-http-response-with-openc2-response)
--   [Annex C. Acknowledgments](#annex-c-acknowledgments)
--   [Annex D. Revision History](#annex-d-revision-history)
+- [1 Introduction](#1-introduction)
+  - [1.1 Changes from Earlier Versions](#11-changes-from-earlier-versions)
+  - [1.2 Glossary](#12-glossary)
+    - [1.2.1 Definition of Terms](#121-definition-of-terms)
+    - [1.2.2 Acronyms and Abbreviations](#122-acronyms-and-abbreviations)
+    - [1.2.3 Document Conventions](#123-document-conventions)
+      - [1.2.3.1 Naming Conventions](#1231-naming-conventions)
+      - [1.2.3.2 Font Colors and Style](#1232-font-colors-and-style)
+  - [1.3 Overview](#13-overview)
+  - [1.4 Goal](#14-goal)
+  - [1.5 Suitability](#15-suitability)
+- [2 Operating Model](#2-operating-model)
+- [3 Protocol Mappings](#3-protocol-mappings)
+  - [3.1 	Layering Overview](#31-layering-overview)
+  - [3.2 General Requirements](#32-general-requirements)
+    - [3.2.1 HTTP Usage](#321-http-usage)
+    - [3.2.2 TLS Usage](#322-tls-usage)
+    - [3.2.3 Authentication](#323-authentication)
+  - [3.3 OpenC2 Message Format](#33-openc2-message-format)
+    - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
+    - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
+  - [3.4 OpenC2 Consumer as HTTP/TLS Server](#34-openc2-consumer-as-httptls-server)
+- [4 Conformance](#4-conformance)
+- [Appendix A. References](#appendix-a-references)
+  - [A.1 Normative References](#a1-normative-references)
+  - [A.2 Informative References](#a2-informative-references)
+- [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
+- [Appendix C. Acknowledgements](#appendix-c-acknowledgements)
+  - [C.1 Special Thanks](#c1-special-thanks)
+  - [C.2 Participants](#c2-participants)
+- [Appendix D. Revision History](#appendix-d-revision-history)
+- [Appendix E. Examples](#appendix-e-examples)
+  - [E.1 HTTP Request / Response Examples: Consumer as HTTP Server](#e1-http-request--response-examples-consumer-as-http-server)
+    - [E.1.1 Producer HTTP POST with OpenC2 Command](#e11-producer-http-post-with-openc2-command)
+    - [E.1.2 Consumer HTTP Response with OpenC2 Response](#e12-consumer-http-response-with-openc2-response)
+- [Appendix F. Notices](#appendix-f-notices)
 
 ---
 
@@ -125,10 +120,14 @@ OpenC2 is a suite of specifications that enables command and control of cyber de
 
 OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices. These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device. The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
-## 1.1 IPR Policy
-This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
+## 1.1 Changes from Earlier Versions
 
-## 1.2 Terminology
+This version (WD08) has been updated to use the OASIS work product outline published in last 2020 ("2020style"). It also includes minor corrections and changes from January 2020 Plug Fest experience, and other miscellaneous updates. 
+
+
+## 1.2 Glossary
+
+### 1.2.1 Definition of Terms
 
 _This section is normative._
 
@@ -143,53 +142,34 @@ _This section is normative._
 * **Specifier**: A property or field that identifies a Target or Actuator to some level of precision.
 * **Target**: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
+### 1.2.2 Acronyms and Abbreviations
 
-A list of acronyms is provided in [Annex A](#annex-a-acronyms).
+_This section is non-normative._
 
+| Term | Expansion |
+|:---|:---|
+| 0-RTT | Zero Round Trip Time |
+| API | Application Programming Interface |
+| HTTP | Hypertext Transfer Protocol |
+| HTTPS | HTTP over TLS |
+| IETF | Internet Engineering Task Force |
+| IPR | Intellectual Property Rights |
+| JSON | JavaScript Object Notation |
+| RFC | Request For Comment |
+| RID | Real-time Inter-network Defense |
+| TC | Technical Committee |
+| TCP | Transmission Control Protocol |
+| TLS | Transport Layer Security |
 
-## 1.3 Normative References
-###### [RFC2119]
-Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <[http://www.rfc-editor.org/info/rfc2119](http://www.rfc-editor.org/info/rfc2119)>.
-###### [RFC2818] 
-Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
-###### [RFC5246] 
-Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
-###### [RFC7230] 
-Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing", RFC 7230, DOI 10.17487/RFC7230, June 2014, <https://www.rfc-editor.org/info/rfc7230>.
-###### [RFC7231] 
-Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content", RFC 7231, DOI 10.17487/RFC7231, June 2014, <https://www.rfc-editor.org/info/rfc7231>.
-###### [RFC7235] 
-Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Authentication", RFC 7235, DOI 10.17487/RFC7235, June 2014, <https://www.rfc-editor.org/info/rfc7235>.
-###### [RFC7540]
-Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <https://www.rfc-editor.org/info/rfc7540>.
-###### [RFC8174]
-Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <[http://www.rfc-editor.org/info/rfc8174](http://www.rfc-editor.org/info/rfc8174)>.
-###### [RFC8446]
-Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <[http://www.rfc-editor.org/info/rfc8446](http://www.rfc-editor.org/info/rfc8446)>
-###### [OpenC2-Lang-v1.0]
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+### 1.2.3 Document Conventions
 
-## 1.4 Non-Normative References
-###### [RFC3205]
-Moore, K., "On the use of HTTP as a Substrate", BCP 56, RFC 3205, DOI 10.17487/RFC3205, February 2002, <https://www.rfc-editor.org/info/rfc3205>.
-###### [RFC7525]
-Sheffer, Y., Holz, R., and P. Saint-Andre, "Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)", BCP 195, RFC 7525, DOI 10.17487/RFC7525, May 2015, <https://www.rfc-editor.org/info/rfc7525>.
-###### [RFC8259]
-Bray, T., ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, http://www.rfc-editor.org/info/rfc8259
-###### [SLPF]
-_Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html 
-###### [IACD]
-M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<https://www.semanticscholar.org/paper/Active-Cyber-Defense-%3A-A-Vision-for-Real-Time-Cyber-Herring-Willett/7c128468ae42584f282578b86439dbe9e8c904a8>.<br><br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 <https://www.semanticscholar.org/paper/Integrated-Adaptive-Cyberspace-Defense-%3A-Secure-by-Willett/a22881b8a046e7eab11acf647d530c2a3b03b762>.
-
-## 1.5 Document Conventions
-### 1.5.1 Naming Conventions
+#### 1.2.3.1 Naming Conventions
 * [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
 
-### 1.5.2 Font Colors and Style
+#### 1.2.3.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
@@ -227,7 +207,7 @@ Content-type: application/openc2-cmd+json;version=1.0
 }
 ```
 
-## 1.6 Overview
+## 1.3 Overview
 In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:
 1. **Producers**: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.
 2. **Consumers**: A Consumer is an entity that receives and may act upon a Command. A Consumer may create Responses that provide any information captured or necessary to send back to the Producer.
@@ -274,7 +254,7 @@ The components of a Command are an Action (what is to be done), a Target (what i
 
 The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.
 
-## 1.7 Goal
+## 1.4 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
 
 The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD]](#iacd):
@@ -291,7 +271,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 * **Abstract:**  Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
 * **Extensible:**  While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
-## 1.8 Suitability
+## 1.5 Suitability
 This document specifies the use of Hypertext Transfer Protocol (HTTP) over Transport Layer Security (TLS) as a transfer mechanism for OpenC2 Messages; 
 this HTTP/TLS layering is typically referred to as HTTPS [[RFC2818](#rfc2818)]. 
 As described in [[RFC3205](#rfc3205)], HTTP has become a common "substrate" for information transfer for other application-level protocols. 
@@ -456,7 +436,7 @@ the conditions for populating the Date:
 header specified in Section 7.1.1.2 of RFC 7231 SHALL be followed 
 
 
-Example messages can be found in Annex B, section B.1.
+Example messages can be found in Appendix E, section E.1.
 
 
 ---
@@ -486,98 +466,62 @@ A conformant implementation of this transfer specification MUST:
 
 **Table 4-1 - Message Element Implementation**
 
----
-# Annex A. Acronyms
 
-_This section is non-normative._
 
-| Term | Expansion |
-|:---|:---|
-| 0-RTT | Zero Round Trip Time |
-| API | Application Programming Interface |
-| HTTP | Hypertext Transfer Protocol |
-| HTTPS | HTTP over TLS |
-| IETF | Internet Engineering Task Force |
-| IPR | Intellectual Property Rights |
-| JSON | JavaScript Object Notation |
-| RFC | Request For Comment |
-| RID | Real-time Inter-network Defense |
-| TC | Technical Committee |
-| TCP | Transmission Control Protocol |
-| TLS | Transport Layer Security |
+# Appendix A. References
 
----
-# Annex B. Examples
-_This section is non-normative._
+## A.1 Normative References
 
-OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elements are handled in HTTP headers. The example Messages below illustrate how this is handled in practice.
+###### [RFC2119]
+Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <[http://www.rfc-editor.org/info/rfc2119](http://www.rfc-editor.org/info/rfc2119)>.
+###### [RFC2818] 
+Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
+###### [RFC5246] 
+Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
+###### [RFC7230] 
+Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing", RFC 7230, DOI 10.17487/RFC7230, June 2014, <https://www.rfc-editor.org/info/rfc7230>.
+###### [RFC7231] 
+Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content", RFC 7231, DOI 10.17487/RFC7231, June 2014, <https://www.rfc-editor.org/info/rfc7231>.
+###### [RFC7235] 
+Fielding, R., Ed., and J. Reschke, Ed., "Hypertext Transfer Protocol (HTTP/1.1): Authentication", RFC 7235, DOI 10.17487/RFC7235, June 2014, <https://www.rfc-editor.org/info/rfc7235>.
+###### [RFC7540]
+Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext Transfer Protocol Version 2 (HTTP/2)", RFC 7540, DOI 10.17487/RFC7540, May 2015, <https://www.rfc-editor.org/info/rfc7540>.
+###### [RFC8174]
+Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <[http://www.rfc-editor.org/info/rfc8174](http://www.rfc-editor.org/info/rfc8174)>.
+###### [RFC8446]
+Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <[http://www.rfc-editor.org/info/rfc8446](http://www.rfc-editor.org/info/rfc8446)>
+###### [OpenC2-Lang-v1.0]
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
-A Request-URI ending in /openc2 is used in all example HTTP requests.
 
-## B.1 HTTP Request / Response Examples: Consumer as HTTP Server
-This section presents the HTTP message structures used when the OpenC2 Consumer acts as the HTTP listener.
+## A.2 Informative References
 
-### B.1.1 Producer HTTP POST with OpenC2 Command
-Example message:
+###### [RFC3205]
+Moore, K., "On the use of HTTP as a Substrate", BCP 56, RFC 3205, DOI 10.17487/RFC3205, February 2002, <https://www.rfc-editor.org/info/rfc3205>.
+###### [RFC7525]
+Sheffer, Y., Holz, R., and P. Saint-Andre, "Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)", BCP 195, RFC 7525, DOI 10.17487/RFC7525, May 2015, <https://www.rfc-editor.org/info/rfc7525>.
+###### [RFC8259]
+Bray, T., ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, http://www.rfc-editor.org/info/rfc8259
+###### [SLPF]
+_Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html 
+###### [IACD]
+M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<https://www.semanticscholar.org/paper/Active-Cyber-Defense-%3A-A-Vision-for-Real-Time-Cyber-Herring-Willett/7c128468ae42584f282578b86439dbe9e8c904a8>.<br><br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 <https://www.semanticscholar.org/paper/Integrated-Adaptive-Cyberspace-Defense-%3A-Secure-by-Willett/a22881b8a046e7eab11acf647d530c2a3b03b762>.
 
-```
-POST /openc2 HTTP/1.1
-Content-type: application/openc2-cmd+json;version=1.0
-Date: Wed, 19 Dec 2018 22:15:00 GMT
 
-{
-  "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
-    "created": 1545257700000,
-    "from": "oc2producer.company.net",
-    "to": ["oc2consumer.company.net"]
-  },
-  "body": {
-    "openc2": {
-      "request": {
-        "action": ...
-        "target": ...
-        "args": ...
-      }
-    }
-  }
-}
-```
+# Appendix B. Safety, Security and Privacy Considerations
 
-### B.1.2 Consumer HTTP Response with OpenC2 Response
-Example message:
+Security considerations are addressed in [Section 3.2.2 TLS Usage](#322-tls-usage).
 
-```
-HTTP/1.1 200 OK
-Date: Wed, 19 Dec 2018 22:15:10 GMT
-Content-type: application/openc2-rsp+json;version=1.0
+# Appendix C. Acknowledgements
 
-{
-  "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
-    "created": 1545257710000,
-    "from": "oc2consumer.company.net",
-    "to": ["oc2producer.company.net"]
-  },
-  "body": {
-    "openc2": {
-      "response": {
-        "status": 200,
-        "status_text": ...
-        "results": ...
-      }
-    }
-  }
-}
-```
-
----
-# Annex C. Acknowledgments
 The Implementation Considerations Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members.  The editor wishes to express their gratitude to the members of the OpenC2 TC. 
+
+## C.1 Special Thanks
+
 
 The editor also thank Jerome Czachor, of Huntington-Ingalls Industries, for assistance with incorporating the new `OpenC2-Message` structure into this specification.
 
-
+## C.2 Participants
 
 The following individuals are acknowledged for providing comments, suggested text, and/or participation in CSD ballots or face-to-face meetings:
 
@@ -621,8 +565,9 @@ The following individuals are acknowledged for providing comments, suggested tex
 * Sounil Yu, Bank of America
 * David Webber, Huawei
 
----
-# Annex D. Revision History
+
+# Appendix D. Revision History
+
 | Revision | Date | Editor | Changes Made |
 |:---|:---|:---|:---|
 | v1.0-wd01-wip | 6/15/2018 | Lemire | Initial working draft |
@@ -642,4 +587,93 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
-| v1.1-wdxx-wip | x/x/2020 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience |
+| v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
+| v1.0-wd08 | 6/xx/2021 | Lemire | Reorganizes specification to use the new OASIS template |
+
+# Appendix E. Examples
+_This section is non-normative._
+
+OpenC2 Messages consist of a set of "message elements" defined in Section 3.2 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)]. Table 4-1 of this specification defines how the message elements are handled with HTTPS transfer. Broadly speaking the message content (i.e., Commands and Responses) is carried in the HTTP message body while the remaining elements are handled in HTTP headers. The example messages below illustrate how this is handled in practice.
+
+A Request-URI ending in /openc2 is used in all example HTTP requests.
+
+## E.1 HTTP Request / Response Examples: Consumer as HTTP Server
+This section presents the HTTP message structures used when the OpenC2 Consumer acts as the HTTP listener.
+
+### E.1.1 Producer HTTP POST with OpenC2 Command
+Example message:
+
+```
+POST /openc2 HTTP/1.1
+Content-type: application/openc2-cmd+json;version=1.0
+Date: Wed, 19 Dec 2018 22:15:00 GMT
+
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257700000,
+    "from": "oc2producer.company.net",
+    "to": ["oc2consumer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": ...
+        "target": ...
+        "args": ...
+      }
+    }
+  }
+}
+```
+
+### E.1.2 Consumer HTTP Response with OpenC2 Response
+Example message:
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 19 Dec 2018 22:15:10 GMT
+Content-type: application/openc2-rsp+json;version=1.0
+
+{
+  "headers": {
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "created": 1545257710000,
+    "from": "oc2consumer.company.net",
+    "to": ["oc2producer.company.net"]
+  },
+  "body": {
+    "openc2": {
+      "response": {
+        "status": 200,
+        "status_text": ...
+        "results": ...
+      }
+    }
+  }
+}
+```
+
+
+# Appendix F. Notices
+
+## Notices
+Copyright © OASIS Open 2021. All Rights Reserved.
+
+All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
+
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
+
+The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
+
+This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+As stated in the OASIS IPR Policy, the following three paragraphs in brackets apply to OASIS Standards Final Deliverable documents (Committee Specification, Candidate OASIS Standard, OASIS Standard, or Approved Errata).
+
+\[OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this deliverable.\]
+
+\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this OASIS Standards Final Deliverable. OASIS may include such claims on its website, but disclaims any obligation to do so.\]
+
+\[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
+
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
