@@ -3,7 +3,7 @@
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
 ## Working Draft 08
-## DD MMM 2021
+## 15 July 2021
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
@@ -122,7 +122,11 @@ OpenC2 allows the application producing the commands to discover the set of capa
 
 ## 1.1 Changes from Earlier Versions
 
-This version (WD08) has been updated to use the OASIS work product outline published in last 2020 ("2020style"). It also includes minor corrections and changes from January 2020 Plug Fest experience, and other miscellaneous updates. 
+This version (WD08) has been updated to use the OASIS work
+product outline published in last 2020 ("2020style"). It also
+includes minor corrections and changes from January 2020 Plug
+Fest experience, and other miscellaneous updates since the July
+2019 CS01 publication. 
 
 
 ## 1.2 Glossary
@@ -588,7 +592,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
 | v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
-| v1.0-wd08 | 6/xx/2021 | Lemire | Reorganizes specification to use the new OASIS template |
+| v1.0-wd08 | 7/15/2021 | Lemire | Reorganizes specification to use the new OASIS template |
 
 # Appendix E. Examples
 _This section is non-normative._
