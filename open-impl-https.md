@@ -128,6 +128,8 @@ includes minor corrections and changes from January 2020 Plug
 Fest experience, and other miscellaneous updates since the July
 2019 CS01 publication. 
 
+Changes since WD08:
+* Specifies the atomic OpenC2 message structure, updates content-type accordingly, and adjusts examples to match
 
 ## 1.2 Glossary
 
