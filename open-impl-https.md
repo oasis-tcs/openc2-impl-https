@@ -128,6 +128,9 @@ includes minor corrections and changes from January 2020 Plug
 Fest experience, and other miscellaneous updates since the July
 2019 CS01 publication. 
 
+Changes since WD08:
+* Defines a standard Uniform Resource Identifier (URI) scheme and adds a corresponding conformance requirement.
+
 
 ## 1.2 Glossary
 
