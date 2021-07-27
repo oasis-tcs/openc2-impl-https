@@ -376,18 +376,7 @@ This section describes how OpenC2 messages are represented in HTTP requests.
 
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 Messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
 
-As described in [OpenC2-Lang-v1.0], transfer protocols must convey message elements. Two content types are defined here to support that requirement:
-
-* OpenC2 Command:
-    * msg_type: "request"
-    * content_type: application/openc2-cmd+json;version=1.0
-* OpenC2 Response: 
-    * msg_type: "response"
-    * content_type: application/openc2-rsp+json;version=1.0 
-
-When OpenC2 Command Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-cmd+json;version=1.0". 
-
-When OpenC2 Response Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-rsp+json;version=1.0". 
+When OpenC2 Messages are sent over HTTPS using the default JSON serialization the message MUST specify the content type "application/openc2+json;version=1.0". 
 
 ### 3.3.2 OpenC2 Message Structure
 
