@@ -358,7 +358,9 @@ All HTTP request and response messages containing OpenC2 payloads SHOULD include
 
 ### 3.2.2 URI Scheme
 
-When transferring OpenC2 Command messages over HTTPS, the Uniform Resource Identifier (URI) structure in Table 3-2 MUST be employed:
+When transferring OpenC2 Command messages over HTTPS, the Uniform
+Resource Identifier (URI) structure in Table 3-2 MUST be
+employed:
 
 | Scheme  | Address | Path |
 |:---:|:---:|:---:|
@@ -366,9 +368,11 @@ When transferring OpenC2 Command messages over HTTPS, the Uniform Resource Ident
 
 **Table 3-2: OpenC2 HTTPS URI Structure**
 
-OpenC2 Producers sending Command messages MUST POST those messages to the URI defined in Table 3-2.  
+OpenC2 Producers sending Command messages MUST POST those
+messages to the URI defined in Table 3-2.  
 
-OpenC2 Consumers acting as HTTP listeners much accept Command messages POSTed to the URI defined in Table 3-2.
+OpenC2 Consumers acting as HTTP listeners much accept Command
+messages POSTed to the URI defined in Table 3-2.
 
 ### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
