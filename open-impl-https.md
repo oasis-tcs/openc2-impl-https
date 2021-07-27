@@ -608,17 +608,19 @@ Date: Wed, 19 Dec 2018 22:15:00 GMT
 
 {
   "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5",
     "created": 1545257700000,
     "from": "oc2producer.company.net",
-    "to": ["oc2consumer.company.net"]
+    "to": [
+      "oc2consumer.company.net"
+    ]
   },
   "body": {
     "openc2": {
       "request": {
-        "action": ...
-        "target": ...
-        "args": ...
+        "action": "...",
+        "target": "...",
+        "args": "..."
       }
     }
   }
@@ -635,17 +637,19 @@ Content-type: application/openc2-rsp+json;version=1.0
 
 {
   "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5",
     "created": 1545257710000,
     "from": "oc2consumer.company.net",
-    "to": ["oc2producer.company.net"]
+    "to": [
+      "oc2producer.company.net"
+    ]
   },
   "body": {
     "openc2": {
       "response": {
         "status": 200,
-        "status_text": ...
-        "results": ...
+        "status_text": "...",
+        "results": "..."
       }
     }
   }
