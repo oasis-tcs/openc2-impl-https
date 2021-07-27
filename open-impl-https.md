@@ -176,10 +176,20 @@ _This section is non-normative._
 #### 1.2.3.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
-* A fixed width font is used for all type names, property names, and literals.
+* A fixed width font is used for all type names, property names,
+  and literals.
 * Property names are in bold style – **'created_at'**.
-* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259]](#rfc8259).
-* Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
+* All examples in this document are expressed in JSON. They are
+  in fixed width font, with straight quotes, black text and a
+  light shaded background, and 2-space indentation. JSON examples
+  in this document are representations of JSON Objects. They
+  should not be interpreted as string literals. The ordering of
+  object keys is insignificant. Whitespace before or after JSON
+  structural characters in the examples are insignificant
+  [[RFC8259]](#rfc8259).
+* Parts of the example may be omitted for conciseness and
+  clarity. These omitted parts are denoted with the ellipses
+  ("...").
 
 Example:
 
