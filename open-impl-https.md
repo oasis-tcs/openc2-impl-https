@@ -189,10 +189,12 @@ Date: Wed, 19 Dec 2018 22:15:00 GMT
 Content-type: application/openc2+json;version=1.0
 {
   "headers": {
-    "request_id": "0e3d8fa8-0bae-4055-a341-9c97b4f328f7"
+    "request_id": "0e3d8fa8-0bae-4055-a341-9c97b4f328f7",
     "created": 1545257700000,
-    "from": ...,
-    "to": [...]
+    "from": "...",
+    "to": [
+      "..."
+    ]
   },
   "body": {
     "openc2": {
