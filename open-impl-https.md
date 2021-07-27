@@ -334,8 +334,10 @@ When using HTTPS for OpenC2 Message transfer, the layering model is:
 This section defines serialization, HTTP, and TLS requirements.
 
 ### 3.2.1 HTTP Usage
-OpenC2 Consumers MUST be HTTP listeners, to implement the operating model described in [Section 2](#2-operating-model). 
-OpenC2 Consumers acting as HTTP listeners SHOULD listen on port 443, the registered port for HTTPS.
+OpenC2 Consumers MUST be HTTP listeners, to implement the
+operating model described in [Section 2](#2-operating-model).
+OpenC2 Consumers acting as HTTP listeners SHOULD listen on port
+443, the registered port for HTTPS.
 
 OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request method utilized is  POST. 
 
@@ -351,7 +353,21 @@ Each HTTP message body MUST contain only a single OpenC2 Command or Response mes
 
 All HTTP request and response messages containing OpenC2 payloads SHOULD include the "Cache-control:" header with a value of "no-cache".
 
-### 3.2.2 TLS Usage
+### 3.2.2 URI Scheme
+
+When transferring OpenC2 Command messages over HTTPS, the Uniform Resource Identifier (URI) structure in Table 3-2 MUST be employed:
+
+| Scheme  | Address | Path |
+|:---:|:---:|:---:|
+| `https://` | `[Consumer Address]` | `/openc2/` |
+
+**Table 3-2: OpenC2 HTTPS URI Structure**
+
+OpenC2 Producers sending Command messages MUST POST those messages to the URI defined in Table 3-2.  
+
+OpenC2 Consumers acting as HTTP listeners much accept Command messages POSTed to the URI defined in Table 3-2.
+
+### 3.2.3 TLS Usage
 HTTPS, the transmission of HTTP over TLS, is specified in Section 2 of [[RFC2818](#rfc2818)]. OpenC2 endpoints MUST accept TLS version 1.2 [[RFC5246](#rfc5246)] connections or higher for confidentiality, identification, and authentication when sending OpenC2 Messages over HTTPS, and SHOULD accept TLS Version 1.3 [[RFC8446](#rfc8446)] or higher connections.
 
 OpenC2 endpoints MUST NOT support any version of TLS prior to v1.2 and MUST NOT support any version of Secure Sockets Layer (SSL). 
@@ -364,7 +380,7 @@ OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphers
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
-### 3.2.3 Authentication
+### 3.2.4 Authentication
 
 Each participant in an OpenC2 communication MUST authenticate the other participant.
 
@@ -452,12 +468,13 @@ A conformant implementation of this transfer specification MUST:
 2. Transfer OpenC2 Messages using the content types defined in [Section 3.3.1](#331-serialization-and-content-types) appropriately, as specified in Section [3.4](#34-openc2-consumer-as-httptls-server).
 3. Listen for HTTPS connections as specified in [Section 3.2.1](#321-http-usage).
 4. Use HTTP POST method as specified in Sections [3.2.1](#321-http-usage), and [3.4](#34-openc2-consumer-as-httptls-server), and no other HTTP methods.
-5. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.3.2](#332-openc2-message-structure).
-6. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.2](#322-tls-usage).
-7. Employ HTTP methods to send and receive OpenC2 Messages as specified in Section [3.4](#34-openc2-consumer-as-httptls-server).
-8. Employ only the HTTP response codes specified in [[OpenC2-Lang-v1.0](#openc2-lang-v10)], Section 3.3.2.1.
-9. Support authentication of remote parties as specified in Section [3.2.3](#323-authentication)
-10. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
+5. Transfer OpenC2 command messages to the HTTP listener using the URI scheme specified in Section [3.2.2](#322-uri-scheme).
+6. Ensure HTTP request and response messages only contain a single OpenC2 message, as specified in [Section 3.3.2](#332-openc2-message-structure).
+7. Implement TLS in accordance with the requirements and restrictions specified in Sections [3.2.2](#322-tls-usage).
+8. Employ HTTP methods to send and receive OpenC2 Messages as specified in Section [3.4](#34-openc2-consumer-as-httptls-server).
+9. Employ only the HTTP response codes specified in [[OpenC2-Lang-v1.0](#openc2-lang-v10)], Section 3.3.2.1.
+10. Support authentication of remote parties as specified in Section [3.2.3](#323-authentication)
+11. Instantiate the message elements defined in Table 3-1 of [[OpenC2-Lang-v1.0](#openc2-lang-v10)] as follows:
 
 
 | Name | HTTPS Implementation |
