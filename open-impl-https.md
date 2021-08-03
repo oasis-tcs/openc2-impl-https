@@ -364,9 +364,11 @@ employed:
 
 | Scheme  | Address | Path |
 |:---:|:---:|:---:|
-| `https://` | `[Consumer Address]` | `/openc2/` |
+| `https://` | `[Consumer Address]` | `/.well-known/openc2` |
 
 **Table 3-2: OpenC2 HTTPS URI Structure**
+
+This path format conforms to the the IETF's "`/.well-known/`" path prefix for well-known locations, as defined in [[RFC8615](#rfc8615)]
 
 OpenC2 Producers sending Command messages MUST POST those
 messages to the URI defined in Table 3-2.  
@@ -518,6 +520,8 @@ Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext Transfer Protocol Version 
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <[http://www.rfc-editor.org/info/rfc8174](http://www.rfc-editor.org/info/rfc8174)>.
 ###### [RFC8446]
 Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <[http://www.rfc-editor.org/info/rfc8446](http://www.rfc-editor.org/info/rfc8446)>
+###### [RFC8615]
+Nottingham, M., "Well-Known Uniform Resource Identifiers (URIs)", RFC 8615, DOI 10.17487/RFC8615, May 2019, <https://www.rfc-editor.org/info/rfc8615>
 ###### [OpenC2-Lang-v1.0]
 _Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
@@ -632,7 +636,7 @@ This section presents the HTTP message structures used when the OpenC2 Consumer 
 Example message:
 
 ```
-POST /openc2 HTTP/1.1
+POST /.well-known/openc2 HTTP/1.1
 Content-type: application/openc2-cmd+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 
