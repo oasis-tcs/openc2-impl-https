@@ -390,7 +390,7 @@ This section describes how OpenC2 messages are represented in HTTP requests.
 
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 Messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
 
-When OpenC2 Messages are sent over HTTPS using the default JSON serialization the message MUST specify the content type "application/openc2+json;version=1.0". 
+When OpenC2 Messages are sent over HTTPS using the default JSON serialization the message MUST specify the content type `"application/openc2+json;version=1.0"`. 
 
 ### 3.3.2 OpenC2 Message Structure
 
@@ -431,13 +431,13 @@ the HTTP POST method is used, with the OpenC2 Command body contained in the POST
 The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
-* Accept: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
+* Content-type:  `application/openc2+json;version=1.0` (when using the default JSON serialization)
+* Accept: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
 
 The following HTTP response headers MUST be populated when transferring OpenC2 Responses:
 
-* Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
+* Content-type: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
@@ -471,7 +471,7 @@ A conformant implementation of this transfer specification MUST:
 | Name | HTTPS Implementation |
 |:---|:---|
 | content | JSON serialization of OpenC2 Commands and Responses carried in the HTTP message body |
-| content\_type /<br>msg\_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>Response:  application/openc2-rsp+json;version=1.0 |
+| content\_type /<br>msg\_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  `application/openc2+json;version=1.0`<br>Response:  `application/openc2+json;version=1.0` |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP response start line status code.  |
 | created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
 
@@ -617,7 +617,7 @@ Example message:
 
 ```
 POST /openc2 HTTP/1.1
-Content-type: application/openc2-cmd+json;version=1.0
+Content-type: application/openc2+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 
 {
@@ -647,7 +647,7 @@ Example message:
 ```
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
-Content-type: application/openc2-rsp+json;version=1.0
+Content-type: application/openc2+json;version=1.0
 
 {
   "headers": {
