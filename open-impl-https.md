@@ -128,6 +128,8 @@ includes minor corrections and changes from January 2020 Plug
 Fest experience, and other miscellaneous updates since the July
 2019 CS01 publication. 
 
+Changes since WD08:
+* Specifies the atomic OpenC2 message structure, updates content-type accordingly, and adjusts examples to match
 
 ## 1.2 Glossary
 
@@ -176,23 +178,35 @@ _This section is non-normative._
 #### 1.2.3.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
-* A fixed width font is used for all type names, property names, and literals.
+* A fixed width font is used for all type names, property names,
+  and literals.
 * Property names are in bold style – **'created_at'**.
-* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259]](#rfc8259).
-* Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
+* All examples in this document are expressed in JSON. They are
+  in fixed width font, with straight quotes, black text and a
+  light shaded background, and 2-space indentation. JSON examples
+  in this document are representations of JSON Objects. They
+  should not be interpreted as string literals. The ordering of
+  object keys is insignificant. Whitespace before or after JSON
+  structural characters in the examples are insignificant
+  [[RFC8259]](#rfc8259).
+* Parts of the example may be omitted for conciseness and
+  clarity. These omitted parts are denoted with the ellipses
+  ("...").
 
 Example:
 
 ```
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:00 GMT
-Content-type: application/openc2-cmd+json;version=1.0
+Content-type: application/openc2+json;version=1.0
 {
   "headers": {
-    "request_id": "0e3d8fa8-0bae-4055-a341-9c97b4f328f7"
+    "request_id": "0e3d8fa8-0bae-4055-a341-9c97b4f328f7",
     "created": 1545257700000,
-    "from": ...,
-    "to": [...]
+    "from": "...",
+    "to": [
+      "..."
+    ]
   },
   "body": {
     "openc2": {
@@ -376,42 +390,36 @@ This section describes how OpenC2 messages are represented in HTTP requests.
 
 While the OpenC2 language is agnostic of serialization, when transferring OpenC2 Messages over HTTP/TLS as described in this specification, the default JSON serialization described in [[OpenC2-Lang-v1.0](#openc2-lang-v10)] MUST be supported.
 
-As described in [OpenC2-Lang-v1.0], transfer protocols must convey message elements. Two content types are defined here to support that requirement:
-
-* OpenC2 Command:
-    * msg_type: "request"
-    * content_type: application/openc2-cmd+json;version=1.0
-* OpenC2 Response: 
-    * msg_type: "response"
-    * content_type: application/openc2-rsp+json;version=1.0 
-
-When OpenC2 Command Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-cmd+json;version=1.0". 
-
-When OpenC2 Response Messages sent over HTTPS use the default JSON serialization the message MUST specify the content type "application/openc2-rsp+json;version=1.0". 
+When OpenC2 Messages are sent over HTTPS using the default JSON serialization the message MUST specify the content type `"application/openc2+json;version=1.0"`. 
 
 ### 3.3.2 OpenC2 Message Structure
 
-OpenC2 messages transferred using HTTPS utilize the `OpenC2-Message` structure containing the message elements listed in Section 3.2 of [OpenC2-Lang-v1.0](#openc2-lang-v10).
+OpenC2 messages transferred using HTTPS utilize the
+`OpcenC2-Message` structure defined in Section 3.2 of
+[OpenC2-Lang-v1.0](#openc2-lang-v10).
 
+ ``` 
+Message = Record
+  1 headers       Headers optional
+  2 body          Body
+  3 signature     String optional
+
+Headers = Map{1..*}
+  1 request_id    String optional
+  2 created       ls:Date-Time optional
+  3 from          String optional
+  4 to            String [0..*]
+
+Body = Choice
+  1 openc2        OpenC2-Content
+
+OpenC2-Content = Choice
+  1 request       OpenC2-Command
+  2 response      OpenC2-Response
+  3 notification  OpenC2-Event  
  ```
- OpenC2-Message = Record {
-     1 content         Content,                  // Message body as specified by msg_type (the ID/Name of Content)
-     2 request_id      String optional,          // A unique identifier created by Producer and copied by Consumer into responses
-     3 created         Date-Time optional,       // Creation date/time of the content
-     4 from            String optional,          // Authenticated identifier of the creator of / authority for a request
-     5 to              ArrayOf(String) optional  // Authenticated identifier(s) of the authorized recipient(s) of a message
- }
- 
- Content = Choice {
-     1 request         OpenC2-Command,           // The initiator of a two-way message exchange.
-     2 response        OpenC2-Response,          // A response linked to a request in a two-way message exchange.
-     3 notification    OpenC2-Notification       // A (one-way) message that is not a request or response.  (Placeholder)
- }
- ```
- 
-A Producer sending an OpenC2 request _always_ includes its identifier in the message `from` field, allowing receiving Consumers to know the origin of the request.  A Consumer sending a response to an OpenC2 request _always_ includes its identifier in the message `from` field, allowing responses to the same request from different Consumers to be identified by the Producer receiving the responses.
- 
-When publishing an OpenC2 request, the Producer can use the `to` field as a filter to provide finer-grained control over which Consumers should process any particular message.
+
+Since HTTPS provides a point-to-point connection between an OpenC2 Producer and Consumer, the message `from` and `to` fields are not needed for addressing. OpenC2 Producers and Consumers MAY populate the message headers `from` and `to` fields.
 
 ## 3.4 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
@@ -423,13 +431,13 @@ the HTTP POST method is used, with the OpenC2 Command body contained in the POST
 The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
 * Host:  host name of HTTP server:listening port number (if other than port 443)
-* Content-type:  application/openc2-cmd+json;version=1.0 (when using the default JSON serialization)
-* Accept: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
+* Content-type:  `application/openc2+json;version=1.0` (when using the default JSON serialization)
+* Accept: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
 
 The following HTTP response headers MUST be populated when transferring OpenC2 Responses:
 
-* Content-type: application/openc2-rsp+json;version=1.0 (when using the default JSON serialization)
+* Content-type: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
 
 The following HTTP request and response headers SHOULD be populated when transferring OpenC2 Commands and Responses when the Consumer is the HTTP/TLS server:
@@ -463,7 +471,7 @@ A conformant implementation of this transfer specification MUST:
 | Name | HTTPS Implementation |
 |:---|:---|
 | content | JSON serialization of OpenC2 Commands and Responses carried in the HTTP message body |
-| content\_type /<br>msg\_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  application/openc2-cmd+json;version=1.0<br>Response:  application/openc2-rsp+json;version=1.0 |
+| content\_type /<br>msg\_type | Combined and carried in the HTTP Content-type and Accepted headers:<br>    Command:  `application/openc2+json;version=1.0`<br>Response:  `application/openc2+json;version=1.0` |
 | status | Numeric status code supplied by OpenC2 Consumers is carried in the HTTP response start line status code.  |
 | created | Carried in the HTTP Date header in the preferred IMF-fixdate format as defined by Section 7.1.1.1 of RFC 7231. |
 
@@ -609,22 +617,24 @@ Example message:
 
 ```
 POST /openc2 HTTP/1.1
-Content-type: application/openc2-cmd+json;version=1.0
+Content-type: application/openc2+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
 
 {
   "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5",
     "created": 1545257700000,
     "from": "oc2producer.company.net",
-    "to": ["oc2consumer.company.net"]
+    "to": [
+      "oc2consumer.company.net"
+    ]
   },
   "body": {
     "openc2": {
       "request": {
-        "action": ...
-        "target": ...
-        "args": ...
+        "action": "...",
+        "target": "...",
+        "args": "..."
       }
     }
   }
@@ -637,21 +647,23 @@ Example message:
 ```
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
-Content-type: application/openc2-rsp+json;version=1.0
+Content-type: application/openc2+json;version=1.0
 
 {
   "headers": {
-    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5"
+    "request_id": "d1ac0489-ed51-4345-9175-f3078f30afe5",
     "created": 1545257710000,
     "from": "oc2consumer.company.net",
-    "to": ["oc2producer.company.net"]
+    "to": [
+      "oc2producer.company.net"
+    ]
   },
   "body": {
     "openc2": {
       "response": {
         "status": 200,
-        "status_text": ...
-        "results": ...
+        "status_text": "...",
+        "results": "..."
       }
     }
   }
