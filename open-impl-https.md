@@ -1,9 +1,9 @@
 ![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
 ---
-# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0
-## Working Draft 08
-## 15 July 2021
+# Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1
+## Working Draft 01
+## xx September 2021
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
@@ -23,7 +23,7 @@ https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf
 #### Technical Committee:
 [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
-#### Chairs:
+#### Chair:
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editor:
@@ -57,7 +57,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-HTTPS-v1.0]**
 
-_Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. 11 July 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html.
+_Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1_. Edited by David Lemire. xx September 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html.
 
 ---
 
@@ -348,7 +348,7 @@ OpenC2 Commands by sending HTTP requests using the POST method
 through the TLS connection, with Consumer OpenC2 Responses
 returned in the HTTP response. 
 
-![no alt title](./images/image_2.png)
+![Figure 2 -- OpenC2 Producer / Consumer Interactions](./images/image_2.png)
 
 **Figure 2 -- OpenC2 Producer / Consumer Interactions**
 
@@ -422,7 +422,7 @@ The implementation and use of TLS SHOULD align with the best currently available
 
 The TLS session MUST use non-NULL ciphersuites for authentication, integrity, and confidentiality. Sessions MAY be renegotiated within these constraints.
 
-OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the blacklisted ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
+OpenC2 endpoints supporting TLS v1.2 MUST NOT use any of the deprecated ciphersuites identified in Appendix A of [[RFC7540](#rfc7540)]. 
 
 OpenC2 endpoints supporting TLS 1.3 MUST NOT implement zero round trip time resumption (0-RTT).
 
@@ -522,6 +522,8 @@ The conformance targets for this specification are:
   of OpenC2 messages over HTTPS in environments where security or
   the demonstration of secure interoperability is a primary
   concern.
+
+The Testing and Operations targets MUST NOT be concurrently available; an OpenC2 Consumer MUST reject non-secure connections when conforming to the Operations target.
 
 ## 4.2 Conformance Requirements
 
