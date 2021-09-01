@@ -3,7 +3,7 @@
 ---
 # Specification for Transfer of OpenC2 Messages via HTTPS Version 1.1
 ## Working Draft 01
-## xx September 2021
+## 01 September 2021
 
 #### This version:
 https://docs.oasis-open.org/openc2/open-impl-https/v1.0/cs01/open-impl-https-v1.0-cs01.md (Authoritative) \
