@@ -81,21 +81,23 @@ For complete copyright information please see the Notices section in the Appendi
     - [1.2.3 Document Conventions](#123-document-conventions)
       - [1.2.3.1 Naming Conventions](#1231-naming-conventions)
       - [1.2.3.2 Font Colors and Style](#1232-font-colors-and-style)
-  - [1.3 Overview](#13-overview)
-  - [1.4 Goal](#14-goal)
-  - [1.5 Suitability](#15-suitability)
 - [2 Operating Model](#2-operating-model)
 - [3 Protocol Mappings](#3-protocol-mappings)
   - [3.1 	Layering Overview](#31-layering-overview)
   - [3.2 General Requirements](#32-general-requirements)
     - [3.2.1 HTTP Usage](#321-http-usage)
-    - [3.2.2 TLS Usage](#322-tls-usage)
-    - [3.2.3 Authentication](#323-authentication)
+    - [3.2.2 URI Scheme](#322-uri-scheme)
+    - [3.2.3 TLS Usage](#323-tls-usage)
+    - [3.2.4 Authentication](#324-authentication)
   - [3.3 OpenC2 Message Format](#33-openc2-message-format)
     - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
     - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
   - [3.4 OpenC2 Consumer as HTTP/TLS Server](#34-openc2-consumer-as-httptls-server)
 - [4 Conformance](#4-conformance)
+  - [4.1 Conformance Targets](#41-conformance-targets)
+  - [4.2 Conformance Requirements](#42-conformance-requirements)
+    - [4.2.1 Testing Target Conformance Requirements](#421-testing-target-conformance-requirements)
+    - [4.2.2 Operations Target Conformance Requirements](#422-operations-target-conformance-requirements)
 - [Appendix A. References](#appendix-a-references)
   - [A.1 Normative References](#a1-normative-references)
   - [A.2 Informative References](#a2-informative-references)
@@ -109,6 +111,7 @@ For complete copyright information please see the Notices section in the Appendi
     - [E.1.1 Producer HTTP POST with OpenC2 Command](#e11-producer-http-post-with-openc2-command)
     - [E.1.2 Consumer HTTP Response with OpenC2 Response](#e12-consumer-http-response-with-openc2-response)
 - [Appendix F. Notices](#appendix-f-notices)
+  - [Notices](#notices-1)
 
 ---
 
@@ -118,20 +121,45 @@ _The content in this section is non-normative, except where it is marked normati
 
 OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a _Command_ is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol, and the Consumer can respond with status and any requested information.
 
-OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices. These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device. The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
+This document specifies the use of Hypertext Transfer Protocol
+(HTTP) over Transport Layer Security (TLS) as a transfer
+mechanism for OpenC2 Messages; this HTTP/TLS layering is
+typically referred to as HTTPS [[RFC2818](#rfc2818)]. As
+described in [[RFC3205](#rfc3205)], HTTP has become a common
+"substrate" for information transfer for other application-level
+protocols. The broad availability of HTTP makes it a useful
+option for OpenC2 message transport in support of prototyping,
+interoperability testing, and for operational use in environments
+where appropriate security protections can be provided.
+
+Similarly, TLS is a mature and widely-used protocol for securing
+information transfers in TCP/IP network environments. This
+specification provides guidance to the OpenC2 implementation
+community when utilizing HTTPS for OpenC2 message transport. It
+includes guidance for selection of TLS versions and options
+suitable for use with OpenC2. In addition, a Testing conformance
+target is defined to support interoperability testing without
+security mechanisms. 
+
+This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
+
+* Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
+    * Highly available, with infrequent network outages
+    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
+* In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signaling network.
+* The overhead of HTTPS is acceptable.
+
+An additional application for this transfer specification is interoperability test environments.
+
 
 ## 1.1 Changes from Earlier Versions
 
-This version (WD08) has been updated to use the OASIS work
-product outline published in last 2020 ("2020style"). It also
-includes minor corrections and changes from January 2020 Plug
-Fest experience, and other miscellaneous updates since the July
-2019 CS01 publication. 
-
-Changes since WD08:
-* Defined a standard Uniform Resource Identifier (URI) scheme and adds a corresponding conformance requirement.
-* Specified the atomic OpenC2 message structure, updates content-type accordingly, and adjusts examples to match
-* Testing and Operations conformance targets and requirements defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
+Changes since v1.0, CSD01:
+* Defined a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.
+* Specified the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match
+* Testing and Operations conformance targets and requirements have been defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
+* Restructured to use the updated OASIS work products outline
+* Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences
 
 ## 1.2 Glossary
 
@@ -164,7 +192,6 @@ _This section is non-normative._
 | IPR | Intellectual Property Rights |
 | JSON | JavaScript Object Notation |
 | RFC | Request For Comment |
-| RID | Real-time Inter-network Defense |
 | TC | Technical Committee |
 | TCP | Transmission Control Protocol |
 | TLS | Transport Layer Security |
@@ -182,7 +209,6 @@ The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names,
   and literals.
-* Property names are in bold style – **'created_at'**.
 * All examples in this document are expressed in JSON. They are
   in fixed width font, with straight quotes, black text and a
   light shaded background, and 2-space indentation. JSON examples
@@ -227,100 +253,7 @@ Content-type: application/openc2+json;version=1.0
 }
 ```
 
-## 1.3 Overview
-In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:
-1. **Producers**: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.
-2. **Consumers**: A Consumer is an entity that receives and may act upon a Command. A Consumer may create Responses that provide any information captured or necessary to send back to the Producer.
 
-![OpenC2 Message Exchange](./images/MessageFlow.png)
-
-**Figure 1-1. OpenC2 Message Exchange**
-
-OpenC2 is a suite of specifications for Producers and Consumers to command and execute cyber defense functions. These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. The OpenC2 Language Specification and Actuator Profile specifications focus on the language content and meaning at the Producer and Consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.
-* The OpenC2 Language Specification [[OpenC2-Lang-v1.0](#openc2-lang-v10)] provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Command or Response.
-* **OpenC2 Actuator Profiles** specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely to) implement multiple Actuator profiles. Actuator profiles extend the language by defining Specifiers that identify the Actuator to the required level of precision. Actuator Profiles may define Command Arguments and Targets that are relevant and/or unique to those Actuator functions.
-* **OpenC2 Transfer Specifications** utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 Messages.
-
-The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (_defined_ as a Message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more Actuator profiles).
-
-The language defines two payload structures:
-
-1. **Command**: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.
-2. **Response**: Any information sent back to the Producer as a result of the Command.
-
-OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1-2 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude any particular approach to implementing the needed functionality (for example, the use of an application-layer message signature function to provide message source authentication and integrity).
-
-![OpenC2 Documentation and Layering Model](./images/OC2LayeringModel.png)
-
-**Figure 1-2. OpenC2 Documentation and Layering Model**
-
-OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
-
-**Table 1-1. OpenC2 Protocol Layers**
-
-| Layer | Examples |
-| :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>([[OpenC2-SLPF-v1.0]](#openc2-slpf-v10), ...) |
-| Common Content | OpenC2 Language Specification<br>([[OpenC2-Lang-v1.0]](#openc2-lang-v10)) |
-| Message | Transfer Specifications<br>([[OpenC2-HTTPS-v1.0]](#openc2-https-v10), OpenC2-over-CoAP, ...) |
-| Secure Transport | HTTPS, CoAP, MQTT, OpenDXL, ... |
-
-* The **Secure Transport** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.
-* The **Message** layer provides a transfer- and content-independent mechanism for conveying Messages. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.
-* The **Common Content** layer defines the structure of Commands and Responses and a set of common language elements used to construct them.
-* The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.
-
-The components of a Command are an Action (what is to be done), a Target (what is being acted upon), an optional Actuator (what is performing the command), and Command Arguments, which influence how the Command is to be performed. An Action coupled with a Target is sufficient to describe a complete Command. Though optional, the inclusion of an Actuator and/or Command Arguments provides additional precision to a Command.
-
-The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.
-
-## 1.4 Goal
-The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
-
-The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD]](#iacd):
-
-* Sensing:  gathering of data regarding system activities
-* Sense Making:  evaluating data using analytics to understand what's happening
-* Decision Making:  determining a course-of-action to respond to system events
-* Acting:  Executing the course-of-action
-
-The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions. OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/analytics have been provisioned and the decision to act has been made. This goal and these assumptions guide the design of OpenC2:
-
-* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and implementation agnostic manner
-* **Concise:**  A Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
-* **Abstract:**  Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
-* **Extensible:**  While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
-
-## 1.5 Suitability
-This document specifies the use of Hypertext Transfer Protocol
-(HTTP) over Transport Layer Security (TLS) as a transfer
-mechanism for OpenC2 Messages; this HTTP/TLS layering is
-typically referred to as HTTPS [[RFC2818](#rfc2818)]. As
-described in [[RFC3205](#rfc3205)], HTTP has become a common
-"substrate" for information transfer for other application-level
-protocols. The broad availability of HTTP makes it a useful
-option for OpenC2 Message transport in support of prototyping,
-interoperability testing, and for operational use in environments
-where appropriate security protections can be provided.
-
-Similarly, TLS is a mature and widely-used protocol for securing
-information transfers in TCP/IP network environments. This
-specification provides guidance to the OpenC2 implementation
-community when utilizing HTTPS for OpenC2 Message transport. It
-includes guidance for selection of TLS versions and options
-suitable for use with OpenC2. In addition, a Testing conformance
-target is defined to support interoperability testing without
-security mechanisms. 
-
-This OpenC2 over HTTPS transfer specification is suitable for operational environments where: 
-
-* Connectivity between OpenC2 Producers and OpenC2 Consumers is: 
-    * Highly available, with infrequent network outages
-    * Of sufficient bandwidth that no appreciable message delays or dropped packets are experienced 
-* In-band negotiation of a connection initiated by either Producer or Consumer is possible without requiring an out-of-band signaling network.
-* The overhead of HTTPS is acceptable.
-
-An additional application for this transfer specification is interoperability test environments.
 
 ---
 # 2 Operating Model
@@ -330,14 +263,16 @@ This section describes the operating model used when transferring
 OpenC2 Commands and Responses using HTTPS. 
 
 > NOTE: This specification provides for both HTTP and HTTPS
-> message transfer. For convenience HTTPS is used as a general
+> message transfer. For convenience HTTPS is used as the general
 > term for the transfer protocol throughout this specification.
-> For non-secure operations "HTTPS" should be read as equivalent
-> to "HTTP".
+> For non-secure operations using the Testing coformance target
+> "HTTPS" should be read as equivalent to "HTTP".
 
-Each endpoint of an OpenC2-over-HTTPS interaction has both an OpenC2 role and an HTTP function. 
-OpenC2 Consumers will be HTTP listeners so that they can accept connections and receive unsolicited Commands from OpenC2 Producers. 
-OpenC2 Producers act as HTTP clients and transmit Commands to Consumers.
+Each endpoint of an OpenC2-over-HTTPS interaction has both an
+OpenC2 role and an HTTP function. OpenC2 Consumers will be HTTP
+listeners (i.e., servers) so that they can accept connections and
+receive unsolicited Commands from OpenC2 Producers. OpenC2
+Producers act as HTTP clients and transmit Commands to Consumers.
 
 Figure 2 illustrates the Producer / Consumer interactions. A
 Producer that needs to send OpenC2 Commands initiates a TCP
@@ -361,25 +296,27 @@ When using HTTPS for OpenC2 Message transfer, the layering model is:
 
 | Layer | Description |
 |:---|:---|
-| OpenC2 Content | The OpenC2 Language Specification defines the overall OpenC2 language, and the Actuator Profile(s) implemented by any particular endpoint scopes the OpenC2 actions, targets, arguments, and specifiers that apply when commanding that type of Actuator.  |
+| OpenC2 Content | The _OpenC2 Language Specification_ defines the overall OpenC2 language, and the _Actuator Profile(s)_ implemented by any particular endpoint scopes the OpenC2 actions, targets, arguments, and specifiers that apply when commanding that type of Actuator.  |
 | Serialization | Serialization converts internal representations of OpenC2 content into a form that can be transmitted and received. The OpenC2 default serialization is JSON. |
-| Message | The message layer provides a content- and transport-independent mechanism for conveying requests and responses.  A Message consists of content plus a set of meta items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.|
+| Message | The message layer provides a content- and transport-independent mechanism for conveying requests and responses.  A Message consists of content plus a set of metadata items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.|
 | HTTP | The HTTP layer is responsible for conveying request and response Messages, as described in this specification. |
 | TLS | The TLS layer is responsible for authentication of connection endpoints and confidentiality and integrity of transferred Messages.  |
 | Lower Layer Transport | The lower protocol layers are responsible for end-to-end delivery of Messages. TCP/IP is the most common suite of lower layer protocols used with HTTPS. |
 
 ## 3.2 General Requirements
-This section defines serialization, HTTP, and TLS requirements.
+This section defines general requirements for using HTTPS to
+transfer OpenC2 messages, including HTTP method, message
+serialization, and TLS requirements.
 
 ### 3.2.1 HTTP Usage
-OpenC2 Consumers MUST be HTTP listeners, to implement the
+OpenC2 Consumers MUST be HTTP listeners to implement the
 operating model described in [Section 2](#2-operating-model).
 OpenC2 Consumers acting as HTTP listeners SHOULD listen on:
 
 * port 80, the registered port for HTTP, when used for testing.
 * port 443, the registered port for HTTPS, when used for operations.
 
-OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in the Table 3-1, the only HTTP request method utilized is  POST. 
+OpenC2 endpoints MUST implement all HTTP functionality required by this specification in accordance with HTTP/1.1 ([[RFC7230](#rfc7230)], _et. al._). As described in Table 3-1, the only HTTP request method utilized is POST. 
 
 
 | Utilized?  | HTTP Methods |
@@ -467,10 +404,14 @@ OpenC2-Content = Choice
   3 notification  OpenC2-Event  
  ```
 
-Since HTTPS provides a point-to-point connection between an OpenC2 Producer and Consumer, the message `from` and `to` fields are not needed for addressing. OpenC2 Producers and Consumers MAY populate the message headers `from` and `to` fields.
+Since HTTPS provides a point-to-point connection between an
+OpenC2 Producer and Consumer, the message `from` and `to` fields
+are not needed for addressing. However, OpenC2 Producers and
+Consumers MAY populate the message headers `from` and `to`
+fields.
 
 ## 3.4 OpenC2 Consumer as HTTP/TLS Server
-This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
+This section defines HTTP requirements that apply to the OpenC2 Consumer operating as the HTTP server.
 
 As the OpenC2 Consumer is the HTTP server, the Producer initiates a 
 connection to a specific Consumer and directly transmits OpenC2 Messages containing Commands; 
@@ -478,7 +419,7 @@ the HTTP POST method is used, with the OpenC2 Command body contained in the POST
 
 The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
-* Host:  host name of HTTP server:listening port number (if other than port 443)
+* Host:  host name of HTTP server:listening port number (if other than port 80 [(]testing] / 443 [operations])
 * Content-type:  `application/openc2+json;version=1.0` (when using the default JSON serialization)
 * Accept: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
@@ -523,7 +464,9 @@ The conformance targets for this specification are:
   the demonstration of secure interoperability is a primary
   concern.
 
-The Testing and Operations targets MUST NOT be concurrently available; an OpenC2 Consumer MUST reject non-secure connections when conforming to the Operations target.
+The Testing and Operations targets MUST NOT be concurrently
+available; an OpenC2 Consumer MUST reject non-secure connections
+when conforming to the Operations target.
 
 ## 4.2 Conformance Requirements
 
@@ -567,7 +510,7 @@ the **Operations** conformance target MUST:
    [Section 4.2.1](#421-testing-target-conformance-requirements).
 3. Listen for HTTPS connections on port 443 as specified in
    [Section 3.2.1](#321-http-usage), and ignore HTTP connection
-   requests on port 80.
+   requests on port 80. <br>NOTE: This requirement supercedes conformance requirement #3 in the Testing conformance list in [Section 4.2.1](#421-testing-target-conformance-requirements).
 7. Implement TLS in accordance with the requirements and
    restrictions specified in [Section 3.2.2](#323-tls-usage).
 10. Support authentication of remote parties as specified in
@@ -699,6 +642,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
 | v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
 | v1.0-wd08 | 7/15/2021 | Lemire | Reorganizes specification to use the new OASIS template |
+| v1.1-wd09 | 9/01/2021 | Lemire | Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.<br>Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>Restructured document using the updated OASIS work products outline<br>Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences |
 
 # Appendix E. Examples
 _This section is non-normative._
