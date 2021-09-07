@@ -27,7 +27,7 @@ https://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.pdf
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editor:
-David Lemire (david.lemire@hii-tsd.com), [Huntington Ingalls Industries, Inc.](http://www.g2-inc.com/)
+David Lemire (david.lemire@hii-tsd.com), [National Security Agency](http://www.g2-inc.com/)
 
 #### Related work:
 
