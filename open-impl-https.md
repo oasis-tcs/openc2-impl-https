@@ -752,6 +752,7 @@ Example message:
 POST /.well-known/openc2 HTTP/1.1
 Content-type: application/openc2+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {
   "headers": {
@@ -781,6 +782,7 @@ Example message:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2+json;version=1.0
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {
   "headers": {
