@@ -298,7 +298,7 @@ When using HTTPS for OpenC2 Message transfer, the layering model is:
 |:---|:---|
 | OpenC2 Content | The _OpenC2 Language Specification_ defines the overall OpenC2 language, and the _Actuator Profile(s)_ implemented by any particular endpoint scopes the OpenC2 actions, targets, arguments, and specifiers that apply when commanding that type of Actuator.  |
 | Serialization | Serialization converts internal representations of OpenC2 content into a form that can be transmitted and received. The OpenC2 default serialization is JSON. |
-| Message | The message layer provides a content- and transport-independent mechanism for conveying requests and responses.  A Message consists of content plus a set of metadata items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.|
+| Message | The message layer provides a content- and transport-independent mechanism for conveying requests and responses.  A Message consists of serialized content plus a set of metadata items such as content type and version, sender, timestamp, and correlation id.  This layer maps the transport-independent definition of each message element to its transport-specific on-the-wire representation.|
 | HTTP | The HTTP layer is responsible for conveying request and response Messages, as described in this specification. |
 | TLS | The TLS layer is responsible for authentication of connection endpoints and confidentiality and integrity of transferred Messages.  |
 | Lower Layer Transport | The lower protocol layers are responsible for end-to-end delivery of Messages. TCP/IP is the most common suite of lower layer protocols used with HTTPS. |
