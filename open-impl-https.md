@@ -482,8 +482,8 @@ purpose. This specification supports the use of these mechanisms
 in parallel, with the following requirements:
 
 * OpenC2 Producers MUST generate a unique identifying value for
-  OpenC2 Command (i.e., request) messages, and SHOULD use a
-  UUID_v4 identifier for that purpose.
+  OpenC2 Command (i.e., request) messages, and SHOULD use an
+  [[RFC4122](#rfc4122)] UUID_v4 identifier for that purpose.
 
 * OpenC2 Producers MUST populate either the HTTP `X-Request-ID`
   header or the OpenC2 message header `request_id` field with the
@@ -612,6 +612,8 @@ the **Operations** conformance target MUST:
 Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <[http://www.rfc-editor.org/info/rfc2119](http://www.rfc-editor.org/info/rfc2119)>.
 ###### [RFC2818] 
 Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
+###### [RFC4122]
+Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 ###### [RFC5246] 
 Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
 ###### [RFC7230] 
