@@ -469,6 +469,36 @@ OpenC2-Content = Choice
 
 Since HTTPS provides a point-to-point connection between an OpenC2 Producer and Consumer, the message `from` and `to` fields are not needed for addressing. OpenC2 Producers and Consumers MAY populate the message headers `from` and `to` fields.
 
+### 3.3.3 Message Identification
+
+OpenC2 Producers and Consumers need the ability to identify
+requests and corresponding responses in order to correlate
+activity. In addition, it is common for network monitoring tools
+to similarly track requests and responses. The OpenC2 message
+format includes a header field, `request_id` that is the OpenC2
+mechanism for message correlation. The extension header
+`X-Request-ID` is commonly used in HTTP(S) traffic for the same
+purpose. This specification supports the use of these mechanisms
+in parallel, with the following requirements:
+
+OpenC2 Producers MUST generate a unique identifying value for
+OpenC2 Command (i.e., request) messages, and SHOULD use a UUID_v4
+identifier for that purpose.
+
+OpenC2 Producers MUST populate either the HTTP `X-Request-ID`
+header or the OpenC2 message header `request_ID` field with the
+message's unique identifying value, and SHOULD populate both
+locations.
+
+OpenC2 Consumers MUST return the Command message's unique
+identifying value in corresponding Response messages.
+
+When responding to a Command message that did not contain an
+OpenC2 `request_id`, the OpenC2 Consumer MUST populate the
+Response message `request_id` header field with the unique
+identifying value from the Command message's `X-Request-ID`
+header.
+
 ## 3.4 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply when the OpenC2 Consumer is the HTTP server.
 
