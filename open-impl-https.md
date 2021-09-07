@@ -419,7 +419,7 @@ the HTTP POST method is used, with the OpenC2 Command body contained in the POST
 
 The following HTTP request headers MUST be populated when transferring OpenC2 Commands:
 
-* Host:  host name of HTTP server:listening port number (if other than port 80 [(]testing] / 443 [operations])
+* Host:  host name of HTTP server:listening port number (if other than port 80 [testing] / 443 [operations])
 * Content-type:  `application/openc2+json;version=1.0` (when using the default JSON serialization)
 * Accept: `application/openc2+json;version=1.0` (when using the default JSON serialization)
 
