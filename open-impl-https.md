@@ -584,6 +584,8 @@ the **Testing** conformance target MUST:
    [[OpenC2-Lang-v1.0](#openc2-lang-v10)], Section 3.3.2.1.
 9. Utilize the OpenC2 message format specified in 
     [Section 3.3.2](#332-openc2-message-structure).
+10. Support the handling of unique message identifiers as
+    specified in [Section 3.3.3](#333-message-identification)
 
 ### 4.2.2 Operations Target Conformance Requirements
 
