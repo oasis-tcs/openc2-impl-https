@@ -92,6 +92,7 @@ For complete copyright information please see the Notices section in the Appendi
   - [3.3 OpenC2 Message Format](#33-openc2-message-format)
     - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
     - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
+    - [3.3.3 Message Identification](#333-message-identification)
   - [3.4 OpenC2 Consumer as HTTP/TLS Server](#34-openc2-consumer-as-httptls-server)
 - [4 Conformance](#4-conformance)
   - [4.1 Conformance Targets](#41-conformance-targets)
