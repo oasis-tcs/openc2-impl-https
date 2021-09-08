@@ -643,25 +643,25 @@ The following individuals are acknowledged for providing comments, suggested tex
 | Revision | Date | Editor | Changes Made |
 |:---|:---|:---|:---|
 | v1.0-wd01-wip | 6/15/2018 | Lemire | Initial working draft |
-| v1.0-wd01-wip | 6/29/2018 | Lemire | Added Suitability section (1.6), responded to SC member comments |
-| v1.0-wd01-wip | 7/20/2018 | Lemire | Additional responses to member comments; formatting clean-up for easier conversion to Markdown. |
-| v1.0-wd01-wip | 8/9/2018 | Lemire | Implementing feedback from the July 2018 face-to-face meeting and resolving other comments to reach WD01 version to submit for CSD ballot. |
-| v1.0-wd02-wip | 8/24/2018 | Lemire | Various edits to clarify interactions when the producer is HTTP listener; other edits and cleanup in response to document comments and Slack forum discussions. |
-| v1.0-wd02-wip | 8/29/2018 | Lemire | 1) Adjustments to content type definitions to distinguish commands and responses; <br>2) Made corresponding adjustments to message flow descriptions and sample messages.<br>3) Added acknowledgements. |
-| v1.0-wd02-wip | 8/30/2018 | Lemire | Inserted proposed replacements for sequence diagrams (Figures 2 and 3). |
-| v1.0-wd02-wip | 8/31/2018 | Lemire | 1) Inserted initial draft conformance language (section 4).<br>2) Revised Section 1 content for greater consistency with related OpenC2 specifications.<br>3) Revised section 2.1 to merge proposed endpoint role descriptions<br>4) General edit for formatting, readability, consistency, etc. |
-| v1.0-wd02-wip | 9/11/2018 | Lemire | 1) Reviewed and accepted / rejected comments.<br>2) Added placeholders for addressing use of "From" field.<br>3) Added statements about using Cache-control |
+| v1.0-wd01-wip | 6/29/2018 | Lemire | 1) Added Suitability section (1.6)<br>2) Responded to SC member comments |
+| v1.0-wd01-wip | 7/20/2018 | Lemire | 1) Additional responses to member comments<br>2) Formatting clean-up for easier conversion to Markdown |
+| v1.0-wd01-wip | 8/9/2018 | Lemire | Implementing feedback from the July 2018 face-to-face meeting and resolving other comments to reach WD01 version to submit for CSD ballot |
+| v1.0-wd02-wip | 8/24/2018 | Lemire | 1) Various edits to clarify interactions when the producer is HTTP listener<br>2) Other edits and cleanup in response to document comments and Slack forum discussions |
+| v1.0-wd02-wip | 8/29/2018 | Lemire | 1) Adjustments to content type definitions to distinguish commands and responses<br>2) Made corresponding adjustments to message flow descriptions and sample messages<br>3) Added acknowledgements |
+| v1.0-wd02-wip | 8/30/2018 | Lemire | Inserted proposed replacements for sequence diagrams (Figures 2 and 3) |
+| v1.0-wd02-wip | 8/31/2018 | Lemire | 1) Inserted initial draft conformance language (section 4)<br>2) Revised Section 1 content for greater consistency with related OpenC2 specifications<br>3) Revised section 2.1 to merge proposed endpoint role descriptions<br>4) General edit for formatting, readability, consistency, etc. |
+| v1.0-wd02-wip | 9/11/2018 | Lemire | 1) Reviewed and accepted / rejected comments<br>2) Added placeholders for addressing use of "From" field<br>3) Added statements about using Cache-control |
 | v1.0-wd02-wip | 9/17/2018 | Lemire | 1) Added table to conformance section specifying mapping of Language Spec message elements.<br>2) Clarified certificate mutual authentication requirement.<br>3) Removed language about unsolicited responses from Consumers<br>4) Numbered the conformance items |
 | v1.0-wd02-wip | 9/17/2018 | Lemire | 1) Removed used of the HTTP "From:" field, and mapped the OpenC2 "from" message element to the authenticated identity of the peer entity<br>2) Updated examples to remove HTTP From: |
-| v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot.<br>2) Renamed document to WD03-wip  |
-| v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.3.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.2 to better indicate TLS version requirements and preferences, and authentication requirements.<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1. |
-| v1.0-wd03-wip | 10/16/2018 | Lemire | 1) Final clean-up of residual edits to create WD03 package for CSD approval and release for public review. |
-| v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1. |
-| v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity. |
-| v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
-| v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
+| v1.0-wd02-wip | 9/19/2018 | Lemire | 1) Final clean-up of residual comments and edits to create WD02 package for CSD ballot<br>2) Renamed document to WD03-wip  |
+| v1.0-wd03-wip | 10/15/2018 | Lemire | 1) Reorganized section 1 to align with other OpenC2 specifications<br>2) Reworded section 3.3.1 to properly use MUST / SHALL language<br>3) Clarified requirements wording section 3.2.2 to better indicate TLS version requirements and preferences, and authentication requirements<br>4) Updated Table 4-1 to align with changes to Language Specification Table 3-1 |
+| v1.0-wd03-wip | 10/16/2018 | Lemire | Final clean-up of residual edits to create WD03 package for CSD approval and release for public review |
+| v1.0-wd03-wip | 3/27/2019 | Lemire | Resolution of issues from public review 1 |
+| v1.0-wd03-wip | 3/28/2019 | Lemire | Incremented WD version number to 05 prior to CSD ballot to eliminate ambiguity |
+| v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications |
+| v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience and other miscellaneous updates; captures state of working draft prior to reorganization against new OASIS template |
 | v1.0-wd08 | 7/15/2021 | Lemire | Reorganizes specification to use the new OASIS template |
-| v1.1-wd01 | 9/08/2021 | Lemire | Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.<br>Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>Restructured document using the updated OASIS work products outline<br>Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences<br>Added new section with requirements for message correlation |
+| v1.1-wd01 | 9/08/2021 | Lemire | 1) Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement<br>2) Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>3) Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>4) Restructured document using the updated OASIS work products outline<br>5) Added new section with requirements for message correlation<br>6) Other minor changes and corrections based on plug fest and interoperability testing experiences |
 
 # Appendix E. Examples
 _This section is non-normative._
