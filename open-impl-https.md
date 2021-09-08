@@ -92,6 +92,7 @@ For complete copyright information please see the Notices section in the Appendi
   - [3.3 OpenC2 Message Format](#33-openc2-message-format)
     - [3.3.1  Content Type and Serialization](#331--content-type-and-serialization)
     - [3.3.2 OpenC2 Message Structure](#332-openc2-message-structure)
+    - [3.3.3 Message Identification](#333-message-identification)
   - [3.4 OpenC2 Consumer as HTTP/TLS Server](#34-openc2-consumer-as-httptls-server)
 - [4 Conformance](#4-conformance)
   - [4.1 Conformance Targets](#41-conformance-targets)
@@ -154,7 +155,7 @@ An additional application for this transfer specification is interoperability te
 
 ## 1.1 Changes from Earlier Versions
 
-Changes since v1.0, CSD01:
+Changes since v1.0, CS01:
 * Defined a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.
 * Specified the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match
 * Testing and Operations conformance targets and requirements have been defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
