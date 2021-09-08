@@ -732,6 +732,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
 | v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
 | v1.0-wd08 | 7/15/2021 | Lemire | Reorganizes specification to use the new OASIS template |
+| v1.1-wd01 | 9/08/2021 | Lemire | Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.<br>Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>Restructured document using the updated OASIS work products outline<br>Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences<br>Added new section with requirements for message correlation |
 
 # Appendix E. Examples
 _This section is non-normative._
