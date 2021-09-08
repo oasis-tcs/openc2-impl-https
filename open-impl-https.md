@@ -132,6 +132,7 @@ Changes since WD08:
 * Defined a standard Uniform Resource Identifier (URI) scheme and adds a corresponding conformance requirement.
 * Specified the atomic OpenC2 message structure, updates content-type accordingly, and adjusts examples to match
 * Testing and Operations conformance targets and requirements defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
+* Added new section with requirements for message correlation
 
 ## 1.2 Glossary
 
