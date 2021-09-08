@@ -158,6 +158,7 @@ Changes since v1.0, CSD01:
 * Defined a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.
 * Specified the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match
 * Testing and Operations conformance targets and requirements have been defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
+* Added new section with requirements for message correlation
 * Restructured to use the updated OASIS work products outline
 * Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences
 
@@ -410,6 +411,36 @@ are not needed for addressing. However, OpenC2 Producers and
 Consumers MAY populate the message headers `from` and `to`
 fields.
 
+### 3.3.3 Message Identification
+
+OpenC2 Producers and Consumers need the ability to identify
+requests and corresponding responses in order to correlate
+activity. In addition, it is common for network monitoring tools
+to similarly track HTTP requests and responses. The OpenC2
+message format includes a header field, `request_id` that is the
+OpenC2 mechanism for message correlation. The extension header
+`X-Request-ID` is commonly used in HTTP traffic for the same
+purpose. This specification supports the use of these mechanisms
+in parallel, with the following requirements:
+
+* OpenC2 Producers MUST generate a unique identifying value for
+  OpenC2 Command (i.e., request) messages, and SHOULD use an
+  [[RFC4122](#rfc4122)] UUID_v4 identifier for that purpose.
+
+* OpenC2 Producers MUST populate either the HTTP `X-Request-ID`
+  header or the OpenC2 message header `request_id` field with the
+  Command message's unique identifying value, and SHOULD populate
+  both locations.
+
+* OpenC2 Consumers MUST return the Command message's unique
+  identifying value in corresponding Response messages.
+
+* When responding to a Command message that did not contain an
+  OpenC2 `request_id`, the OpenC2 Consumer MUST populate the
+  Response message `request_id` header field with the unique
+  identifying value from the Command message's `X-Request-ID`
+  header.
+
 ## 3.4 OpenC2 Consumer as HTTP/TLS Server
 This section defines HTTP requirements that apply to the OpenC2 Consumer operating as the HTTP server.
 
@@ -499,6 +530,8 @@ the **Testing** conformance target MUST:
    [[OpenC2-Lang-v1.0](#openc2-lang-v10)], Section 3.3.2.1.
 9. Utilize the OpenC2 message format specified in 
     [Section 3.3.2](#332-openc2-message-structure).
+10. Support the handling of unique message identifiers as
+    specified in [Section 3.3.3](#333-message-identification)
 
 ### 4.2.2 Operations Target Conformance Requirements
 
@@ -527,6 +560,8 @@ the **Operations** conformance target MUST:
 Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <[http://www.rfc-editor.org/info/rfc2119](http://www.rfc-editor.org/info/rfc2119)>.
 ###### [RFC2818] 
 Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <[https://www.rfc-editor.org/info/rfc2818](https://www.rfc-editor.org/info/rfc2818)>.
+###### [RFC4122]
+Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 ###### [RFC5246] 
 Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <[https://www.rfc-editor.org/info/rfc5246](https://www.rfc-editor.org/info/rfc5246)>.
 ###### [RFC7230] 
@@ -626,7 +661,7 @@ The following individuals are acknowledged for providing comments, suggested tex
 | v1.0-wd06-wip | 5/14/2019 | Lemire | Resolution of issues from public review 2 and adjustments for consistency across the suite of specifications. |
 | v1.0-wd07 | 6/23/2021 | Lemire | Minor corrections and changes from January 2020 Plug Fest experience, other miscellaneous updates. Captures states of working draft prior to reorganization against new OASIS template |
 | v1.0-wd08 | 7/15/2021 | Lemire | Reorganizes specification to use the new OASIS template |
-| v1.1-wd01 | 9/08/2021 | Lemire | Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.<br>Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>Restructured document using the updated OASIS work products outline<br>Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences |
+| v1.1-wd01 | 9/08/2021 | Lemire | Defines a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.<br>Specifies the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match<br>Defines Testing and Operations conformance targets and requirements to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification<br>Restructured document using the updated OASIS work products outline<br>Other minor changes and corrections have been incorporated based on plug fest and interoperability testing experiences<br>Added new section with requirements for message correlation |
 
 # Appendix E. Examples
 _This section is non-normative._
@@ -648,6 +683,7 @@ Example message:
 POST /.well-known/openc2 HTTP/1.1
 Content-type: application/openc2+json;version=1.0
 Date: Wed, 19 Dec 2018 22:15:00 GMT
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {
   "headers": {
@@ -677,6 +713,7 @@ Example message:
 HTTP/1.1 200 OK
 Date: Wed, 19 Dec 2018 22:15:10 GMT
 Content-type: application/openc2+json;version=1.0
+X-Request-ID: d1ac0489-ed51-4345-9175-f3078f30afe5
 
 {
   "headers": {
