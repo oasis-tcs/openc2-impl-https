@@ -155,7 +155,7 @@ An additional application for this transfer specification is interoperability te
 
 ## 1.1 Changes from Earlier Versions
 
-Changes since v1.0, CSD01:
+Changes since v1.0, CS01:
 * Defined a standard Uniform Resource Identifier (URI) scheme and added a corresponding conformance requirement.
 * Specified the use of the atomic OpenC2 message structure, updated content-type accordingly, and adjusted examples to match
 * Testing and Operations conformance targets and requirements have been defined to support both secure (HTTPS) and non-secure (HTTP) message transfers with a single specification
