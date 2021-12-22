@@ -35,7 +35,7 @@ than typical open source software project repositories:
   this branch is essentially empty
 * The **Working** branch is where all work-in-progress content is
   captured, and is the place to go for the [current working
-  version](https://github.com/oasis-tcs/openc2-transf-mqtt/blob/working/transf-mqtt-v1.0.md)
+  version](https://github.com/oasis-tcs/openc2-impl-https/blob/working/transf-mqtt-v1.0.md)
   of this work product
 
 More information about the TC's repository organizing conventions
@@ -49,33 +49,34 @@ Norms](https://github.com/oasis-tcs/openc2-tc-ops/blob/main/Documentation-Norms.
 <p>This GitHub repository supports development of content and change tracking for the OpenC2 HTTPS Transfer Specification as new working draft level revisions are created and the associated CSDs mature. 
 
 The repository is designed to support TC members' work on a
-formal specification that describes the use of secure Hyptertext Transfer Protocol (HTTPS) as a transfer mechanism for OpenC2
-messages. HTTPS  provides a widely-used point-to-point
-messaging transport protocol.  This specification provides
-guidance to the OpenC2 implementation community when utilizing
-HTTPS  for OpenC2 message transport.
+formal specification that describes the use of secure Hypertext
+Transfer Protocol (HTTPS) as a transfer mechanism for OpenC2
+messages. HTTPS  provides a widely-used point-to-point messaging
+transport protocol.  This specification provides guidance to the
+OpenC2 implementation community when utilizing HTTPS  for OpenC2
+message transport.
 
-The Work Product title for the work is:
-"Specification for Transfer of OpenC2 Messages via HTTPS, Version
-1.1", edited by David Lemire (HII). 
+The Work Product title for the work is: _"Specification for
+Transfer of OpenC2 Messages via HTTPS, Version 1.1"_, edited by
+David Lemire (HII). 
 </div>
 
 ### Contributions
 <div>
-<p>As stated in this repository's <a href="https://github.com/oasis-tcs/openc2-transf-mqtt/blob/master/CONTRIBUTING.md">CONTRIBUTING file</a>, contributors to this repository are expected to be Members of the OASIS OpenC2 TC, for any substantive change requests.  Anyone wishing to contribute to this GitHub project and <a href="https://www.oasis-open.org/join/participation-instructions">participate</a> in the TC's technical activity is invited to join as an OASIS TC Member.  Public feedback is also accepted, subject to the terms of the <a href="https://www.oasis-open.org/policies-guidelines/ipr#appendixa">OASIS Feedback License</a>.</p>
+<p>As stated in this repository's <a href="https://github.com/oasis-tcs/openc2-impl-https/blob/master/CONTRIBUTING.md">CONTRIBUTING file</a>, contributors to this repository are expected to be Members of the OASIS OpenC2 TC, for any substantive change requests.  Anyone wishing to contribute to this GitHub project and <a href="https://www.oasis-open.org/join/participation-instructions">participate</a> in the TC's technical activity is invited to join as an OASIS TC Member.  Public feedback is also accepted, subject to the terms of the <a href="https://www.oasis-open.org/policies-guidelines/ipr#appendixa">OASIS Feedback License</a>.</p>
 </div>
 
 
 ### Licensing
 
 <div>
-<p>Please see the <a href="https://github.com/oasis-tcs/openc2-transf-mqtt/blob/master/LICENSE.md">LICENSE</a> file for description of the license terms and OASIS policies applicable to the TC's work in this GitHub project. Content in this repository is intended to be part of the OpenC2 TC's permanent record of activity, visible and freely available for all to use, subject to applicable OASIS policies, as presented in the repository <a href="https://github.com/oasis-tcs/openc2-transf-mqtt/blob/master/LICENSE.md">LICENSE</a> file.</p>
+<p>Please see the <a href="https://github.com/oasis-tcs/openc2-impl-https/blob/master/LICENSE.md">LICENSE</a> file for description of the license terms and OASIS policies applicable to the TC's work in this GitHub project. Content in this repository is intended to be part of the OpenC2 TC's permanent record of activity, visible and freely available for all to use, subject to applicable OASIS policies, as presented in the repository <a href="https://github.com/oasis-tcs/openc2-impl-https/blob/master/LICENSE.md">LICENSE</a> file.</p>
 </div>
 
 <div>
 <h3>Further Description of this Repository</h3>
 
-<p>Members of the <a href="https://www.oasis-open.org/committees/openc2/">OASIS Open Command and Control (OpenC2) TC</a> create and manage technical content in this TC GitHub repository ( <a href="https://github.com/oasis-tcs/openc2-transf-mqtt">https://github.com/oasis-tcs/openc2-transf-mqtt</a> ) as part of the TC's chartered work (<i>i.e.</i>, the program of work and deliverables described in its <a href="https://www.oasis-open.org/committees/openc2/charter.php">charter</a>).</p>
+<p>Members of the <a href="https://www.oasis-open.org/committees/openc2/">OASIS Open Command and Control (OpenC2) TC</a> create and manage technical content in this TC GitHub repository ( <a href="https://github.com/oasis-tcs/openc2-impl-https">https://github.com/oasis-tcs/openc2-impl-https</a> ) as part of the TC's chartered work (<i>i.e.</i>, the program of work and deliverables described in its <a href="https://www.oasis-open.org/committees/openc2/charter.php">charter</a>).</p>
 
 <p>OASIS TC GitHub repositories, as described in <a href="https://www.oasis-open.org/resources/tcadmin/github-repositories-for-oasis-tc-members-chartered-work">GitHub Repositories for OASIS TC Members' Chartered Work</a>, are governed by the OASIS <a href="https://www.oasis-open.org/policies-guidelines/tc-process">TC Process</a>, <a href="https://www.oasis-open.org/policies-guidelines/ipr">IPR Policy</a>, and other policies, similar to TC Wikis, TC JIRA issues tracking instances, TC SVN/Subversion repositories, etc.  While they make use of public GitHub repositories, these TC GitHub repositories are distinct from <a href="https://www.oasis-open.org/resources/open-repositories">OASIS Open Repositories</a>, which are used for development of open source <a href="https://www.oasis-open.org/resources/open-repositories/licenses">licensed</a> content.</p>
 </div>
