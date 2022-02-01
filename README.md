@@ -35,7 +35,7 @@ than typical open source software project repositories:
   this branch is essentially empty
 * The **Working** branch is where all work-in-progress content is
   captured, and is the place to go for the [current working
-  version](https://github.com/oasis-tcs/openc2-impl-https/blob/working/transf-mqtt-v1.0.md)
+  version](https://github.com/oasis-tcs/openc2-impl-https/blob/working/open-impl-https.md)
   of this work product
 
 More information about the TC's repository organizing conventions
